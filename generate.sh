@@ -16,3 +16,6 @@ openapi-generator-cli generate \
   -g php \
   -o ./generated \
   --additional-properties=modelPropertyNaming=original
+
+  rm generated/composer.json
+  rm generated/.gitignore
