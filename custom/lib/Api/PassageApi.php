@@ -3,7 +3,7 @@
 namespace Passage\Client\Api;
 
 class PassageApi {
-    public $app_id;
+    private $app_id;
     private $api_key;
 
     /**
@@ -27,6 +27,8 @@ class PassageApi {
 
         $this->app_id = $config['app_id'];
         $this->api_key = $config['api_key'];
+
+        
     }
 
     /**
