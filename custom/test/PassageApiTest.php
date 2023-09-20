@@ -5,28 +5,17 @@ use Passage\Client\Api\PassageApi;
 
 class PassageApiTest extends TestCase
 {
-    public function testConstructorMissingAppId()
+    public function testConstructorMissingParam()
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('A Passage app_id is required. Please include [app_id => YOUR_APP_ID].');
+        $this->expectException(\ArgumentCountError::class);
+        $this->expectExceptionMessage('Too few arguments to function Passage\Client\Api\PassageApi::__construct()');
 
-        new PassageApi(['api_key' => '987654']);
-    }
-
-    public function testConstructorMissingApiKey()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('A Passage api_key is required. Please include [api_key => YOUR_API_KEY].');
-
-        new PassageApi(['app_id' => '123456']);
+        new PassageApi('123456');
     }
 
     public function testConstructorWithAppId()
     {
-        $config = ['app_id' => '123456', 'api_key' => '987654'];
-        $passageApi = new PassageApi($config);
-
-        print_r($passageApi);
+        $passageApi = new PassageApi('123456', '987654');
 
         // Assert that the object was created successfully
         $this->assertInstanceOf(PassageApi::class, $passageApi);
