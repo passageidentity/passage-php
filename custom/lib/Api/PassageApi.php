@@ -18,8 +18,15 @@ class PassageApi {
                 'A Passage app_id is required. Please include [app_id => YOUR_APP_ID].'
             );
         }
+
+        if (!isset($config['api_key'])) {
+            throw new \InvalidArgumentException(
+                'A Passage api_key is required. Please include [api_key => YOUR_API_KEY].'
+            );
+        }
+
         $this->app_id = $config['app_id'];
-        $this->api_key = isset($config['api_key']) ? $config['api_key'] : null;
+        $this->api_key = $config['api_key'];
     }
 
     /**

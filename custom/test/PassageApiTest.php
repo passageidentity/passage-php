@@ -10,12 +10,20 @@ class PassageApiTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('A Passage app_id is required. Please include [app_id => YOUR_APP_ID].');
 
-        new PassageApi([]);
+        new PassageApi(['api_key' => '987654']);
+    }
+
+    public function testConstructorMissingApiKey()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('A Passage api_key is required. Please include [api_key => YOUR_API_KEY].');
+
+        new PassageApi(['app_id' => '123456']);
     }
 
     public function testConstructorWithAppId()
     {
-        $config = ['app_id' => '123456'];
+        $config = ['app_id' => '123456', 'api_key' => '987654'];
         $passageApi = new PassageApi($config);
 
         print_r($passageApi);
