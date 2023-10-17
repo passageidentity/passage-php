@@ -1,9 +1,9 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-// use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Psr7\Request;
-use Lcobucci\Clock\FrozenClock;
+use Firebase\JWT\JWT;
+
 use Passage\Client\Controllers\Authentication;
 use Passage\Client\Controllers\Passage;
 
@@ -25,46 +25,41 @@ class AuthenticationTest extends TestCase {
         $this->userId = $config['EXAMPLE_USER_ID'];
     }
 
-    public function testAuthenticateRequestWithCookie()
-    {
-        // $this->authentication
-        // $this->expectException(\ArgumentCountError::class);
-        // $this->expectExceptionMessage('Too few arguments to function Passage\Client\Controllers\Passage::__construct()');
-
-
-        
-
-
-        // $clock = new FrozenClock(new DateTimeImmutable('2022-06-24 22:51:10'));
-        // $key   = InMemory::base64Encoded(
-        //     'hiG8DlOKvtih6AxlZn5XKImZ06yu8I3mkOzaJrEuW8yAv8Jnkw330uMt8AEqQ5LB'
-        // );
-
-        // $token = (new JwtFacade(null, $clock))->issue(
-        //     new Sha256(),
-        //     $key,
-        //     static fn (
-        //         Builder $builder,
-        //         DateTimeImmutable $issuedAt
-        //     ): Builder => $builder
-        // );
-
-
-        $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2OTYzNjYzMzMsIm5iZiI6MTY5NjM2NjMzMywiZXhwIjoxNjk2NDUyNzMzLCJpc3MiOiJodHRwczovL2F1dGgucGFzc2FnZS5pZC92MS9hcHBzL1RyV1NVYkREVFBDS1RRRHRMQTlNTzhFZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.488vxhs-SW-8zHqHK3EW5Tv1sgbHnyrQEWJHXBiVxYE';
-        
-        $request = new Request(
-            'GET',
-            '/cookie',
-            ['cookie' => 'psg_auth_token=' . $token]
-        );
-
+    public function testValidAuthTokenWithValidToken() {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
-        $authentication->authenticateRequest($request);
-        $this->assertEquals($authentication->authenticateRequest($request), $this->userId);
+        
+        $validToken = 'your_valid_jwt_token';
+        $jwks = ['kid' => 'your_key_id'];
+
+        $result = $authentication->validAuthToken($validToken);
+
+        var_dump(JWT::decode($payload, JWK::parseKeySet($jwks)));
+
+        // Assert that the result is the expected user ID
+        $this->assertEquals('expected_user_id', $result);
     }
 
     // public function testAuthenticateRequestWithCookie()
+    // {
+    //     $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2OTYzNjYzMzMsIm5iZiI6MTY5NjM2NjMzMywiZXhwIjoxNjk2NDUyNzMzLCJpc3MiOiJodHRwczovL2F1dGgucGFzc2FnZS5pZC92MS9hcHBzL1RyV1NVYkREVFBDS1RRRHRMQTlNTzhFZS8ud2VsbC1rbm93bi9qd2tzLmpzb24ifQ.488vxhs-SW-8zHqHK3EW5Tv1sgbHnyrQEWJHXBiVxYE';
+        
+    //     $request = new Request(
+    //         'GET',
+    //         '/cookie',
+    //         ['cookie' => 'psg_auth_token=' . $token]
+    //     );
+
+    //     var_dump($request);
+
+    //     $passage = new Passage($this->appId, $this->apiKey);
+    //     $authentication = new Authentication($passage);
+    //     $authentication->authenticateRequest($request);
+    //     $this->assertEquals(true, true);
+    //     // $this->assertEquals($authentication->authenticateRequest($request), $this->userId);
+    // }
+
+    // public function testAuthenticateRequestWithHeader()
     // {
     //     // $this->authentication
     //     // $this->expectException(\ArgumentCountError::class);

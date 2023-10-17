@@ -1,21 +1,15 @@
 <?php
 namespace Passage\Client\Controllers;
 
-use DateTimeImmutable;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request;
-use Lcobucci\Clock\FrozenClock;
-use Lcobucci\JWT\JwtFacade;
-use Lcobucci\JWT\Encoding\ChainedFormatter;
-use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
-use Lcobucci\JWT\Signer\Key\InMemory;
-use Lcobucci\JWT\Token\Builder;
-use Lcobucci\JWT\Token\Parser;
-use Lcobucci\JWT\Validation\Constraint\IssuedBy;
-use Lcobucci\JWT\Validation\Constraint\SignedWith;
-use Lcobucci\JWT\Validation\Constraint\StrictValidAt;
-use Lcobucci\JWT\Validation\Constraint\ValidAt;
-use Lcobucci\JWT\Validation\Validator;
+use Firebase\JWT\CachedKeySet;
+use Firebase\JWT\JWT;
+use Firebase\JWT\JWK;
+use Firebase\JWT\Key;
+use Phpfastcache\CacheManager;
+
 use OpenAPI\Client\ApiException;
 
 require 'vendor/autoload.php';
@@ -34,26 +28,36 @@ class Authentication {
         $this->passage = $passage;
 
         $appId = $this->passage->getAppId();
-        $url = 'https://auth.passage.id/v1/apps/' . $appId . '/.well-known/jwks.json';
-
-        $now = new DateTimeImmutable();
-        $key = InMemory::base64Encoded(
-            'hiG8DlOKvtih6AxlZn5XKImZ06yu8I3mkOzaJrEuW8yAv8Jnkw330uMt8AEqQ5LB'
-        );
+        $jwtIssuer = 'https://auth.passage.id/v1/apps/' . $appId . '/.well-known/jwks.json';
         
-        $this->jwks = (new JwtFacade())->issue(
-            new Sha256(),
-            $key,
-            static fn (
-                Builder $builder,
-                DateTimeImmutable $issuedAt
-            ): Builder => $builder
-                ->issuedBy($url)
-                ->expiresAt($now->modify('+24 hour'))
-                ->withClaim('userID', 1)
+        $this->jwks = $this->fetchJWKS($jwtIssuer);
+    }
+    
+    /**
+     * Returns the JWKS for the current app
+     *
+     * @param string $url
+     * @return string Userd of the Passage user
+    */
+    private function fetchJWKS(string $url) {
+        $httpClient = new Client();
+        $httpFactory = new HttpFactory();
+        
+        $config = include('config.php');
+        $publicKey = $config['APP_TOKEN'];
+
+        $cacheItemPool = CacheManager::getInstance('files');
+
+        $keySet = new CachedKeySet(
+            $url,
+            $httpClient,
+            $httpFactory,
+            $cacheItemPool,
+            null,
+            true
         );
 
-        var_dump($this->jwks);
+        return $keySet;
     }
 
     /**
@@ -80,7 +84,7 @@ class Authentication {
      * @throws ApiException for missing or incorrect tokens
     */
     public function authenticateRequestWithHeader(Request $req): string {
-        $authorization = $req->headers['authorization'] ?? null;
+        $authorization = $req->headers('Authorization');
 
         if (!$authorization) {
             throw new ApiException(
@@ -165,14 +169,28 @@ class Authentication {
      * @param string Authentication token
      * @return string sub claim if the jwt can be verified, or Error
     */
-    public function validAuthToken(string $jwtString): string {
-        $userToken = (new Parser(new JoseEncoder()))->parse($jwtString);
-        $validator = new Validator();
-
-        $appId = $this->passage->getAppId();
-        $issuer = 'https://auth.passage.id/v1/apps/' . $appId . '/.well-known/jwks.json';
-
-        var_dump($validator->validate($userToken, new IssuedBy($issuer)));
+    public function validAuthToken(string $jwtString): string | null {
+        try {
+            $decodedHeader = JWT::urlsafeB64Decode(explode('.', $token)[0]);
+            $header = json_decode($decodedHeader, true);
+            $kid = $header['kid'];
+      
+      
+            if (!$kid) {
+              return null;
+            }
+      
+            $decodedToken = JWT::decode($token, $this->jwks);
+            $userID = $decodedToken->sub;
+      
+            if ($userID) {
+              return strval($userID);
+            } else {
+              return null;
+            }
+          } catch (\Exception $e) {
+            return null;
+        }
     }
 }
 
