@@ -4,10 +4,8 @@ namespace Passage\Client\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request;
-use Firebase\JWT\CachedKeySet;
 use Firebase\JWT\JWT;
-use Firebase\JWT\JWK;
-use Firebase\JWT\Key;
+use Firebase\JWT\CachedKeySet;
 use Phpfastcache\CacheManager;
 
 use OpenAPI\Client\ApiException;
@@ -37,14 +35,11 @@ class Authentication {
      * Returns the JWKS for the current app
      *
      * @param string $url
-     * @return string Userd of the Passage user
+     * @return CachedKeySet UserId of the Passage user
     */
     private function fetchJWKS(string $url) {
         $httpClient = new Client();
         $httpFactory = new HttpFactory();
-        
-        $config = include('config.php');
-        $publicKey = $config['APP_TOKEN'];
 
         $cacheItemPool = CacheManager::getInstance('files');
 
@@ -84,22 +79,24 @@ class Authentication {
      * @throws ApiException for missing or incorrect tokens
     */
     public function authenticateRequestWithHeader(Request $req): string {
-        $authorization = $req->headers('Authorization');
+        $authorizationHeader = $req->getHeaders('Authorization');
 
-        if (!$authorization) {
+
+        if (!$authorizationHeader) {
             throw new ApiException(
-                "Header authorization not found. You must catch this error.",
+                'Header authorization not found. You must catch this error.',
                 401
             );
         } else {
-            $authToken = explode(' ', $authorization)[1] ?? null;
-            $userId = $this->validAuthToken($authToken);
+            $authToken = $authorizationHeader['Authorization'][0];
+            $token = explode(' ', $authToken)[1] ?? null;
+            $userId = $this->validAuthToken($token);
 
             if ($userId) {
                 return $userId;
             } else {
                 throw new ApiException(
-                    "Auth token is invalid",
+                    'Auth token is invalid',
                     401
                 );
             }
@@ -114,7 +111,7 @@ class Authentication {
      * @throws ApiException if a valid cookie for authentication is not found or if the auth token is invalid
     */
     public function authenticateRequestWithCookie(Request $req): string {
-        $cookiesStr = $req->getHeaders()['cookie'][0] ?? null;
+        $cookiesStr = $req->getHeaders()['cookies'][0] ?? null;
 
         if (!$cookiesStr) {
             throw new ApiException(
@@ -171,16 +168,18 @@ class Authentication {
     */
     public function validAuthToken(string $jwtString): string | null {
         try {
-            $decodedHeader = JWT::urlsafeB64Decode(explode('.', $token)[0]);
-            $header = json_decode($decodedHeader, true);
-            $kid = $header['kid'];
-      
-      
+            $decodedHeader = JWT::urlsafeB64Decode(explode('.', $jwtString)[0]);
+            $header = json_decode($decodedHeader);
+
+            $kid = $header->kid;
+
             if (!$kid) {
               return null;
             }
-      
-            $decodedToken = JWT::decode($token, $this->jwks);
+
+            $decodedToken = JWT::decode($jwtString, $this->jwks);
+            
+
             $userID = $decodedToken->sub;
       
             if ($userID) {
@@ -189,6 +188,7 @@ class Authentication {
               return null;
             }
           } catch (\Exception $e) {
+            var_dump($e->getMessage());
             return null;
         }
     }
