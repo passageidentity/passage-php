@@ -30,32 +30,19 @@ class AuthenticationTest extends TestCase {
         $this->userId = $config['EXAMPLE_USER_ID'];
     }
 
-    public function testValidAuthTokenInHeader() {
-        $passage = new Passage($this->appId, $this->apiKey, 'HEADER');
-        $authentication = new Authentication($passage);
-
-        $headers = [
-            'Authorization' => 'Bearer ' . $this->appToken
-        ];
-
-        $request = new Request('GET', '/endpoint', $headers);
-        
-        $user = $authentication->authenticateRequest($request);
-        $this->assertEquals($this->userId, $user);
-    }
-
-    public function testValidAuthTokenInCookie() {
+    public function testValidJWT() {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
         
-        $cookies = [
-            'cookies' => 'psg_auth_token=' . $this->appToken
-        ];
-
-        $request = new Request('GET', '/endpoint', $cookies);
-        
-        $user = $authentication->authenticateRequest($request);
-
+        $user = $authentication->validateJWT($this->appToken);
         $this->assertEquals($this->userId, $user);
+    }
+
+    public function testInvalidJWT() {
+        $passage = new Passage($this->appId, $this->apiKey);
+        $authentication = new Authentication($passage);
+        
+        $user = $authentication->validateJWT('incorrect.token');
+        $this->assertEquals(null, $user);
     }
 }

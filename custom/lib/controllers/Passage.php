@@ -5,7 +5,6 @@ namespace Passage\Client\Controllers;
 class Passage {
     private string $appId;
     private string $apiKey;
-    public string $authStrategy;
 
     /**
      * Initialize a new Passage instance.
@@ -14,9 +13,7 @@ class Passage {
      * 
      * @throws \InvalidArgumentException
      */
-    public function __construct(string $appId, string $apiKey, string $authStrategy = 'COOKIE') {
-        $this->authStrategy = $authStrategy;
-        
+    public function __construct(string $appId, string $apiKey) {
         $this->appId = $appId;
         $this->apiKey = $apiKey;
     }
@@ -28,6 +25,5 @@ class Passage {
     public function getAppId(): string {
         return $this->appId;
     }
-
 }
 ?>
