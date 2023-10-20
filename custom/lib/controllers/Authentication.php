@@ -82,6 +82,7 @@ class Authentication {
               return null;
             }
           } catch (\Exception $e) {
+            // Could not verify token: . e->getMessage() . You must catch this error.
             return null;
         }
     }
