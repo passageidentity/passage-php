@@ -70,7 +70,10 @@ class Authentication {
             $kid = $header->kid;
 
             if (!$kid) {
-              return null;
+              throw new ApiException(
+                'Could not verify token: Missing kid in token',
+                401
+              );
             }
 
             $decodedToken = JWT::decode($jwtString, $this->jwks);
@@ -79,11 +82,16 @@ class Authentication {
             if ($userID) {
               return strval($userID);
             } else {
-              return null;
+              throw new ApiException(
+                'Could not verify token: Could not retrieve user id',
+                401
+              );
             }
           } catch (\Exception $e) {
-            // Could not verify token: . e->getMessage() . You must catch this error.
-            return null;
+            throw new ApiException(
+              'Could not verify token: ' . $e->getMessage(),
+              401
+            );
         }
     }
 }
