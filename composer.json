@@ -1,4 +1,5 @@
 {
+    "name": "passageidentity/passage-php",
     "description": "Passage's management API to manage your Passage apps and users.",
     "keywords": [
         "openapitools",
@@ -9,12 +10,12 @@
         "rest",
         "api"
     ],
-    "homepage": "https://openapi-generator.tech",
-    "license": "unlicense",
+    "homepage": "https://www.github.com/passageidentity/passage-php",
+    "license": "MIT",
     "authors": [
         {
-            "name": "OpenAPI",
-            "homepage": "https://openapi-generator.tech"
+            "name": "Passage by 1Password",
+            "homepage": "https://passage.1password.com/"
         }
     ],
     "require": {
