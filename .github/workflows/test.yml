@@ -23,4 +23,4 @@ jobs:
         run: composer install
 
       - name: Unit Test
-        run: npm run test
+        run: ./vendor/bin/phpunit custom/test/*
