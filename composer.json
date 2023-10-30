@@ -2,9 +2,6 @@
     "name": "passageidentity/passage-php",
     "description": "Passage's management API to manage your Passage apps and users.",
     "keywords": [
-        "openapitools",
-        "openapi-generator",
-        "openapi",
         "php",
         "sdk",
         "rest",
@@ -34,14 +31,14 @@
     },
     "autoload": {
         "psr-4": { 
-            "OpenAPI\\Client\\" : "generated/lib/",
-            "Passage\\Client\\": "custom/lib/"
+            "Passage\\Client\\" : "generated/lib/",
+            "Passage\\": "custom/lib/"
         }
     },
     "autoload-dev": {
         "psr-4": { 
-            "OpenAPI\\Client\\Test\\" : "generated/test/",
-            "Passage\\Client\\Test\\" : "custom/test/"
+            "Passage\\Client\\Test\\" : "generated/test/",
+            "Passage\\Test\\" : "custom/test/"
         }
     }
 }
