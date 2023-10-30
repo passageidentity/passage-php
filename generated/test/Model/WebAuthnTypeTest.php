@@ -1,6 +1,6 @@
 <?php
 /**
- * Model500ErrorTest
+ * WebAuthnTypeTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Model500ErrorTest Class Doc Comment
+ * WebAuthnTypeTest Class Doc Comment
  *
  * @category    Class
- * @description Model500Error
+ * @description The type of this credential
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class Model500ErrorTest extends TestCase
+class WebAuthnTypeTest extends TestCase
 {
 
     /**
@@ -72,27 +72,9 @@ class Model500ErrorTest extends TestCase
     }
 
     /**
-     * Test "Model500Error"
+     * Test "WebAuthnType"
      */
-    public function testModel500Error()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "code"
-     */
-    public function testPropertyCode()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "error"
-     */
-    public function testPropertyError()
+    public function testWebAuthnType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

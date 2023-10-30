@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **layouts** | [**\OpenAPI\Client\Model\Layouts**](Layouts.md) |  |
 **login_url** | **string** |  |
+**light_logo_url** | **string** |  | [optional]
+**dark_logo_url** | **string** |  | [optional]
 **name** | **string** |  |
 **hosted** | **bool** | whether or not the app&#39;s login page hosted by passage |
 **hosted_subdomain** | **string** | the subdomain of the app&#39;s hosted login page |
@@ -39,5 +41,6 @@ Name | Type | Description | Notes
 **user_metadata_schema** | [**\OpenAPI\Client\Model\UserMetadataField[]**](UserMetadataField.md) |  |
 **technologies** | [**\OpenAPI\Client\Model\Technologies[]**](Technologies.md) |  |
 **element_customization** | [**\OpenAPI\Client\Model\ElementCustomization**](ElementCustomization.md) |  |
+**element_customization_dark** | [**\OpenAPI\Client\Model\ElementCustomization**](ElementCustomization.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

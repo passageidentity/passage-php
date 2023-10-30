@@ -1,6 +1,6 @@
 <?php
 /**
- * Layouts
+ * WebAuthnIcons
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Layouts Class Doc Comment
+ * WebAuthnIcons Class Doc Comment
  *
  * @category Class
+ * @description Contains the light and dark SVG icons that represent the brand of those devices Values can be null or base64 encoded SVG. Example of SVG output:  data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE5MiAxOTIiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDE5MiAxOTIiIHdpZHRoPSIyNHB4Ij48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjE5MiIgd2lkdGg9IjE5MiIgeT0iMCIvPjxnPjxwYXRoIGQ9Ik02OS4yOSwxMDZjLTMuNDYsNS45Ny05LjkxLDEwLTE3LjI5LDEwYy0xMS4wMywwLTIwLTguOTctMjAtMjBzOC45Ny0yMCwyMC0yMCBjNy4zOCwwLDEzLjgzLDQuMDMsMTcuMjksMTBoMjUuNTVDOTAuMyw2Ni41NCw3Mi44Miw1Miw1Miw1MkMyNy43NCw1Miw4LDcxLjc0LDgsOTZzMTkuNzQsNDQsNDQsNDRjMjAuODIsMCwzOC4zLTE0LjU0LDQyLjg0LTM0IEg2OS4yOXoiIGZpbGw9IiM0Mjg1RjQiLz48cmVjdCBmaWxsPSIjRkJCQzA0IiBoZWlnaHQ9IjI0IiB3aWR0aD0iNDQiIHg9Ijk0IiB5PSI4NCIvPjxwYXRoIGQ9Ik05NC4zMiw4NEg2OHYwLjA1YzIuNSwzLjM0LDQsNy40Nyw0LDExLjk1cy0xLjUsOC42MS00LDExLjk1VjEwOGgyNi4zMiBjMS4wOC0zLjgyLDEuNjgtNy44NCwxLjY4LTEyUzk1LjQxLDg3LjgyLDk0LjMyLDg0eiIgZmlsbD0iI0VBNDMzNSIvPjxwYXRoIGQ9Ik0xODQsMTA2djI2aC0xNnYtOGMwLTQuNDItMy41OC04LTgtOHMtOCwzLjU4LTgsOHY4aC0xNnYtMjZIMTg0eiIgZmlsbD0iIzM0QTg1MyIvPjxyZWN0IGZpbGw9IiMxODgwMzgiIGhlaWdodD0iMjQiIHdpZHRoPSI0OCIgeD0iMTM2IiB5PSI4NCIvPjwvZz48L3N2Zz4&#x3D;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
+class WebAuthnIcons implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Layouts';
+    protected static $openAPIModelName = 'WebAuthnIcons';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +59,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'profile' => '\OpenAPI\Client\Model\LayoutConfig[]',
-        'registration' => '\OpenAPI\Client\Model\LayoutConfig[]'
+        'light' => 'string',
+        'dark' => 'string'
     ];
 
     /**
@@ -70,8 +71,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'profile' => null,
-        'registration' => null
+        'light' => null,
+        'dark' => null
     ];
 
     /**
@@ -80,8 +81,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'profile' => false,
-		'registration' => false
+        'light' => true,
+		'dark' => true
     ];
 
     /**
@@ -170,8 +171,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'profile' => 'profile',
-        'registration' => 'registration'
+        'light' => 'light',
+        'dark' => 'dark'
     ];
 
     /**
@@ -180,8 +181,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'profile' => 'setProfile',
-        'registration' => 'setRegistration'
+        'light' => 'setLight',
+        'dark' => 'setDark'
     ];
 
     /**
@@ -190,8 +191,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'profile' => 'getProfile',
-        'registration' => 'getRegistration'
+        'light' => 'getLight',
+        'dark' => 'getDark'
     ];
 
     /**
@@ -251,8 +252,8 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('profile', $data ?? [], null);
-        $this->setIfExists('registration', $data ?? [], null);
+        $this->setIfExists('light', $data ?? [], null);
+        $this->setIfExists('dark', $data ?? [], null);
     }
 
     /**
@@ -282,11 +283,11 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['profile'] === null) {
-            $invalidProperties[] = "'profile' can't be null";
+        if ($this->container['light'] === null) {
+            $invalidProperties[] = "'light' can't be null";
         }
-        if ($this->container['registration'] === null) {
-            $invalidProperties[] = "'registration' can't be null";
+        if ($this->container['dark'] === null) {
+            $invalidProperties[] = "'dark' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,55 +305,69 @@ class Layouts implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets profile
+     * Gets light
      *
-     * @return \OpenAPI\Client\Model\LayoutConfig[]
+     * @return string
      */
-    public function getProfile()
+    public function getLight()
     {
-        return $this->container['profile'];
+        return $this->container['light'];
     }
 
     /**
-     * Sets profile
+     * Sets light
      *
-     * @param \OpenAPI\Client\Model\LayoutConfig[] $profile profile
+     * @param string $light light
      *
      * @return self
      */
-    public function setProfile($profile)
+    public function setLight($light)
     {
-        if (is_null($profile)) {
-            throw new \InvalidArgumentException('non-nullable profile cannot be null');
+        if (is_null($light)) {
+            array_push($this->openAPINullablesSetToNull, 'light');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('light', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['profile'] = $profile;
+        $this->container['light'] = $light;
 
         return $this;
     }
 
     /**
-     * Gets registration
+     * Gets dark
      *
-     * @return \OpenAPI\Client\Model\LayoutConfig[]
+     * @return string
      */
-    public function getRegistration()
+    public function getDark()
     {
-        return $this->container['registration'];
+        return $this->container['dark'];
     }
 
     /**
-     * Sets registration
+     * Sets dark
      *
-     * @param \OpenAPI\Client\Model\LayoutConfig[] $registration registration
+     * @param string $dark dark
      *
      * @return self
      */
-    public function setRegistration($registration)
+    public function setDark($dark)
     {
-        if (is_null($registration)) {
-            throw new \InvalidArgumentException('non-nullable registration cannot be null');
+        if (is_null($dark)) {
+            array_push($this->openAPINullablesSetToNull, 'dark');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('dark', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['registration'] = $registration;
+        $this->container['dark'] = $dark;
 
         return $this;
     }

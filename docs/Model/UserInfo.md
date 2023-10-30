@@ -18,5 +18,6 @@ Name | Type | Description | Notes
 **user_metadata** | **object** |  |
 **webauthn** | **bool** |  |
 **webauthn_devices** | [**\OpenAPI\Client\Model\WebAuthnDevices[]**](WebAuthnDevices.md) |  |
+**webauthn_types** | [**\OpenAPI\Client\Model\WebAuthnType[]**](WebAuthnType.md) | List of credential types that have been used for authentication | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

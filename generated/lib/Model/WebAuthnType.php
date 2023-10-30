@@ -1,6 +1,6 @@
 <?php
 /**
- * MagicLinkType
+ * WebAuthnType
  *
  * PHP version 7.4
  *
@@ -31,21 +31,24 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * MagicLinkType Class Doc Comment
+ * WebAuthnType Class Doc Comment
  *
  * @category Class
+ * @description The type of this credential
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class MagicLinkType
+class WebAuthnType
 {
     /**
      * Possible values of this enum
      */
-    public const LOGIN = 'login';
+    public const PASSKEY = 'passkey';
 
-    public const VERIFY_IDENTIFIER = 'verify_identifier';
+    public const SECURITY_KEY = 'security_key';
+
+    public const PLATFORM = 'platform';
 
     /**
      * Gets allowable values of the enum
@@ -54,8 +57,9 @@ class MagicLinkType
     public static function getAllowableEnumValues()
     {
         return [
-            self::LOGIN,
-            self::VERIFY_IDENTIFIER
+            self::PASSKEY,
+            self::SECURITY_KEY,
+            self::PLATFORM
         ];
     }
 }
