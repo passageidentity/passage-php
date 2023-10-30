@@ -31,14 +31,14 @@
     },
     "autoload": {
         "psr-4": { 
-            "Passage\\Client\\" : "generated/lib/",
-            "Passage\\": "custom/lib/"
+            "OpenAPI\\Client\\" : "generated/lib/",
+            "Passage\\Client\\": "custom/lib/"
         }
     },
     "autoload-dev": {
         "psr-4": { 
-            "Passage\\Client\\Test\\" : "generated/test/",
-            "Passage\\Test\\" : "custom/test/"
+            "OpenAPI\\Client\\Test\\" : "generated/test/",
+            "Passage\\Client\\Test\\" : "custom/test/"
         }
     }
 }
