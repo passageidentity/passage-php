@@ -226,7 +226,7 @@ $apiInstance = new OpenAPI\Client\Api\UsersApi(
     $config
 );
 $app_id = 'app_id_example'; // string | App ID
-$user_id = 'user_id_example'; // string | user ID
+$user_id = 'user_id_example'; // string | User ID
 
 try {
     $apiInstance->deleteUser($app_id, $user_id);
@@ -240,7 +240,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **app_id** | **string**| App ID | |
-| **user_id** | **string**| user ID | |
+| **user_id** | **string**| User ID | |
 
 ### Return type
 
@@ -287,7 +287,7 @@ $apiInstance = new OpenAPI\Client\Api\UsersApi(
     $config
 );
 $app_id = 'app_id_example'; // string | App ID
-$user_id = 'user_id_example'; // string | user ID
+$user_id = 'user_id_example'; // string | User ID
 
 try {
     $result = $apiInstance->getUser($app_id, $user_id);
@@ -302,7 +302,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **app_id** | **string**| App ID | |
-| **user_id** | **string**| user ID | |
+| **user_id** | **string**| User ID | |
 
 ### Return type
 
@@ -349,7 +349,7 @@ $apiInstance = new OpenAPI\Client\Api\UsersApi(
     $config
 );
 $app_id = 'app_id_example'; // string | App ID
-$user_id = 'user_id_example'; // string | user ID
+$user_id = 'user_id_example'; // string | User ID
 $update_user_request = new \OpenAPI\Client\Model\UpdateUserRequest(); // \OpenAPI\Client\Model\UpdateUserRequest | user settings
 
 try {
@@ -365,7 +365,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **app_id** | **string**| App ID | |
-| **user_id** | **string**| user ID | |
+| **user_id** | **string**| User ID | |
 | **update_user_request** | [**\OpenAPI\Client\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)| user settings | |
 
 ### Return type

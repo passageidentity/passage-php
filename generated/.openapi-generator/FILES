@@ -33,6 +33,8 @@ docs/Model/UserMetadataField.md
 docs/Model/UserMetadataFieldType.md
 docs/Model/UserResponse.md
 docs/Model/WebAuthnDevices.md
+docs/Model/WebAuthnIcons.md
+docs/Model/WebAuthnType.md
 git_push.sh
 lib/Api/AppsApi.php
 lib/Api/MagicLinksApi.php
@@ -67,6 +69,8 @@ lib/Model/UserMetadataField.php
 lib/Model/UserMetadataFieldType.php
 lib/Model/UserResponse.php
 lib/Model/WebAuthnDevices.php
+lib/Model/WebAuthnIcons.php
+lib/Model/WebAuthnType.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/AppsApiTest.php
@@ -98,3 +102,5 @@ test/Model/UserMetadataFieldTest.php
 test/Model/UserMetadataFieldTypeTest.php
 test/Model/UserResponseTest.php
 test/Model/WebAuthnDevicesTest.php
+test/Model/WebAuthnIconsTest.php
+test/Model/WebAuthnTypeTest.php
