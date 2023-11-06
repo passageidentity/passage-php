@@ -52,6 +52,14 @@ Route::get('authenticatedRoute', function (Request $request) {
 | ------------- | ------------- | ------------- | ------------- |
 | **userID** | **string/null**| User Id | |
 
+### Errors
+
+| Error | Description  |
+| ------------- | ------------- |
+| Could not verify token: Missing kid in token |  The token provided did not contain a kid |
+| Could not verify token: Could not retrieve user id | The token provided did not include a user id |
+| Could not verify token: | General error. Will include a message detailing why the token was not verified |
+
 
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
