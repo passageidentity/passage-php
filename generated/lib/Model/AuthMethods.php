@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateUserRequest
+ * AuthMethods
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateUserRequest Class Doc Comment
+ * AuthMethods Class Doc Comment
  *
  * @category Class
+ * @description Denotes what methods this app is allowed to use for authentication with configurations
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateUserRequest';
+    protected static $openAPIModelName = 'AuthMethods';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +59,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
-        'phone' => 'string',
-        'user_metadata' => 'object'
+        'passkey' => '\OpenAPI\Client\Model\PasskeyAuthMethod',
+        'otp' => '\OpenAPI\Client\Model\EmailSmsAuthMethod',
+        'magic_link' => '\OpenAPI\Client\Model\EmailSmsAuthMethod'
     ];
 
     /**
@@ -71,9 +72,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => null,
-        'phone' => null,
-        'user_metadata' => null
+        'passkey' => null,
+        'otp' => null,
+        'magic_link' => null
     ];
 
     /**
@@ -82,9 +83,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'email' => false,
-		'phone' => false,
-		'user_metadata' => false
+        'passkey' => false,
+		'otp' => false,
+		'magic_link' => false
     ];
 
     /**
@@ -173,9 +174,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
-        'phone' => 'phone',
-        'user_metadata' => 'user_metadata'
+        'passkey' => 'passkey',
+        'otp' => 'otp',
+        'magic_link' => 'magic_link'
     ];
 
     /**
@@ -184,9 +185,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
-        'phone' => 'setPhone',
-        'user_metadata' => 'setUserMetadata'
+        'passkey' => 'setPasskey',
+        'otp' => 'setOtp',
+        'magic_link' => 'setMagicLink'
     ];
 
     /**
@@ -195,9 +196,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
-        'phone' => 'getPhone',
-        'user_metadata' => 'getUserMetadata'
+        'passkey' => 'getPasskey',
+        'otp' => 'getOtp',
+        'magic_link' => 'getMagicLink'
     ];
 
     /**
@@ -257,9 +258,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('phone', $data ?? [], null);
-        $this->setIfExists('user_metadata', $data ?? [], null);
+        $this->setIfExists('passkey', $data ?? [], null);
+        $this->setIfExists('otp', $data ?? [], null);
+        $this->setIfExists('magic_link', $data ?? [], null);
     }
 
     /**
@@ -289,6 +290,15 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['passkey'] === null) {
+            $invalidProperties[] = "'passkey' can't be null";
+        }
+        if ($this->container['otp'] === null) {
+            $invalidProperties[] = "'otp' can't be null";
+        }
+        if ($this->container['magic_link'] === null) {
+            $invalidProperties[] = "'magic_link' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +315,82 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets email
+     * Gets passkey
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\PasskeyAuthMethod
      */
-    public function getEmail()
+    public function getPasskey()
     {
-        return $this->container['email'];
+        return $this->container['passkey'];
     }
 
     /**
-     * Sets email
+     * Sets passkey
      *
-     * @param string|null $email Email of the new user. Either this or `phone` is required; both may be provided.
+     * @param \OpenAPI\Client\Model\PasskeyAuthMethod $passkey passkey
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setPasskey($passkey)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($passkey)) {
+            throw new \InvalidArgumentException('non-nullable passkey cannot be null');
         }
-        $this->container['email'] = $email;
+        $this->container['passkey'] = $passkey;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets otp
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\EmailSmsAuthMethod
      */
-    public function getPhone()
+    public function getOtp()
     {
-        return $this->container['phone'];
+        return $this->container['otp'];
     }
 
     /**
-     * Sets phone
+     * Sets otp
      *
-     * @param string|null $phone Phone number of the new user. Either this or `email` is required; both may be provided.
+     * @param \OpenAPI\Client\Model\EmailSmsAuthMethod $otp otp
      *
      * @return self
      */
-    public function setPhone($phone)
+    public function setOtp($otp)
     {
-        if (is_null($phone)) {
-            throw new \InvalidArgumentException('non-nullable phone cannot be null');
+        if (is_null($otp)) {
+            throw new \InvalidArgumentException('non-nullable otp cannot be null');
         }
-        $this->container['phone'] = $phone;
+        $this->container['otp'] = $otp;
 
         return $this;
     }
 
     /**
-     * Gets user_metadata
+     * Gets magic_link
      *
-     * @return object|null
+     * @return \OpenAPI\Client\Model\EmailSmsAuthMethod
      */
-    public function getUserMetadata()
+    public function getMagicLink()
     {
-        return $this->container['user_metadata'];
+        return $this->container['magic_link'];
     }
 
     /**
-     * Sets user_metadata
+     * Sets magic_link
      *
-     * @param object|null $user_metadata user_metadata
+     * @param \OpenAPI\Client\Model\EmailSmsAuthMethod $magic_link magic_link
      *
      * @return self
      */
-    public function setUserMetadata($user_metadata)
+    public function setMagicLink($magic_link)
     {
-        if (is_null($user_metadata)) {
-            throw new \InvalidArgumentException('non-nullable user_metadata cannot be null');
+        if (is_null($magic_link)) {
+            throw new \InvalidArgumentException('non-nullable magic_link cannot be null');
         }
-        $this->container['user_metadata'] = $user_metadata;
+        $this->container['magic_link'] = $magic_link;
 
         return $this;
     }

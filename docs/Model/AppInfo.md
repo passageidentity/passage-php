@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **allowed_identifier** | **string** |  |
 **allowed_logout_urls** | **string[]** | The valid URLs where users can be redirected after logging out. |
 **application_login_uri** | **string** | A route within your application that redirects to the Authorization URL endpoint. |
-**auth_fallback_method** | **string** |  |
-**auth_fallback_method_ttl** | **int** |  |
+**auth_fallback_method** | **string** | Deprecated Property. Please refer to &#x60;auth_methods&#x60; to view settings for individual authentication methods. |
+**auth_fallback_method_ttl** | **int** | Deprecated Property. Please refer to &#x60;auth_methods&#x60; to view settings for individual authentication methods. |
+**auth_methods** | [**\OpenAPI\Client\Model\AuthMethods**](AuthMethods.md) |  |
 **auth_origin** | **string** |  |
 **created_at** | **\DateTime** |  |
 **default_language** | **string** |  |

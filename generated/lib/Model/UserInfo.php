@@ -67,7 +67,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'phone' => 'string',
         'phone_verified' => 'bool',
         'recent_events' => '\OpenAPI\Client\Model\UserEventInfo[]',
-        'status' => 'string',
+        'status' => '\OpenAPI\Client\Model\UserStatus',
         'updated_at' => '\DateTime',
         'user_metadata' => 'object',
         'webauthn' => 'bool',
@@ -415,6 +415,9 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['webauthn_devices'] === null) {
             $invalidProperties[] = "'webauthn_devices' can't be null";
         }
+        if ($this->container['webauthn_types'] === null) {
+            $invalidProperties[] = "'webauthn_types' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -676,7 +679,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\UserStatus
      */
     public function getStatus()
     {
@@ -686,7 +689,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status status
+     * @param \OpenAPI\Client\Model\UserStatus $status status
      *
      * @return self
      */
@@ -818,7 +821,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets webauthn_types
      *
-     * @return \OpenAPI\Client\Model\WebAuthnType[]|null
+     * @return \OpenAPI\Client\Model\WebAuthnType[]
      */
     public function getWebauthnTypes()
     {
@@ -828,7 +831,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets webauthn_types
      *
-     * @param \OpenAPI\Client\Model\WebAuthnType[]|null $webauthn_types List of credential types that have been used for authentication
+     * @param \OpenAPI\Client\Model\WebAuthnType[] $webauthn_types List of credential types that have been used for authentication
      *
      * @return self
      */

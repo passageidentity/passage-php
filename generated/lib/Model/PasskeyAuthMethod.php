@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateUserRequest
+ * PasskeyAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateUserRequest Class Doc Comment
+ * PasskeyAuthMethod Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateUserRequest';
+    protected static $openAPIModelName = 'PasskeyAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
-        'phone' => 'string',
-        'user_metadata' => 'object'
+        'enabled' => 'bool'
     ];
 
     /**
@@ -71,9 +69,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => null,
-        'phone' => null,
-        'user_metadata' => null
+        'enabled' => null
     ];
 
     /**
@@ -82,9 +78,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'email' => false,
-		'phone' => false,
-		'user_metadata' => false
+        'enabled' => false
     ];
 
     /**
@@ -173,9 +167,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
-        'phone' => 'phone',
-        'user_metadata' => 'user_metadata'
+        'enabled' => 'enabled'
     ];
 
     /**
@@ -184,9 +176,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
-        'phone' => 'setPhone',
-        'user_metadata' => 'setUserMetadata'
+        'enabled' => 'setEnabled'
     ];
 
     /**
@@ -195,9 +185,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
-        'phone' => 'getPhone',
-        'user_metadata' => 'getUserMetadata'
+        'enabled' => 'getEnabled'
     ];
 
     /**
@@ -257,9 +245,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('phone', $data ?? [], null);
-        $this->setIfExists('user_metadata', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], true);
     }
 
     /**
@@ -289,6 +275,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +294,28 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets email
+     * Gets enabled
      *
-     * @return string|null
+     * @return bool
      */
-    public function getEmail()
+    public function getEnabled()
     {
-        return $this->container['email'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets email
+     * Sets enabled
      *
-     * @param string|null $email Email of the new user. Either this or `phone` is required; both may be provided.
+     * @param bool $enabled enabled
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setEnabled($enabled)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets phone
-     *
-     * @return string|null
-     */
-    public function getPhone()
-    {
-        return $this->container['phone'];
-    }
-
-    /**
-     * Sets phone
-     *
-     * @param string|null $phone Phone number of the new user. Either this or `email` is required; both may be provided.
-     *
-     * @return self
-     */
-    public function setPhone($phone)
-    {
-        if (is_null($phone)) {
-            throw new \InvalidArgumentException('non-nullable phone cannot be null');
-        }
-        $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_metadata
-     *
-     * @return object|null
-     */
-    public function getUserMetadata()
-    {
-        return $this->container['user_metadata'];
-    }
-
-    /**
-     * Sets user_metadata
-     *
-     * @param object|null $user_metadata user_metadata
-     *
-     * @return self
-     */
-    public function setUserMetadata($user_metadata)
-    {
-        if (is_null($user_metadata)) {
-            throw new \InvalidArgumentException('non-nullable user_metadata cannot be null');
-        }
-        $this->container['user_metadata'] = $user_metadata;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
