@@ -144,6 +144,15 @@ class AppInfoTest extends TestCase
     }
 
     /**
+     * Test attribute "auth_methods"
+     */
+    public function testPropertyAuthMethods()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "auth_origin"
      */
     public function testPropertyAuthOrigin()

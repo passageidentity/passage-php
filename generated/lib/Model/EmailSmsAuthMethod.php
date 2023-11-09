@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateUserRequest
+ * EmailSmsAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * CreateUserRequest Class Doc Comment
+ * EmailSmsAuthMethod Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CreateUserRequest';
+    protected static $openAPIModelName = 'EmailSmsAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string',
-        'phone' => 'string',
-        'user_metadata' => 'object'
+        'enabled' => 'bool',
+        'ttl' => 'int',
+        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
     ];
 
     /**
@@ -71,9 +71,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => null,
-        'phone' => null,
-        'user_metadata' => null
+        'enabled' => null,
+        'ttl' => null,
+        'ttl_display_unit' => null
     ];
 
     /**
@@ -82,9 +82,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'email' => false,
-		'phone' => false,
-		'user_metadata' => false
+        'enabled' => false,
+		'ttl' => false,
+		'ttl_display_unit' => false
     ];
 
     /**
@@ -173,9 +173,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email',
-        'phone' => 'phone',
-        'user_metadata' => 'user_metadata'
+        'enabled' => 'enabled',
+        'ttl' => 'ttl',
+        'ttl_display_unit' => 'ttl_display_unit'
     ];
 
     /**
@@ -184,9 +184,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail',
-        'phone' => 'setPhone',
-        'user_metadata' => 'setUserMetadata'
+        'enabled' => 'setEnabled',
+        'ttl' => 'setTtl',
+        'ttl_display_unit' => 'setTtlDisplayUnit'
     ];
 
     /**
@@ -195,9 +195,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail',
-        'phone' => 'getPhone',
-        'user_metadata' => 'getUserMetadata'
+        'enabled' => 'getEnabled',
+        'ttl' => 'getTtl',
+        'ttl_display_unit' => 'getTtlDisplayUnit'
     ];
 
     /**
@@ -257,9 +257,9 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('phone', $data ?? [], null);
-        $this->setIfExists('user_metadata', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('ttl', $data ?? [], 300);
+        $this->setIfExists('ttl_display_unit', $data ?? [], null);
     }
 
     /**
@@ -289,6 +289,19 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
+        }
+        if ($this->container['ttl'] === null) {
+            $invalidProperties[] = "'ttl' can't be null";
+        }
+        if (($this->container['ttl'] < 60)) {
+            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
+        }
+
+        if ($this->container['ttl_display_unit'] === null) {
+            $invalidProperties[] = "'ttl_display_unit' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +318,89 @@ class CreateUserRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets email
+     * Gets enabled
      *
-     * @return string|null
+     * @return bool
      */
-    public function getEmail()
+    public function getEnabled()
     {
-        return $this->container['email'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets email
+     * Sets enabled
      *
-     * @param string|null $email Email of the new user. Either this or `phone` is required; both may be provided.
+     * @param bool $enabled enabled
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setEnabled($enabled)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
-        $this->container['email'] = $email;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets ttl
      *
-     * @return string|null
+     * @return int
      */
-    public function getPhone()
+    public function getTtl()
     {
-        return $this->container['phone'];
+        return $this->container['ttl'];
     }
 
     /**
-     * Sets phone
+     * Sets ttl
      *
-     * @param string|null $phone Phone number of the new user. Either this or `email` is required; both may be provided.
+     * @param int $ttl Maximum time (IN SECONDS) for the auth to expire.
      *
      * @return self
      */
-    public function setPhone($phone)
+    public function setTtl($ttl)
     {
-        if (is_null($phone)) {
-            throw new \InvalidArgumentException('non-nullable phone cannot be null');
+        if (is_null($ttl)) {
+            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
         }
-        $this->container['phone'] = $phone;
+
+        if (($ttl < 60)) {
+            throw new \InvalidArgumentException('invalid value for $ttl when calling EmailSmsAuthMethod., must be bigger than or equal to 60.');
+        }
+
+        $this->container['ttl'] = $ttl;
 
         return $this;
     }
 
     /**
-     * Gets user_metadata
+     * Gets ttl_display_unit
      *
-     * @return object|null
+     * @return \OpenAPI\Client\Model\TtlDisplayUnit
+     * @deprecated
      */
-    public function getUserMetadata()
+    public function getTtlDisplayUnit()
     {
-        return $this->container['user_metadata'];
+        return $this->container['ttl_display_unit'];
     }
 
     /**
-     * Sets user_metadata
+     * Sets ttl_display_unit
      *
-     * @param object|null $user_metadata user_metadata
+     * @param \OpenAPI\Client\Model\TtlDisplayUnit $ttl_display_unit ttl_display_unit
      *
      * @return self
+     * @deprecated
      */
-    public function setUserMetadata($user_metadata)
+    public function setTtlDisplayUnit($ttl_display_unit)
     {
-        if (is_null($user_metadata)) {
-            throw new \InvalidArgumentException('non-nullable user_metadata cannot be null');
+        if (is_null($ttl_display_unit)) {
+            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
         }
-        $this->container['user_metadata'] = $user_metadata;
+        $this->container['ttl_display_unit'] = $ttl_display_unit;
 
         return $this;
     }

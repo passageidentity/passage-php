@@ -58,7 +58,7 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'channel' => 'string',
+        'channel' => '\OpenAPI\Client\Model\MagicLinkChannel',
         'email' => 'string',
         'language' => 'string',
         'magic_link_path' => 'string',
@@ -283,21 +283,6 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const CHANNEL_EMAIL = 'email';
-    public const CHANNEL_PHONE = 'phone';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getChannelAllowableValues()
-    {
-        return [
-            self::CHANNEL_EMAIL,
-            self::CHANNEL_PHONE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -356,15 +341,6 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['channel'] === null) {
             $invalidProperties[] = "'channel' can't be null";
         }
-        $allowedValues = $this->getChannelAllowableValues();
-        if (!is_null($this->container['channel']) && !in_array($this->container['channel'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'channel', must be one of '%s'",
-                $this->container['channel'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['email'] === null) {
             $invalidProperties[] = "'email' can't be null";
         }
@@ -404,7 +380,7 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets channel
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\MagicLinkChannel
      */
     public function getChannel()
     {
@@ -414,7 +390,7 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets channel
      *
-     * @param string $channel channel
+     * @param \OpenAPI\Client\Model\MagicLinkChannel $channel channel
      *
      * @return self
      */
@@ -422,16 +398,6 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($channel)) {
             throw new \InvalidArgumentException('non-nullable channel cannot be null');
-        }
-        $allowedValues = $this->getChannelAllowableValues();
-        if (!in_array($channel, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'channel', must be one of '%s'",
-                    $channel,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['channel'] = $channel;
 

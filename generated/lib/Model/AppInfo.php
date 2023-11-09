@@ -65,6 +65,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'application_login_uri' => 'string',
         'auth_fallback_method' => 'string',
         'auth_fallback_method_ttl' => 'int',
+        'auth_methods' => '\OpenAPI\Client\Model\AuthMethods',
         'auth_origin' => 'string',
         'created_at' => '\DateTime',
         'default_language' => 'string',
@@ -113,6 +114,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'application_login_uri' => null,
         'auth_fallback_method' => null,
         'auth_fallback_method_ttl' => null,
+        'auth_methods' => null,
         'auth_origin' => null,
         'created_at' => 'date-time',
         'default_language' => null,
@@ -159,6 +161,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 		'application_login_uri' => false,
 		'auth_fallback_method' => false,
 		'auth_fallback_method_ttl' => false,
+		'auth_methods' => false,
 		'auth_origin' => false,
 		'created_at' => false,
 		'default_language' => false,
@@ -285,6 +288,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'application_login_uri' => 'application_login_uri',
         'auth_fallback_method' => 'auth_fallback_method',
         'auth_fallback_method_ttl' => 'auth_fallback_method_ttl',
+        'auth_methods' => 'auth_methods',
         'auth_origin' => 'auth_origin',
         'created_at' => 'created_at',
         'default_language' => 'default_language',
@@ -331,6 +335,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'application_login_uri' => 'setApplicationLoginUri',
         'auth_fallback_method' => 'setAuthFallbackMethod',
         'auth_fallback_method_ttl' => 'setAuthFallbackMethodTtl',
+        'auth_methods' => 'setAuthMethods',
         'auth_origin' => 'setAuthOrigin',
         'created_at' => 'setCreatedAt',
         'default_language' => 'setDefaultLanguage',
@@ -377,6 +382,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'application_login_uri' => 'getApplicationLoginUri',
         'auth_fallback_method' => 'getAuthFallbackMethod',
         'auth_fallback_method_ttl' => 'getAuthFallbackMethodTtl',
+        'auth_methods' => 'getAuthMethods',
         'auth_origin' => 'getAuthOrigin',
         'created_at' => 'getCreatedAt',
         'default_language' => 'getDefaultLanguage',
@@ -489,6 +495,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('application_login_uri', $data ?? [], null);
         $this->setIfExists('auth_fallback_method', $data ?? [], null);
         $this->setIfExists('auth_fallback_method_ttl', $data ?? [], null);
+        $this->setIfExists('auth_methods', $data ?? [], null);
         $this->setIfExists('auth_origin', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('default_language', $data ?? [], null);
@@ -569,6 +576,9 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['auth_fallback_method_ttl'] === null) {
             $invalidProperties[] = "'auth_fallback_method_ttl' can't be null";
+        }
+        if ($this->container['auth_methods'] === null) {
+            $invalidProperties[] = "'auth_methods' can't be null";
         }
         if ($this->container['auth_origin'] === null) {
             $invalidProperties[] = "'auth_origin' can't be null";
@@ -814,6 +824,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets auth_fallback_method
      *
      * @return string
+     * @deprecated
      */
     public function getAuthFallbackMethod()
     {
@@ -823,9 +834,10 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets auth_fallback_method
      *
-     * @param string $auth_fallback_method auth_fallback_method
+     * @param string $auth_fallback_method Deprecated Property. Please refer to `auth_methods` to view settings for individual authentication methods.
      *
      * @return self
+     * @deprecated
      */
     public function setAuthFallbackMethod($auth_fallback_method)
     {
@@ -841,6 +853,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets auth_fallback_method_ttl
      *
      * @return int
+     * @deprecated
      */
     public function getAuthFallbackMethodTtl()
     {
@@ -850,9 +863,10 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets auth_fallback_method_ttl
      *
-     * @param int $auth_fallback_method_ttl auth_fallback_method_ttl
+     * @param int $auth_fallback_method_ttl Deprecated Property. Please refer to `auth_methods` to view settings for individual authentication methods.
      *
      * @return self
+     * @deprecated
      */
     public function setAuthFallbackMethodTtl($auth_fallback_method_ttl)
     {
@@ -860,6 +874,33 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable auth_fallback_method_ttl cannot be null');
         }
         $this->container['auth_fallback_method_ttl'] = $auth_fallback_method_ttl;
+
+        return $this;
+    }
+
+    /**
+     * Gets auth_methods
+     *
+     * @return \OpenAPI\Client\Model\AuthMethods
+     */
+    public function getAuthMethods()
+    {
+        return $this->container['auth_methods'];
+    }
+
+    /**
+     * Sets auth_methods
+     *
+     * @param \OpenAPI\Client\Model\AuthMethods $auth_methods auth_methods
+     *
+     * @return self
+     */
+    public function setAuthMethods($auth_methods)
+    {
+        if (is_null($auth_methods)) {
+            throw new \InvalidArgumentException('non-nullable auth_methods cannot be null');
+        }
+        $this->container['auth_methods'] = $auth_methods;
 
         return $this;
     }
