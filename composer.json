@@ -1,13 +1,15 @@
 {
     "name": "passageidentity/passage-php",
     "description": "Passage's management API to manage your Passage apps and users.",
+    "version": "0.1.0",
     "keywords": [
-        "php",
-        "sdk",
-        "rest",
-        "api"
+        "passage",
+        "identity",
+        "passageidentity",
+        "authentication",
+        "login"
     ],
-    "homepage": "https://www.github.com/passageidentity/passage-php",
+    "homepage": "https://passage.id",
     "license": "MIT",
     "authors": [
         {
