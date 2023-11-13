@@ -125,7 +125,9 @@ Class | Method | HTTP request | Description
 Authentication schemes defined for the API:
 ### bearerAuth
 
-- **Type**: Bearer authentication (JWT)
+**Type**: Bearer authentication (JWT)
+
+**Method**: [validateJWT](docs/Passage/Authentication.md#validatejwt)
 
 ## Tests
 
