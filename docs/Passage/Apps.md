@@ -28,7 +28,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\AppsApi(
+$apiInstance = new Passage\Client\Controllers\Passage(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -37,18 +37,12 @@ $apiInstance = new OpenAPI\Client\Api\AppsApi(
 $app_id = 'app_id_example'; // string | App ID
 
 try {
-    $result = $apiInstance->getApp($app_id);
+    $result = $apiInstance->getApp();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AppsApi->getApp: ', $e->getMessage(), PHP_EOL;
 }
 ```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **app_id** | **string**| App ID | |
 
 ### Return type
 

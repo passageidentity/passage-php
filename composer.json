@@ -1,20 +1,20 @@
 {
+    "name": "passageidentity/passage-php",
     "description": "Passage's management API to manage your Passage apps and users.",
+    "version": "0.1.0",
     "keywords": [
-        "openapitools",
-        "openapi-generator",
-        "openapi",
-        "php",
-        "sdk",
-        "rest",
-        "api"
+        "passage",
+        "identity",
+        "passageidentity",
+        "authentication",
+        "login"
     ],
-    "homepage": "https://openapi-generator.tech",
-    "license": "unlicense",
+    "homepage": "https://passage.id",
+    "license": "MIT",
     "authors": [
         {
-            "name": "OpenAPI",
-            "homepage": "https://openapi-generator.tech"
+            "name": "Passage by 1Password",
+            "homepage": "https://passage.1password.com/"
         }
     ],
     "require": {
@@ -23,7 +23,9 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.3",
-        "guzzlehttp/psr7": "^1.7 || ^2.0"
+        "guzzlehttp/psr7": "^1.7 || ^2.0",
+        "firebase/php-jwt": "^6.5.0",
+        "phpfastcache/phpfastcache": "^9.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0 || ^9.0",

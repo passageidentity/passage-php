@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**channel** | **string** |  |
+**channel** | [**\OpenAPI\Client\Model\MagicLinkChannel**](MagicLinkChannel.md) |  |
 **email** | **string** |  |
 **language** | **string** | language of the email to send (optional) | [optional]
 **magic_link_path** | **string** |  |

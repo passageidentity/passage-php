@@ -1,21 +1,21 @@
-# OpenAPI\Client\MagicLinksApi
+# OpenAPI\Client\TokensApi
 
 All URIs are relative to https://api.passage.id/v1, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createMagicLink()**](MagicLinksApi.md#createMagicLink) | **POST** /apps/{app_id}/magic-links | Create Embeddable Magic Link |
+| [**revokeUserRefreshTokens()**](TokensApi.md#revokeUserRefreshTokens) | **DELETE** /apps/{app_id}/users/{user_id}/tokens | Revokes refresh tokens |
 
 
-## `createMagicLink()`
+## `revokeUserRefreshTokens()`
 
 ```php
-createMagicLink($app_id, $create_magic_link_request): \OpenAPI\Client\Model\MagicLinkResponse
+revokeUserRefreshTokens($user_id)
 ```
 
-Create Embeddable Magic Link
+Revokes refresh tokens
 
-Create magic link for a user.
+Revokes all refresh tokens for a user
 
 ### Example
 
@@ -28,20 +28,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\MagicLinksApi(
+$apiInstance = new Passage\Client\Controllers\Passage(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$app_id = 'app_id_example'; // string | App ID
-$create_magic_link_request = new \OpenAPI\Client\Model\CreateMagicLinkRequest(); // \OpenAPI\Client\Model\CreateMagicLinkRequest | magic link request
+$user_id = 'user_id_example'; // string | User ID
 
 try {
-    $result = $apiInstance->createMagicLink($app_id, $create_magic_link_request);
-    print_r($result);
+    $apiInstance->revokeUserRefreshTokens($user_id);
 } catch (Exception $e) {
-    echo 'Exception when calling MagicLinksApi->createMagicLink: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling TokensApi->revokeUserRefreshTokens: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -49,12 +47,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **app_id** | **string**| App ID | |
-| **create_magic_link_request** | [**\OpenAPI\Client\Model\CreateMagicLinkRequest**](../Model/CreateMagicLinkRequest.md)| magic link request | |
+| **user_id** | **string**| User ID | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\MagicLinkResponse**](../Model/MagicLinkResponse.md)
+void (empty response body)
 
 ### Authorization
 
@@ -62,7 +59,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
