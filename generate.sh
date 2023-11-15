@@ -11,9 +11,6 @@ file="$1"
 rm -rf ./generated
 npm install @openapitools/openapi-generator-cli -g
 
-mv ./docs/Passage ./Passage
-rm -rf ./docs
-
 openapi-generator-cli generate \
   -i "$file" \
   -g php \
@@ -22,6 +19,3 @@ openapi-generator-cli generate \
 
 rm generated/composer.json
 rm generated/.gitignore
-
-mv ./generated/docs ./
-mv ./Passage ./docs
