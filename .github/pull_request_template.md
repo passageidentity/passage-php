@@ -17,10 +17,8 @@
 
 <!--- Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration --->
 
----- OR ----
 
-
-## Checklist before approving SDK Updates
+## Checklist before approving (including SDK updates)
 - [ ] I have performed a review of the code.
 - [ ] Docs have been updated. Docs in the docs/Passage folder should be edited with any changes to the api. We manually edit these docs to account for the wrapping layer of the generated code.
 - [ ] The version has been updated in the `composer.json` file.
