@@ -9,9 +9,12 @@ use OpenAPI\Client\Api\UsersApi;
 use OpenAPI\Client\Api\UserDevicesApi;
 
 use OpenAPI\Client\Model\AppResponse;
-use \OpenAPI\Client\Model\ListDevicesResponse;
+use OpenAPI\Client\Model\CreateMagicLinkRequest;
+use OpenAPI\Client\Model\CreateUserRequest;
+use OpenAPI\Client\Model\ListDevicesResponse;
 use OpenAPI\Client\Model\MagicLinkResponse;
-use \OpenAPI\Client\Model\UserResponse;
+use OpenAPI\Client\Model\UpdateUserRequest;
+use OpenAPI\Client\Model\UserResponse;
 
 class Passage {
     private string $appId;
@@ -41,7 +44,7 @@ class Passage {
      * Get AppId key for this Passage instance
      * @return AppResponse Passage App
      */
-    public function getApp() {
+    public function getApp(): AppResponse {
         return UsersApi::getApp($this->app_id);
     }
 
@@ -49,7 +52,7 @@ class Passage {
      * Get App for this Passage instance
      * @return MagicLinkResponse Passage API Key
      */
-    public function createMagicLink($create_magic_link_request) {
+    public function createMagicLink(CreateMagicLinkRequest $create_magic_link_request): MagicLinkResponse {
         return MagicLinksApi::createMagicLink($this->app_id, $create_magic_link_request);
     }
 
@@ -57,7 +60,7 @@ class Passage {
      * Revoke user token for the user
      * @return null
      */
-    public function revokeUserRefreshTokens($user_id) {
+    public function revokeUserRefreshTokens(string $user_id): null {
         return TokensApi::revokeUserRefreshTokens($this->app_id, $user_id);
     }
 
@@ -65,7 +68,7 @@ class Passage {
      * Delete the device for a user
      * @return null
      */
-    public function deleteUserDevice($user_id, $device_id) {
+    public function deleteUserDevice(string $user_id, string $device_id): null {
         return UserDevicesApi::deleteUserDevices($this->app_id, $user_id, $device_id);
     }
 
@@ -73,7 +76,7 @@ class Passage {
      * List the devices for a user
      * @return ListDevicesResponse
      */
-    public function listUserDevices($user_id) {
+    public function listUserDevices(string $user_id): ListDevicesResponse {
         return UserDevicesApi::listUserDevices($this->app_id, $user_id);
     }
 
@@ -81,7 +84,7 @@ class Passage {
      * Activate a user
      * @return UserResponse
      */
-    public function activateUser($user_id) {
+    public function activateUser(string $user_id): UserResponse {
         return UsersApi::activateUser($this->app_id, $user_id);
     }
 
@@ -89,7 +92,7 @@ class Passage {
      * Create a user
      * @return UserResponse
      */
-    public function createUser($create_user_request) {
+    public function createUser(CreateUserRequest $create_user_request): UserResponse {
         return UsersApi::createUser($this->app_id, $create_user_request);
     }
 
@@ -97,7 +100,7 @@ class Passage {
      * Deactivate a user
      * @return UserResponse
      */
-    public function deactivateUser($user_id) {
+    public function deactivateUser(string $user_id): UserResponse {
         return UsersApi::deactivateUser($this->app_id, $user_id);
     }
 
@@ -105,7 +108,7 @@ class Passage {
      * Delete a user
      * @return null
      */
-    public function deleteUser($user_id) {
+    public function deleteUser(string $user_id): null {
         return UsersApi::deleteUser($this->app_id, $user_id);
     }
 
@@ -113,7 +116,7 @@ class Passage {
      * Update a user
      * @return UserResponse
      */
-    public function updateUser($user_id, $update_user_request) {
+    public function updateUser(string $user_id, UpdateUserRequest $update_user_request): UserResponse {
         return UsersApi::updateUser($this->app_id, $user_id, $update_user_request);
     }
 }
