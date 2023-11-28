@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateEmailSmsAuthMethodTest
+ * UpdateMagicLinkAuthMethodTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdateEmailSmsAuthMethodTest Class Doc Comment
+ * UpdateMagicLinkAuthMethodTest Class Doc Comment
  *
  * @category    Class
- * @description UpdateEmailSmsAuthMethod
+ * @description UpdateMagicLinkAuthMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UpdateEmailSmsAuthMethodTest extends TestCase
+class UpdateMagicLinkAuthMethodTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class UpdateEmailSmsAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "UpdateEmailSmsAuthMethod"
+     * Test "UpdateMagicLinkAuthMethod"
      */
-    public function testUpdateEmailSmsAuthMethod()
+    public function testUpdateMagicLinkAuthMethod()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
