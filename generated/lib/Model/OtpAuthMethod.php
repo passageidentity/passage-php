@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthMethods
+ * OtpAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AuthMethods Class Doc Comment
+ * OtpAuthMethod Class Doc Comment
  *
  * @category Class
- * @description Denotes what methods this app is allowed to use for authentication with configurations
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
+class OtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AuthMethods';
+    protected static $openAPIModelName = 'OtpAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +58,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'passkeys' => '\OpenAPI\Client\Model\PasskeysAuthMethod',
-        'otp' => '\OpenAPI\Client\Model\OtpAuthMethod',
-        'magic_link' => '\OpenAPI\Client\Model\MagicLinkAuthMethod'
+        'enabled' => 'bool',
+        'ttl' => 'int',
+        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
     ];
 
     /**
@@ -72,9 +71,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'passkeys' => null,
-        'otp' => null,
-        'magic_link' => null
+        'enabled' => null,
+        'ttl' => null,
+        'ttl_display_unit' => null
     ];
 
     /**
@@ -83,9 +82,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'passkeys' => false,
-		'otp' => false,
-		'magic_link' => false
+        'enabled' => false,
+		'ttl' => false,
+		'ttl_display_unit' => false
     ];
 
     /**
@@ -174,9 +173,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'passkeys' => 'passkeys',
-        'otp' => 'otp',
-        'magic_link' => 'magic_link'
+        'enabled' => 'enabled',
+        'ttl' => 'ttl',
+        'ttl_display_unit' => 'ttl_display_unit'
     ];
 
     /**
@@ -185,9 +184,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'passkeys' => 'setPasskeys',
-        'otp' => 'setOtp',
-        'magic_link' => 'setMagicLink'
+        'enabled' => 'setEnabled',
+        'ttl' => 'setTtl',
+        'ttl_display_unit' => 'setTtlDisplayUnit'
     ];
 
     /**
@@ -196,9 +195,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'passkeys' => 'getPasskeys',
-        'otp' => 'getOtp',
-        'magic_link' => 'getMagicLink'
+        'enabled' => 'getEnabled',
+        'ttl' => 'getTtl',
+        'ttl_display_unit' => 'getTtlDisplayUnit'
     ];
 
     /**
@@ -258,9 +257,9 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('passkeys', $data ?? [], null);
-        $this->setIfExists('otp', $data ?? [], null);
-        $this->setIfExists('magic_link', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('ttl', $data ?? [], 300);
+        $this->setIfExists('ttl_display_unit', $data ?? [], null);
     }
 
     /**
@@ -290,14 +289,18 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['passkeys'] === null) {
-            $invalidProperties[] = "'passkeys' can't be null";
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
         }
-        if ($this->container['otp'] === null) {
-            $invalidProperties[] = "'otp' can't be null";
+        if ($this->container['ttl'] === null) {
+            $invalidProperties[] = "'ttl' can't be null";
         }
-        if ($this->container['magic_link'] === null) {
-            $invalidProperties[] = "'magic_link' can't be null";
+        if (($this->container['ttl'] < 60)) {
+            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
+        }
+
+        if ($this->container['ttl_display_unit'] === null) {
+            $invalidProperties[] = "'ttl_display_unit' can't be null";
         }
         return $invalidProperties;
     }
@@ -315,82 +318,89 @@ class AuthMethods implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets passkeys
+     * Gets enabled
      *
-     * @return \OpenAPI\Client\Model\PasskeysAuthMethod
+     * @return bool
      */
-    public function getPasskeys()
+    public function getEnabled()
     {
-        return $this->container['passkeys'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets passkeys
+     * Sets enabled
      *
-     * @param \OpenAPI\Client\Model\PasskeysAuthMethod $passkeys passkeys
+     * @param bool $enabled enabled
      *
      * @return self
      */
-    public function setPasskeys($passkeys)
+    public function setEnabled($enabled)
     {
-        if (is_null($passkeys)) {
-            throw new \InvalidArgumentException('non-nullable passkeys cannot be null');
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
-        $this->container['passkeys'] = $passkeys;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
 
     /**
-     * Gets otp
+     * Gets ttl
      *
-     * @return \OpenAPI\Client\Model\OtpAuthMethod
+     * @return int
      */
-    public function getOtp()
+    public function getTtl()
     {
-        return $this->container['otp'];
+        return $this->container['ttl'];
     }
 
     /**
-     * Sets otp
+     * Sets ttl
      *
-     * @param \OpenAPI\Client\Model\OtpAuthMethod $otp otp
+     * @param int $ttl Maximum time (IN SECONDS) for the auth to expire.
      *
      * @return self
      */
-    public function setOtp($otp)
+    public function setTtl($ttl)
     {
-        if (is_null($otp)) {
-            throw new \InvalidArgumentException('non-nullable otp cannot be null');
+        if (is_null($ttl)) {
+            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
         }
-        $this->container['otp'] = $otp;
+
+        if (($ttl < 60)) {
+            throw new \InvalidArgumentException('invalid value for $ttl when calling OtpAuthMethod., must be bigger than or equal to 60.');
+        }
+
+        $this->container['ttl'] = $ttl;
 
         return $this;
     }
 
     /**
-     * Gets magic_link
+     * Gets ttl_display_unit
      *
-     * @return \OpenAPI\Client\Model\MagicLinkAuthMethod
+     * @return \OpenAPI\Client\Model\TtlDisplayUnit
+     * @deprecated
      */
-    public function getMagicLink()
+    public function getTtlDisplayUnit()
     {
-        return $this->container['magic_link'];
+        return $this->container['ttl_display_unit'];
     }
 
     /**
-     * Sets magic_link
+     * Sets ttl_display_unit
      *
-     * @param \OpenAPI\Client\Model\MagicLinkAuthMethod $magic_link magic_link
+     * @param \OpenAPI\Client\Model\TtlDisplayUnit $ttl_display_unit ttl_display_unit
      *
      * @return self
+     * @deprecated
      */
-    public function setMagicLink($magic_link)
+    public function setTtlDisplayUnit($ttl_display_unit)
     {
-        if (is_null($magic_link)) {
-            throw new \InvalidArgumentException('non-nullable magic_link cannot be null');
+        if (is_null($ttl_display_unit)) {
+            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
         }
-        $this->container['magic_link'] = $magic_link;
+        $this->container['ttl_display_unit'] = $ttl_display_unit;
 
         return $this;
     }

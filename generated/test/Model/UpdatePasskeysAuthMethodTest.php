@@ -1,6 +1,6 @@
 <?php
 /**
- * EmailSmsAuthMethodTest
+ * UpdatePasskeysAuthMethodTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * EmailSmsAuthMethodTest Class Doc Comment
+ * UpdatePasskeysAuthMethodTest Class Doc Comment
  *
  * @category    Class
- * @description EmailSmsAuthMethod
+ * @description UpdatePasskeysAuthMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class EmailSmsAuthMethodTest extends TestCase
+class UpdatePasskeysAuthMethodTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class EmailSmsAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "EmailSmsAuthMethod"
+     * Test "UpdatePasskeysAuthMethod"
      */
-    public function testEmailSmsAuthMethod()
+    public function testUpdatePasskeysAuthMethod()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -84,24 +84,6 @@ class EmailSmsAuthMethodTest extends TestCase
      * Test attribute "enabled"
      */
     public function testPropertyEnabled()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "ttl"
-     */
-    public function testPropertyTtl()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "ttl_display_unit"
-     */
-    public function testPropertyTtlDisplayUnit()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
