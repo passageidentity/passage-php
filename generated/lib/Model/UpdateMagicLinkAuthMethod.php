@@ -1,6 +1,6 @@
 <?php
 /**
- * PasskeyAuthMethod
+ * UpdateMagicLinkAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PasskeyAuthMethod Class Doc Comment
+ * UpdateMagicLinkAuthMethod Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PasskeyAuthMethod';
+    protected static $openAPIModelName = 'UpdateMagicLinkAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enabled' => 'bool'
+        'enabled' => 'bool',
+        'ttl' => 'int',
+        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
     ];
 
     /**
@@ -69,7 +71,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enabled' => null
+        'enabled' => null,
+        'ttl' => null,
+        'ttl_display_unit' => null
     ];
 
     /**
@@ -78,7 +82,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'enabled' => false
+        'enabled' => false,
+		'ttl' => false,
+		'ttl_display_unit' => false
     ];
 
     /**
@@ -167,7 +173,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'enabled' => 'enabled'
+        'enabled' => 'enabled',
+        'ttl' => 'ttl',
+        'ttl_display_unit' => 'ttl_display_unit'
     ];
 
     /**
@@ -176,7 +184,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'enabled' => 'setEnabled'
+        'enabled' => 'setEnabled',
+        'ttl' => 'setTtl',
+        'ttl_display_unit' => 'setTtlDisplayUnit'
     ];
 
     /**
@@ -185,7 +195,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'enabled' => 'getEnabled'
+        'enabled' => 'getEnabled',
+        'ttl' => 'getTtl',
+        'ttl_display_unit' => 'getTtlDisplayUnit'
     ];
 
     /**
@@ -245,7 +257,9 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enabled', $data ?? [], true);
+        $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('ttl', $data ?? [], 300);
+        $this->setIfExists('ttl_display_unit', $data ?? [], null);
     }
 
     /**
@@ -275,9 +289,10 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['enabled'] === null) {
-            $invalidProperties[] = "'enabled' can't be null";
+        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 60)) {
+            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
         }
+
         return $invalidProperties;
     }
 
@@ -296,7 +311,7 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets enabled
      *
-     * @return bool
+     * @return bool|null
      */
     public function getEnabled()
     {
@@ -306,7 +321,7 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets enabled
      *
-     * @param bool $enabled enabled
+     * @param bool|null $enabled enabled
      *
      * @return self
      */
@@ -316,6 +331,67 @@ class PasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
         $this->container['enabled'] = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets ttl
+     *
+     * @return int|null
+     */
+    public function getTtl()
+    {
+        return $this->container['ttl'];
+    }
+
+    /**
+     * Sets ttl
+     *
+     * @param int|null $ttl Maximum time (IN SECONDS) for the auth to expire.
+     *
+     * @return self
+     */
+    public function setTtl($ttl)
+    {
+        if (is_null($ttl)) {
+            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
+        }
+
+        if (($ttl < 60)) {
+            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateMagicLinkAuthMethod., must be bigger than or equal to 60.');
+        }
+
+        $this->container['ttl'] = $ttl;
+
+        return $this;
+    }
+
+    /**
+     * Gets ttl_display_unit
+     *
+     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
+     * @deprecated
+     */
+    public function getTtlDisplayUnit()
+    {
+        return $this->container['ttl_display_unit'];
+    }
+
+    /**
+     * Sets ttl_display_unit
+     *
+     * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setTtlDisplayUnit($ttl_display_unit)
+    {
+        if (is_null($ttl_display_unit)) {
+            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
+        }
+        $this->container['ttl_display_unit'] = $ttl_display_unit;
 
         return $this;
     }

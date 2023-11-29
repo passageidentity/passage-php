@@ -1,4 +1,4 @@
-# # UpdateEmailSmsAuthMethod
+# # UpdateMagicLinkAuthMethod
 
 ## Properties
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthMethodsTest
+ * MagicLinkAuthMethodTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * AuthMethodsTest Class Doc Comment
+ * MagicLinkAuthMethodTest Class Doc Comment
  *
  * @category    Class
- * @description Denotes what methods this app is allowed to use for authentication with configurations
+ * @description MagicLinkAuthMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class AuthMethodsTest extends TestCase
+class MagicLinkAuthMethodTest extends TestCase
 {
 
     /**
@@ -72,36 +72,36 @@ class AuthMethodsTest extends TestCase
     }
 
     /**
-     * Test "AuthMethods"
+     * Test "MagicLinkAuthMethod"
      */
-    public function testAuthMethods()
+    public function testMagicLinkAuthMethod()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "passkeys"
+     * Test attribute "enabled"
      */
-    public function testPropertyPasskeys()
+    public function testPropertyEnabled()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "otp"
+     * Test attribute "ttl"
      */
-    public function testPropertyOtp()
+    public function testPropertyTtl()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "magic_link"
+     * Test attribute "ttl_display_unit"
      */
-    public function testPropertyMagicLink()
+    public function testPropertyTtlDisplayUnit()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdatePasskeyAuthMethodTest
+ * UpdateOtpAuthMethodTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdatePasskeyAuthMethodTest Class Doc Comment
+ * UpdateOtpAuthMethodTest Class Doc Comment
  *
  * @category    Class
- * @description UpdatePasskeyAuthMethod
+ * @description UpdateOtpAuthMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UpdatePasskeyAuthMethodTest extends TestCase
+class UpdateOtpAuthMethodTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class UpdatePasskeyAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "UpdatePasskeyAuthMethod"
+     * Test "UpdateOtpAuthMethod"
      */
-    public function testUpdatePasskeyAuthMethod()
+    public function testUpdateOtpAuthMethod()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -84,6 +84,24 @@ class UpdatePasskeyAuthMethodTest extends TestCase
      * Test attribute "enabled"
      */
     public function testPropertyEnabled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ttl"
+     */
+    public function testPropertyTtl()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ttl_display_unit"
+     */
+    public function testPropertyTtlDisplayUnit()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
