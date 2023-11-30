@@ -10,7 +10,7 @@ All URIs are relative to https://api.passage.id/v1, except if the operation defi
 ## `createMagicLink()`
 
 ```php
-createMagicLink($create_magic_link_request): \OpenAPI\Client\Model\MagicLink
+createMagicLink($app_id, $create_magic_link_request): \OpenAPI\Client\Model\MagicLinkResponse
 ```
 
 Create Embeddable Magic Link
@@ -28,7 +28,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\MagicLinksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -38,7 +38,7 @@ $app_id = 'app_id_example'; // string | App ID
 $create_magic_link_request = new \OpenAPI\Client\Model\CreateMagicLinkRequest(); // \OpenAPI\Client\Model\CreateMagicLinkRequest | magic link request
 
 try {
-    $result = $apiInstance->createMagicLink($create_magic_link_request);
+    $result = $apiInstance->createMagicLink($app_id, $create_magic_link_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MagicLinksApi->createMagicLink: ', $e->getMessage(), PHP_EOL;
@@ -49,6 +49,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **create_magic_link_request** | [**\OpenAPI\Client\Model\CreateMagicLinkRequest**](../Model/CreateMagicLinkRequest.md)| magic link request | |
 
 ### Return type

@@ -15,7 +15,7 @@ All URIs are relative to https://api.passage.id/v1, except if the operation defi
 ## `activateUser()`
 
 ```php
-activateUser($user_id): \OpenAPI\Client\Model\UserInfo
+activateUser($app_id, $user_id): \OpenAPI\Client\Model\UserResponse
 ```
 
 Activate User
@@ -33,16 +33,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 
 try {
-    $result = $apiInstance->activateUser($user_id);
+    $result = $apiInstance->activateUser($app_id, $user_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->activateUser: ', $e->getMessage(), PHP_EOL;
@@ -53,11 +54,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserInfo**](../Model/UserInfo.md)
+[**\OpenAPI\Client\Model\UserResponse**](../Model/UserResponse.md)
 
 ### Authorization
 
@@ -75,7 +77,7 @@ try {
 ## `createUser()`
 
 ```php
-createUser($create_user_request): \OpenAPI\Client\Model\UserInfo
+createUser($app_id, $create_user_request): \OpenAPI\Client\Model\UserResponse
 ```
 
 Create User
@@ -93,16 +95,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $create_user_request = new \OpenAPI\Client\Model\CreateUserRequest(); // \OpenAPI\Client\Model\CreateUserRequest | email, phone, user_metadata
 
 try {
-    $result = $apiInstance->createUser($create_user_request);
+    $result = $apiInstance->createUser($app_id, $create_user_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->createUser: ', $e->getMessage(), PHP_EOL;
@@ -113,11 +116,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **create_user_request** | [**\OpenAPI\Client\Model\CreateUserRequest**](../Model/CreateUserRequest.md)| email, phone, user_metadata | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserInfo**](../Model/UserInfo.md)
+[**\OpenAPI\Client\Model\UserResponse**](../Model/UserResponse.md)
 
 ### Authorization
 
@@ -135,7 +139,7 @@ try {
 ## `deactivateUser()`
 
 ```php
-deactivateUser($user_id): \OpenAPI\Client\Model\UserInfo
+deactivateUser($app_id, $user_id): \OpenAPI\Client\Model\UserResponse
 ```
 
 Deactivate User
@@ -153,16 +157,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 
 try {
-    $result = $apiInstance->deactivateUser($user_id);
+    $result = $apiInstance->deactivateUser($app_id, $user_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->deactivateUser: ', $e->getMessage(), PHP_EOL;
@@ -173,11 +178,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserInfo**](../Model/UserInfo.md)
+[**\OpenAPI\Client\Model\UserResponse**](../Model/UserResponse.md)
 
 ### Authorization
 
@@ -195,7 +201,7 @@ try {
 ## `deleteUser()`
 
 ```php
-deleteUser($user_id)
+deleteUser($app_id, $user_id)
 ```
 
 Delete User
@@ -213,16 +219,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 
 try {
-    $apiInstance->deleteUser($user_id);
+    $apiInstance->deleteUser($app_id, $user_id);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->deleteUser: ', $e->getMessage(), PHP_EOL;
 }
@@ -232,6 +239,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 
 ### Return type
@@ -254,7 +262,7 @@ void (empty response body)
 ## `getUser()`
 
 ```php
-getUser($user_id): \OpenAPI\Client\Model\UserInfo
+getUser($app_id, $user_id): \OpenAPI\Client\Model\UserResponse
 ```
 
 Get User
@@ -272,16 +280,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 
 try {
-    $result = $apiInstance->getUser($user_id);
+    $result = $apiInstance->getUser($app_id, $user_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->getUser: ', $e->getMessage(), PHP_EOL;
@@ -292,11 +301,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserInfo**](../Model/UserInfo.md)
+[**\OpenAPI\Client\Model\UserResponse**](../Model/UserResponse.md)
 
 ### Authorization
 
@@ -314,7 +324,7 @@ try {
 ## `updateUser()`
 
 ```php
-updateUser($user_id, $update_user_request): \OpenAPI\Client\Model\UserInfo
+updateUser($app_id, $user_id, $update_user_request): \OpenAPI\Client\Model\UserResponse
 ```
 
 Update User
@@ -332,17 +342,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 $update_user_request = new \OpenAPI\Client\Model\UpdateUserRequest(); // \OpenAPI\Client\Model\UpdateUserRequest | user settings
 
 try {
-    $result = $apiInstance->updateUser($user_id, $update_user_request);
+    $result = $apiInstance->updateUser($app_id, $user_id, $update_user_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->updateUser: ', $e->getMessage(), PHP_EOL;
@@ -353,12 +364,13 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 | **update_user_request** | [**\OpenAPI\Client\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)| user settings | |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserInfo**](../Model/UserInfo.md)
+[**\OpenAPI\Client\Model\UserResponse**](../Model/UserResponse.md)
 
 ### Authorization
 

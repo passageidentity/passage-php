@@ -10,7 +10,7 @@ All URIs are relative to https://api.passage.id/v1, except if the operation defi
 ## `getApp()`
 
 ```php
-getApp(): \OpenAPI\Client\Model\AppInfo
+getApp($app_id): \OpenAPI\Client\Model\AppResponse
 ```
 
 Get App
@@ -28,7 +28,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\AppsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -37,12 +37,18 @@ $apiInstance = new Passage\Client\Controllers\Passage(
 $app_id = 'app_id_example'; // string | App ID
 
 try {
-    $result = $apiInstance->getApp();
+    $result = $apiInstance->getApp($app_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AppsApi->getApp: ', $e->getMessage(), PHP_EOL;
 }
 ```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 
 ### Return type
 

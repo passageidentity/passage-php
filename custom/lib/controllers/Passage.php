@@ -2,23 +2,31 @@
 
 namespace Passage\Client\Controllers;
 
+use OpenAPI\Client\Configuration;
+
 use OpenAPI\Client\Api\AppsApi;
 use OpenAPI\Client\Api\MagicLinksApi;
 use OpenAPI\Client\Api\TokensApi;
 use OpenAPI\Client\Api\UsersApi;
 use OpenAPI\Client\Api\UserDevicesApi;
 
-use OpenAPI\Client\Model\AppResponse;
+use OpenAPI\Client\Model\AppInfo;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
 use OpenAPI\Client\Model\CreateUserRequest;
-use OpenAPI\Client\Model\ListDevicesResponse;
-use OpenAPI\Client\Model\MagicLinkResponse;
+use OpenAPI\Client\Model\MagicLink;
+use OpenAPI\Client\Model\Model401Error;
+use OpenAPI\Client\Model\Model404Error;
+use OpenAPI\Client\Model\Model500Error;
+use OpenAPI\Client\Model\UserInfo;
 use OpenAPI\Client\Model\UpdateUserRequest;
-use OpenAPI\Client\Model\UserResponse;
+use OpenAPI\Client\Model\WebAuthnDevices;
 
 class Passage {
     private string $appId;
     private string $apiKey;
+    private Configuration $clientConfiguration;
+    private UsersApi $usersApi;
+    private UserDevicesApi $userDevicesApi;
 
     /**
      * Initialize a new Passage instance.
@@ -30,6 +38,11 @@ class Passage {
     public function __construct(string $appId, string $apiKey) {
         $this->appId = $appId;
         $this->apiKey = $apiKey;
+        $this->clientConfiguration = new Configuration();
+        $this->clientConfiguration->setAccessToken($apiKey);
+
+        $this->usersApi = new UsersApi(null, $this->clientConfiguration);
+        $this->userDevicesApi = new UserDevicesApi(null, $this->clientConfiguration);
     }
 
     /**
@@ -41,83 +54,97 @@ class Passage {
     }
 
     /**
-     * Get AppId key for this Passage instance
-     * @return AppResponse Passage App
+     * @param  string $app_id App ID (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApp'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return AppInfo|Model401Error|Model404Error|Model500Error
      */
-    public function getApp(): AppResponse {
-        return UsersApi::getApp($this->app_id);
+    public function getApp(): AppInfo {
+        $appsApi = new AppsApi();
+        return $appsApi->getApp($this->appId)['app'];
     }
 
     /**
      * Get App for this Passage instance
-     * @return MagicLinkResponse Passage API Key
+     * @return MagicLink|Model401Error|Model404Error|Model500Error MagicLink object
      */
-    public function createMagicLink(CreateMagicLinkRequest $create_magic_link_request): MagicLinkResponse {
-        return MagicLinksApi::createMagicLink($this->app_id, $create_magic_link_request);
+    public function createMagicLink(CreateMagicLinkRequest $create_magic_link_request): MagicLink {
+        $magicLinksApi = new MagicLinksApi(null, $this->clientConfiguration);
+        return $magicLinksApi->createMagicLink($this->appId, $create_magic_link_request)['magic_link'];
     }
 
     /**
      * Revoke user token for the user
-     * @return null
+     * @return null|Model401Error|Model404Error|Model500Error
      */
     public function revokeUserRefreshTokens(string $user_id): null {
-        return TokensApi::revokeUserRefreshTokens($this->app_id, $user_id);
+        return TokensApi::revokeUserRefreshTokens($this->appId, $user_id);
     }
 
     /**
      * Delete the device for a user
-     * @return null
+     * @return null|Model401Error|Model404Error|Model500Error
      */
     public function deleteUserDevice(string $user_id, string $device_id): null {
-        return UserDevicesApi::deleteUserDevices($this->app_id, $user_id, $device_id);
+        return UserDevicesApi::deleteUserDevices($this->appId, $user_id, $device_id);
     }
 
     /**
      * List the devices for a user
-     * @return ListDevicesResponse
+     * @return array|Model401Error|Model404Error|Model500Error
      */
-    public function listUserDevices(string $user_id): ListDevicesResponse {
-        return UserDevicesApi::listUserDevices($this->app_id, $user_id);
+    public function listUserDevices(string $user_id): array {
+        return $this->userDevicesApi->listUserDevices($this->appId, $user_id)['devices'];
+    }
+
+    /**
+     * Get a user
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
+     */
+    public function getUser(string $user_id): UserInfo {
+        return $this->usersApi->getUser($this->appId, $user_id)['user'];
     }
 
     /**
      * Activate a user
-     * @return UserResponse
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function activateUser(string $user_id): UserResponse {
-        return UsersApi::activateUser($this->app_id, $user_id);
+    public function activateUser(string $user_id): UserInfo {
+        return $this->usersApi->activateUser($this->appId, $user_id)['user'];
     }
 
     /**
      * Create a user
-     * @return UserResponse
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function createUser(CreateUserRequest $create_user_request): UserResponse {
-        return UsersApi::createUser($this->app_id, $create_user_request);
+    public function createUser(CreateUserRequest $create_user_request): UserInfo {
+        return $this->usersApi->createUser($this->appId, $create_user_request)['user'];
     }
 
     /**
      * Deactivate a user
-     * @return UserResponse
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function deactivateUser(string $user_id): UserResponse {
-        return UsersApi::deactivateUser($this->app_id, $user_id);
+    public function deactivateUser(string $user_id): UserInfo {
+        return $this->usersApi->deactivateUser($this->appId, $user_id)['user'];
     }
 
     /**
      * Delete a user
-     * @return null
+     * @return null|Model401Error|Model404Error|Model500Error
      */
     public function deleteUser(string $user_id): null {
-        return UsersApi::deleteUser($this->app_id, $user_id);
+        return $this->usersApi->deleteUser($this->appId, $user_id);
     }
 
     /**
      * Update a user
-     * @return UserResponse
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function updateUser(string $user_id, UpdateUserRequest $update_user_request): UserResponse {
-        return UsersApi::updateUser($this->app_id, $user_id, $update_user_request);
+    public function updateUser(string $user_id, UpdateUserRequest $update_user_request): UserInfo {
+        return $this->usersApi->updateUser($this->appId, $user_id, $update_user_request)['user'];
     }
 }
 ?>

@@ -11,10 +11,12 @@ All URIs are relative to https://api.passage.id/v1, except if the operation defi
 ## `deleteUserDevices()`
 
 ```php
-deleteUserDevices($user_id, $device_id)
+deleteUserDevices($app_id, $user_id, $device_id)
 ```
 
 Delete a device for a user
+
+Delete a device for a user.
 
 ### Example
 
@@ -27,17 +29,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UserDevicesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 $device_id = 'device_id_example'; // string | Device ID
 
 try {
-    $apiInstance->deleteUserDevices($user_id, $device_id);
+    $apiInstance->deleteUserDevices($app_id, $user_id, $device_id);
 } catch (Exception $e) {
     echo 'Exception when calling UserDevicesApi->deleteUserDevices: ', $e->getMessage(), PHP_EOL;
 }
@@ -47,6 +50,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 | **device_id** | **string**| Device ID | |
 
@@ -70,10 +74,12 @@ void (empty response body)
 ## `listUserDevices()`
 
 ```php
-listUserDevices($user_id): array
+listUserDevices($app_id, $user_id): \OpenAPI\Client\Model\ListDevicesResponse
 ```
 
 List User Devices
+
+List user devices.
 
 ### Example
 
@@ -86,16 +92,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Passage\Client\Controllers\Passage(
+$apiInstance = new OpenAPI\Client\Api\UserDevicesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$app_id = 'app_id_example'; // string | App ID
 $user_id = 'user_id_example'; // string | User ID
 
 try {
-    $result = $apiInstance->listUserDevices($user_id);
+    $result = $apiInstance->listUserDevices($app_id, $user_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserDevicesApi->listUserDevices: ', $e->getMessage(), PHP_EOL;
@@ -106,6 +113,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **app_id** | **string**| App ID | |
 | **user_id** | **string**| User ID | |
 
 ### Return type

@@ -367,9 +367,9 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable ttl cannot be null');
         }
 
-        if (($ttl < 60)) {
-            throw new \InvalidArgumentException('invalid value for $ttl when calling EmailSmsAuthMethod., must be bigger than or equal to 60.');
-        }
+        // if (($ttl < 60)) {
+        //     throw new \InvalidArgumentException('invalid value for $ttl when calling EmailSmsAuthMethod., must be bigger than or equal to 60.');
+        // }
 
         $this->container['ttl'] = $ttl;
 
