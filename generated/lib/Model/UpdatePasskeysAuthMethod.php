@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateEmailSmsAuthMethod
+ * UpdatePasskeysAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UpdateEmailSmsAuthMethod Class Doc Comment
+ * UpdatePasskeysAuthMethod Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateEmailSmsAuthMethod';
+    protected static $openAPIModelName = 'UpdatePasskeysAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enabled' => 'bool',
-        'ttl' => 'int',
-        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
+        'enabled' => 'bool'
     ];
 
     /**
@@ -71,9 +69,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enabled' => null,
-        'ttl' => null,
-        'ttl_display_unit' => null
+        'enabled' => null
     ];
 
     /**
@@ -82,9 +78,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'enabled' => false,
-		'ttl' => false,
-		'ttl_display_unit' => false
+        'enabled' => false
     ];
 
     /**
@@ -173,9 +167,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'enabled' => 'enabled',
-        'ttl' => 'ttl',
-        'ttl_display_unit' => 'ttl_display_unit'
+        'enabled' => 'enabled'
     ];
 
     /**
@@ -184,9 +176,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'enabled' => 'setEnabled',
-        'ttl' => 'setTtl',
-        'ttl_display_unit' => 'setTtlDisplayUnit'
+        'enabled' => 'setEnabled'
     ];
 
     /**
@@ -195,9 +185,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'enabled' => 'getEnabled',
-        'ttl' => 'getTtl',
-        'ttl_display_unit' => 'getTtlDisplayUnit'
+        'enabled' => 'getEnabled'
     ];
 
     /**
@@ -257,9 +245,7 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enabled', $data ?? [], null);
-        $this->setIfExists('ttl', $data ?? [], 300);
-        $this->setIfExists('ttl_display_unit', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], true);
     }
 
     /**
@@ -288,10 +274,6 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 60)) {
-            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
-        }
 
         return $invalidProperties;
     }
@@ -331,67 +313,6 @@ class UpdateEmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
         $this->container['enabled'] = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets ttl
-     *
-     * @return int|null
-     */
-    public function getTtl()
-    {
-        return $this->container['ttl'];
-    }
-
-    /**
-     * Sets ttl
-     *
-     * @param int|null $ttl Maximum time (IN SECONDS) for the auth to expire.
-     *
-     * @return self
-     */
-    public function setTtl($ttl)
-    {
-        if (is_null($ttl)) {
-            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
-        }
-
-        if (($ttl < 60)) {
-            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateEmailSmsAuthMethod., must be bigger than or equal to 60.');
-        }
-
-        $this->container['ttl'] = $ttl;
-
-        return $this;
-    }
-
-    /**
-     * Gets ttl_display_unit
-     *
-     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
-     * @deprecated
-     */
-    public function getTtlDisplayUnit()
-    {
-        return $this->container['ttl_display_unit'];
-    }
-
-    /**
-     * Sets ttl_display_unit
-     *
-     * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setTtlDisplayUnit($ttl_display_unit)
-    {
-        if (is_null($ttl_display_unit)) {
-            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
-        }
-        $this->container['ttl_display_unit'] = $ttl_display_unit;
 
         return $this;
     }

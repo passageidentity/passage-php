@@ -1,6 +1,6 @@
 <?php
 /**
- * EmailSmsAuthMethod
+ * UpdateOtpAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * EmailSmsAuthMethod Class Doc Comment
+ * UpdateOtpAuthMethod Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'EmailSmsAuthMethod';
+    protected static $openAPIModelName = 'UpdateOtpAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -289,19 +289,10 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['enabled'] === null) {
-            $invalidProperties[] = "'enabled' can't be null";
-        }
-        if ($this->container['ttl'] === null) {
-            $invalidProperties[] = "'ttl' can't be null";
-        }
-        if (($this->container['ttl'] < 60)) {
+        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 60)) {
             $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
         }
 
-        if ($this->container['ttl_display_unit'] === null) {
-            $invalidProperties[] = "'ttl_display_unit' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -320,7 +311,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets enabled
      *
-     * @return bool
+     * @return bool|null
      */
     public function getEnabled()
     {
@@ -330,7 +321,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets enabled
      *
-     * @param bool $enabled enabled
+     * @param bool|null $enabled enabled
      *
      * @return self
      */
@@ -347,7 +338,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets ttl
      *
-     * @return int
+     * @return int|null
      */
     public function getTtl()
     {
@@ -357,7 +348,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets ttl
      *
-     * @param int $ttl Maximum time (IN SECONDS) for the auth to expire.
+     * @param int|null $ttl Maximum time (IN SECONDS) for the auth to expire.
      *
      * @return self
      */
@@ -367,9 +358,9 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable ttl cannot be null');
         }
 
-        // if (($ttl < 60)) {
-        //     throw new \InvalidArgumentException('invalid value for $ttl when calling EmailSmsAuthMethod., must be bigger than or equal to 60.');
-        // }
+        if (($ttl < 60)) {
+            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateOtpAuthMethod., must be bigger than or equal to 60.');
+        }
 
         $this->container['ttl'] = $ttl;
 
@@ -379,7 +370,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets ttl_display_unit
      *
-     * @return \OpenAPI\Client\Model\TtlDisplayUnit
+     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
      * @deprecated
      */
     public function getTtlDisplayUnit()
@@ -390,7 +381,7 @@ class EmailSmsAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets ttl_display_unit
      *
-     * @param \OpenAPI\Client\Model\TtlDisplayUnit $ttl_display_unit ttl_display_unit
+     * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
      *
      * @return self
      * @deprecated

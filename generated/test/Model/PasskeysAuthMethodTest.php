@@ -1,6 +1,6 @@
 <?php
 /**
- * PasskeyAuthMethodTest
+ * PasskeysAuthMethodTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * PasskeyAuthMethodTest Class Doc Comment
+ * PasskeysAuthMethodTest Class Doc Comment
  *
  * @category    Class
- * @description PasskeyAuthMethod
+ * @description PasskeysAuthMethod
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class PasskeyAuthMethodTest extends TestCase
+class PasskeysAuthMethodTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class PasskeyAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "PasskeyAuthMethod"
+     * Test "PasskeysAuthMethod"
      */
-    public function testPasskeyAuthMethod()
+    public function testPasskeysAuthMethod()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
