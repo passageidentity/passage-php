@@ -29,6 +29,9 @@ class Authentication {
         $jwtIssuer = 'https://auth.passage.id/v1/apps/' . $appId . '/.well-known/jwks.json';
         
         $this->jwks = $this->fetchJWKS($jwtIssuer);
+
+        var_dump('JWWWKKKSSSS');
+        var_dump($this->jwks);
     }
     
     /**
@@ -66,6 +69,9 @@ class Authentication {
         try {
             $decodedHeader = JWT::urlsafeB64Decode(explode('.', $jwtString)[0]);
             $header = json_decode($decodedHeader);
+
+            var_dump($decodedHeader);
+            var_dump($header);
 
             $kid = $header->kid;
 
