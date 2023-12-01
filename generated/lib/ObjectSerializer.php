@@ -93,10 +93,10 @@ class ObjectSerializer
                         if (is_callable($callable)) {
                             /** array $callable */
                             $allowedEnumTypes = $callable();
-                            // if (!in_array($value, $allowedEnumTypes, true)) {
-                            //     $imploded = implode("', '", $allowedEnumTypes);
-                            //     throw new \InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
-                            // }
+                            if (!in_array($value, $allowedEnumTypes, true)) {
+                                $imploded = implode("', '", $allowedEnumTypes);
+                                throw new \InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
+                            }
                         }
                     }
                     if (($data::isNullable($property) && $data->isNullableSetToNull($property)) || $value !== null) {
