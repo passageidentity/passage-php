@@ -52,22 +52,15 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
-// Configure Bearer (JWT) authorization: bearerAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new OpenAPI\Client\Api\AppsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $app_id = 'app_id_example'; // string | App ID
+$api_key = 'app_id_example'; // string | App ID
+$passageInstance = new Passage\Client\Controllers\Passage(
+  $app_id,
+  $api_key
+);
 
 try {
-    $result = $apiInstance->getApp($app_id);
+    $result = $passageInstance->getApp($app_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AppsApi->getApp: ', $e->getMessage(), PHP_EOL;
@@ -81,17 +74,17 @@ All URIs are relative to *https://api.passage.id/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AppsApi* | [**getApp**](docs/Api/AppsApi.md#getapp) | **GET** /apps/{app_id} | Get App
-*MagicLinksApi* | [**createMagicLink**](docs/Api/MagicLinksApi.md#createmagiclink) | **POST** /apps/{app_id}/magic-links | Create Embeddable Magic Link
-*TokensApi* | [**revokeUserRefreshTokens**](docs/Api/TokensApi.md#revokeuserrefreshtokens) | **DELETE** /apps/{app_id}/users/{user_id}/tokens | Revokes refresh tokens
-*UserDevicesApi* | [**deleteUserDevices**](docs/Api/UserDevicesApi.md#deleteuserdevices) | **DELETE** /apps/{app_id}/users/{user_id}/devices/{device_id} | Delete a device for a user
-*UserDevicesApi* | [**listUserDevices**](docs/Api/UserDevicesApi.md#listuserdevices) | **GET** /apps/{app_id}/users/{user_id}/devices | List User Devices
-*UsersApi* | [**activateUser**](docs/Api/UsersApi.md#activateuser) | **PATCH** /apps/{app_id}/users/{user_id}/activate | Activate User
-*UsersApi* | [**createUser**](docs/Api/UsersApi.md#createuser) | **POST** /apps/{app_id}/users | Create User
-*UsersApi* | [**deactivateUser**](docs/Api/UsersApi.md#deactivateuser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User
-*UsersApi* | [**deleteUser**](docs/Api/UsersApi.md#deleteuser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User
-*UsersApi* | [**getUser**](docs/Api/UsersApi.md#getuser) | **GET** /apps/{app_id}/users/{user_id} | Get User
-*UsersApi* | [**updateUser**](docs/Api/UsersApi.md#updateuser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User
+*AppsApi* | [**getApp**](docs/Passage/AppsApi.md#getapp) | **GET** /apps/{app_id} | Get App
+*MagicLinksApi* | [**createMagicLink**](docs/Passage/MagicLinksApi.md#createmagiclink) | **POST** /apps/{app_id}/magic-links | Create Embeddable Magic Link
+*TokensApi* | [**revokeUserRefreshTokens**](docs/Passage/TokensApi.md#revokeuserrefreshtokens) | **DELETE** /apps/{app_id}/users/{user_id}/tokens | Revokes refresh tokens
+*UserDevicesApi* | [**deleteUserDevices**](docs/Passage/UserDevicesApi.md#deleteuserdevices) | **DELETE** /apps/{app_id}/users/{user_id}/devices/{device_id} | Delete a device for a user
+*UserDevicesApi* | [**listUserDevices**](docs/Passage/UserDevicesApi.md#listuserdevices) | **GET** /apps/{app_id}/users/{user_id}/devices | List User Devices
+*UsersApi* | [**activateUser**](docs/Passage/UsersApi.md#activateuser) | **PATCH** /apps/{app_id}/users/{user_id}/activate | Activate User
+*UsersApi* | [**createUser**](docs/Passage/UsersApi.md#createuser) | **POST** /apps/{app_id}/users | Create User
+*UsersApi* | [**deactivateUser**](docs/Passage/UsersApi.md#deactivateuser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User
+*UsersApi* | [**deleteUser**](docs/Passage/UsersApi.md#deleteuser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User
+*UsersApi* | [**getUser**](docs/Passage/UsersApi.md#getuser) | **GET** /apps/{app_id}/users/{user_id} | Get User
+*UsersApi* | [**updateUser**](docs/Passage/UsersApi.md#updateuser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User
 
 ## Models
 

@@ -5,10 +5,6 @@
 <!--- Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change. -->
 
 
-## Images/Screen Capture
-
-<!--- Add any images/screen captures showing your change here --->
-
 ## Type of change
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
@@ -20,3 +16,14 @@
 # Testing
 
 <!--- Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration --->
+
+
+## Checklist before approving (including SDK updates)
+- [ ] I have performed a review of the code.
+- [ ] Docs have been updated. Docs in the docs/Passage folder should be edited with any changes to the api. We manually edit these docs to account for the wrapping layer of the generated code.
+- [ ] The version has been updated in the `composer.json` file.
+- [ ] The `CHANGELOG.md` has been updated.
+
+## Checklist after merging
+- [ ] Github repo is tagged.
+
