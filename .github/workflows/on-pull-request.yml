@@ -5,6 +5,7 @@ on: [pull_request]
 env:
   API_KEY: ${{ secrets.API_KEY }}
   APP_ID: ${{ secrets.APP_ID }}
+  EXAMPLE_AUTH_TOKEN: ${{ secrets.EXAMPLE_AUTH_TOKEN }}
   EXAMPLE_USER_ID: ${{ secrets.EXAMPLE_USER_ID }}
 
 jobs:
