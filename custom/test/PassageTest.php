@@ -61,14 +61,14 @@ class PassageTest extends TestCase {
         $magicLinkRequest = new CreateMagicLinkRequest(array(
             'email' => 'chris@passage.id',
             'channel' => 'email',
-            'ttl' => 12
+            'ttl' => 62
         ));
 
         $magicLink = $this->passageClient->createMagicLink($magicLinkRequest);
 
         // Assert that identifier and ttl properties are correctly set
         $this->assertEquals($magicLink['identifier'], 'chris@passage.id');
-        $this->assertEquals($magicLink['ttl'], 12);
+        $this->assertEquals($magicLink['ttl'], 62);
     }
 
     public function testCreateDeleteUser()
