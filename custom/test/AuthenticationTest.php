@@ -7,6 +7,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use Firebase\JWT\JWT;
+use OpenAPI\Client\ApiException;
 use Passage\Client\Authentication;
 use Passage\Client\Passage;
 
@@ -42,7 +43,7 @@ class AuthenticationTest extends TestCase {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
         
+        $this->expectException(ApiException::class);
         $user = $authentication->validateJWT('incorrect.token');
-        $this->assertEquals(null, $user);
     }
 }
