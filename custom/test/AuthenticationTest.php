@@ -25,8 +25,8 @@ class AuthenticationTest extends TestCase {
 
         $config = include('config.php');
 
-        var_dump('ENVIRONMENT VARIABLES');
-        var_dump($_ENV);
+        var_dump('ENVIRONMENT VARIABLESSSS');
+        var_dump(getenv('APP_ID'));
 
         $this->appId = $_ENV['APP_ID'];
         $this->apiKey = $_ENV['API_KEY'];
