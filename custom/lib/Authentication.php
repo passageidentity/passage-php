@@ -40,7 +40,7 @@ class Authentication {
      * @param string $url
      * @return CachedKeySet UserId of the Passage user
     */
-    private function fetchJWKS(string $url) {
+    private function fetchJWKS(string $url): CachedKeySet {
         $httpClient = new Client();
         $httpFactory = new HttpFactory();
 

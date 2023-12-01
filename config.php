@@ -1,8 +1,8 @@
 <?php
 
     return array(
-        'API_KEY' => '',
-        'APP_ID' => '',
-        'EXAMPLE_AUTH_TOKEN' => '',
-        'EXAMPLE_USER_ID' => '',
+        'API_KEY' => 'HIbR5M6b45.TuMu9TkjOUqxJJ14VCDB5bSrQUt8qHDJ9b4CLVbgXFUYAZAAD3qagB9QJsLe7Mtx',
+        'APP_ID' => 'wm4kjwacPZJiIxoB6lQna9dy',
+        'EXAMPLE_AUTH_TOKEN' => 'eyJhbGciOiJSUzI1NiIsImtpZCI6IldhWWZ4d1lvbW5rSlg0azFiSzVHQUE5MSIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJleHAiOjE3MDEzODE2MzksImlhdCI6MTcwMTM3ODAzOSwiaXNzIjoiaHR0cHM6Ly9hdXRoLnBhc3NhZ2UuaWQvdjEvYXBwcy93bTRrandhY1BaSmlJeG9CNmxRbmE5ZHkiLCJuYmYiOjE3MDEzNzgwMzQsInN1YiI6IkFSamxjcXpnM2o1YVJtU3U0eGo2d2JRayJ9.Eb5PZBlKtP-OoNIZQdKU80jKTFSUaYPdtFcbZi8cCy33nu0ugWDOGYr4LC7UZplEJoOmNCi177-mXve9UpO22omyEttWNLDrR_g_lOhevPLWm5SVj6nC2S1w3fSHnMDI6Ol2MlkwB7TDC0ETeOfi4eIhyW6tOQ5cpCZvYZx79OxyIIykEkKTYfs4duz6SF7_asJUdM7DS-rKwsENxy7OjMeeURDNtMbY0-n3RL3E--rCcxBYCt1ppg2Enj1gGE1thXk9Rj0sYty3v_EWtRdvDNKqTirgne-XZ6L-lTcGxhXk-WAtqFOlXZaaTV7dRQus-xINuOCr2kx-NlPR7NvbRA',
+        'EXAMPLE_USER_ID' => 'ARjlcqzg3j5aRmSu4xj6wbQk',
     );
