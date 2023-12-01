@@ -9,7 +9,7 @@ env:
   EXAMPLE_USER_ID: ${{ secrets.EXAMPLE_USER_ID }}
 
 jobs:
-  publish:
+  test:
     name: Run Tests on PR
     runs-on: ubuntu-latest
 
