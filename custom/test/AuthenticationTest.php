@@ -25,10 +25,10 @@ class AuthenticationTest extends TestCase {
 
         $config = include('config.php');
 
-        $this->appId = $ $_ENV['APP_ID'];
-        $this->apiKey = $ $_ENV['API_KEY'];
-        $this->appToken = $ $_ENV['EXAMPLE_AUTH_TOKEN'];
-        $this->userId = $ $_ENV['EXAMPLE_USER_ID'];
+        $this->appId = $_ENV['APP_ID'];
+        $this->apiKey = $_ENV['API_KEY'];
+        $this->appToken = $_ENV['EXAMPLE_AUTH_TOKEN'];
+        $this->userId = $_ENV['EXAMPLE_USER_ID'];
     }
 
     public function testValidJWT() {
