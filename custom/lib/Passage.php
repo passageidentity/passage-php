@@ -1,6 +1,6 @@
 <?php
 
-namespace Passage\Client\Controllers;
+namespace Passage\Client;
 
 class Passage {
     private string $appId;

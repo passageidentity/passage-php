@@ -1,4 +1,4 @@
-# Passage\Controllers\Authentication
+# Passage\Authentication
 
 All URIs are relative to https://api.passage.id/v1, except if the operation defines another base path.
 
@@ -18,7 +18,7 @@ Valid JWT string returns user id.
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use PassageIdentity\PassagePHP\Passage\Controllers\Authentication;
+use PassageIdentity\PassagePHP\Passage\Authentication;
 
 // Authentication using Passage class instance
 Route::get('authenticatedRoute', function (Request $request) {

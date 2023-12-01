@@ -1,14 +1,14 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Passage\Client\Controllers\Passage;
+use Passage\Client\Passage;
 
 class PassageTest extends TestCase
 {
     public function testConstructorMissingParam()
     {
         $this->expectException(\ArgumentCountError::class);
-        $this->expectExceptionMessage('Too few arguments to function Passage\Client\Controllers\Passage::__construct()');
+        $this->expectExceptionMessage('Too few arguments to function Passage\Client\Passage::__construct()');
 
         new Passage('123456');
     }

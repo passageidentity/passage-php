@@ -1,5 +1,5 @@
 <?php
-namespace Passage\Client\Controllers;
+namespace Passage\Client;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;

@@ -7,8 +7,8 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use Firebase\JWT\JWT;
-use Passage\Client\Controllers\Authentication;
-use Passage\Client\Controllers\Passage;
+use Passage\Client\Authentication;
+use Passage\Client\Passage;
 
 
 
