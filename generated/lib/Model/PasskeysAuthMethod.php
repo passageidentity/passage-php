@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdatePasskeyAuthMethod
+ * PasskeysAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UpdatePasskeyAuthMethod Class Doc Comment
+ * PasskeysAuthMethod Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdatePasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class PasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UpdatePasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdatePasskeyAuthMethod';
+    protected static $openAPIModelName = 'PasskeysAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -275,6 +275,9 @@ class UpdatePasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -293,7 +296,7 @@ class UpdatePasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets enabled
      *
-     * @return bool|null
+     * @return bool
      */
     public function getEnabled()
     {
@@ -303,7 +306,7 @@ class UpdatePasskeyAuthMethod implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets enabled
      *
-     * @param bool|null $enabled enabled
+     * @param bool $enabled enabled
      *
      * @return self
      */

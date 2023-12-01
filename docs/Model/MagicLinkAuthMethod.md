@@ -1,4 +1,4 @@
-# # EmailSmsAuthMethod
+# # MagicLinkAuthMethod
 
 ## Properties
 
