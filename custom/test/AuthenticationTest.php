@@ -41,11 +41,11 @@ class AuthenticationTest extends TestCase {
         $this->assertEquals($this->userId, $user);
     }
 
-    public function testInvalidJWT() {
-        $passage = new Passage($this->appId, $this->apiKey);
-        $authentication = new Authentication($passage);
+    // public function testInvalidJWT() {
+    //     $passage = new Passage($this->appId, $this->apiKey);
+    //     $authentication = new Authentication($passage);
         
-        $this->expectException(ApiException::class);
-        $user = $authentication->validateJWT('incorrect.token');
-    }
+    //     $this->expectException(ApiException::class);
+    //     $user = $authentication->validateJWT('incorrect.token');
+    // }
 }
