@@ -1,5 +1,6 @@
 <?php
 
+use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
@@ -18,12 +19,13 @@ class PassageTest extends TestCase {
     {
         parent::setUp();
 
-        $config = include('config.php');
+        require __DIR__ . '/../../vendor/autoload.php';
+        Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->load();
 
-        $this->appId = $ $_ENV['APP_ID'];
-        $this->apiKey = $ $_ENV['API_KEY'];
-        $this->appToken = $ $_ENV['EXAMPLE_AUTH_TOKEN'];
-        $this->userId = $ $_ENV['EXAMPLE_USER_ID'];
+        $this->appId = getenv('APP_ID');
+        $this->apiKey = getenv('API_KEY');
+        $this->appToken = getenv('EXAMPLE_AUTH_TOKEN');
+        $this->userId = getenv('EXAMPLE_USER_ID');
 
         $this->passageClient = new Passage($this->appId, $this->apiKey);
     }

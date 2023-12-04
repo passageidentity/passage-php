@@ -22,4 +22,4 @@ jobs:
         run: composer install
 
       - name: Unit Test
-        run: ./vendor/bin/phpunit custom/test/*
+        run: ./vendor/bin/phpunit custom/test/

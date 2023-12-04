@@ -1,12 +1,7 @@
 <?php
 
+use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use Firebase\JWT\JWT;
 use OpenAPI\Client\ApiException;
 use Passage\Client\Authentication;
 use Passage\Client\Passage;
@@ -23,10 +18,8 @@ class AuthenticationTest extends TestCase {
     {
         parent::setUp();
 
-        $config = include('config.php');
-
-        var_dump('ENVIRONMENT VARIABLESSSS');
-        var_dump(getenv('APP_ID'));
+        require __DIR__ . '/../../vendor/autoload.php';
+        Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->load();
 
         $this->appId = getenv('APP_ID');
         $this->apiKey = getenv('API_KEY');
@@ -44,11 +37,11 @@ class AuthenticationTest extends TestCase {
         $this->assertEquals($this->userId, $user);
     }
 
-    // public function testInvalidJWT() {
-    //     $passage = new Passage($this->appId, $this->apiKey);
-    //     $authentication = new Authentication($passage);
+    public function testInvalidJWT() {
+        $passage = new Passage($this->appId, $this->apiKey);
+        $authentication = new Authentication($passage);
         
-    //     $this->expectException(ApiException::class);
-    //     $user = $authentication->validateJWT('incorrect.token');
-    // }
+        $this->expectException(ApiException::class);
+        $user = $authentication->validateJWT('incorrect.token');
+    }
 }
