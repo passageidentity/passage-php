@@ -15,4 +15,4 @@ composer.phar
 .phpunit.result.cache
 
 config.php
-# .env
+.env
