@@ -1,6 +1,6 @@
 <?php
 
-namespace Passage\Client\Controllers;
+namespace Passage\Client;
 
 use OpenAPI\Client\Configuration;
 
@@ -70,7 +70,7 @@ class Passage {
      * Get App for this Passage instance
      * @return MagicLink|Model401Error|Model404Error|Model500Error MagicLink object
      */
-    public function createMagicLink(CreateMagicLinkRequest $create_magic_link_request): MagicLink {
+    public function createMagicLink(CreateMagicLinkRequest $create_magic_link_request): MagicLink|Model401Error|Model404Error|Model500Error {
         $magicLinksApi = new MagicLinksApi(null, $this->clientConfiguration);
         return $magicLinksApi->createMagicLink($this->appId, $create_magic_link_request)['magic_link'];
     }
@@ -79,7 +79,7 @@ class Passage {
      * Revoke user token for the user
      * @return null|Model401Error|Model404Error|Model500Error
      */
-    public function revokeUserRefreshTokens(string $user_id): null {
+    public function revokeUserRefreshTokens(string $user_id): null|array|Model401Error|Model404Error|Model500Error {
         return TokensApi::revokeUserRefreshTokens($this->appId, $user_id);
     }
 
@@ -87,7 +87,7 @@ class Passage {
      * Delete the device for a user
      * @return null|Model401Error|Model404Error|Model500Error
      */
-    public function deleteUserDevice(string $user_id, string $device_id): null {
+    public function deleteUserDevice(string $user_id, string $device_id): null|Model401Error|Model404Error|Model500Error {
         return UserDevicesApi::deleteUserDevices($this->appId, $user_id, $device_id);
     }
 
@@ -95,7 +95,7 @@ class Passage {
      * List the devices for a user
      * @return array|Model401Error|Model404Error|Model500Error
      */
-    public function listUserDevices(string $user_id): array {
+    public function listUserDevices(string $user_id): array|Model401Error|Model404Error|Model500Error {
         return $this->userDevicesApi->listUserDevices($this->appId, $user_id)['devices'];
     }
 
@@ -103,7 +103,7 @@ class Passage {
      * Get a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function getUser(string $user_id): UserInfo {
+    public function getUser(string $user_id): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->getUser($this->appId, $user_id)['user'];
     }
 
@@ -111,7 +111,7 @@ class Passage {
      * Activate a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function activateUser(string $user_id): UserInfo {
+    public function activateUser(string $user_id): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->activateUser($this->appId, $user_id)['user'];
     }
 
@@ -119,7 +119,7 @@ class Passage {
      * Create a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function createUser(CreateUserRequest $create_user_request): UserInfo {
+    public function createUser(CreateUserRequest $create_user_request): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->createUser($this->appId, $create_user_request)['user'];
     }
 
@@ -127,7 +127,7 @@ class Passage {
      * Deactivate a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function deactivateUser(string $user_id): UserInfo {
+    public function deactivateUser(string $user_id): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->deactivateUser($this->appId, $user_id)['user'];
     }
 
@@ -135,7 +135,7 @@ class Passage {
      * Delete a user
      * @return null|Model401Error|Model404Error|Model500Error
      */
-    public function deleteUser(string $user_id): null {
+    public function deleteUser(string $user_id): null|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->deleteUser($this->appId, $user_id);
     }
 
@@ -143,7 +143,7 @@ class Passage {
      * Update a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function updateUser(string $user_id, UpdateUserRequest $update_user_request): UserInfo {
+    public function updateUser(string $user_id, UpdateUserRequest $update_user_request): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->updateUser($this->appId, $user_id, $update_user_request)['user'];
     }
 }

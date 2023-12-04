@@ -1,19 +1,18 @@
 name: Run Tests on PR
 
-on:
-  workflow_dispatch:
+on: [pull_request]
 
 env:
-    API_KEY: ${{ secrets.API_KEY }}
-    APP_ID: ${{ secrets.APP_ID }}
-    EXAMPLE_AUTH_TOKEN: ${{ secrets.EXAMPLE_AUTH_TOKEN }}
-    EXAMPLE_USER_ID: ${{ secrets.EXAMPLE_USER_ID }}
+  API_KEY: ${{ secrets.API_KEY }}
+  APP_ID: ${{ secrets.APP_ID }}
+  EXAMPLE_AUTH_TOKEN: ${{ secrets.EXAMPLE_AUTH_TOKEN }}
+  EXAMPLE_USER_ID: ${{ secrets.EXAMPLE_USER_ID }}
 
 jobs:
   test:
-    name: Run Unit Tests
+    name: Run Tests on PR
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v2

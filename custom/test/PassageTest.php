@@ -1,12 +1,12 @@
 <?php
 
+use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
-
-use Passage\Client\Controllers\Passage;
 use OpenAPI\Client\ApiException;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
 use OpenAPI\Client\Model\CreateUserRequest;
 use OpenAPI\Client\Model\UpdateUserRequest;
+use Passage\Client\Passage;
 
 class PassageTest extends TestCase {
     private $appId;
@@ -19,12 +19,13 @@ class PassageTest extends TestCase {
     {
         parent::setUp();
 
-        $config = include('config.php');
+        require __DIR__ . '/../../vendor/autoload.php';
+        Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->load();
 
-        $this->appId = $config['APP_ID'];
-        $this->apiKey = $config['API_KEY'];
-        $this->appToken = $config['EXAMPLE_AUTH_TOKEN'];
-        $this->userId = $config['EXAMPLE_USER_ID'];
+        $this->appId = getenv('APP_ID');
+        $this->apiKey = getenv('API_KEY');
+        $this->appToken = getenv('EXAMPLE_AUTH_TOKEN');
+        $this->userId = getenv('EXAMPLE_USER_ID');
 
         $this->passageClient = new Passage($this->appId, $this->apiKey);
     }
@@ -32,7 +33,7 @@ class PassageTest extends TestCase {
     public function testConstructorMissingParam()
     {
         $this->expectException(\ArgumentCountError::class);
-        $this->expectExceptionMessage('Too few arguments to function Passage\Client\Controllers\Passage::__construct()');
+        $this->expectExceptionMessage('Too few arguments to function Passage\Client\Passage::__construct()');
 
         new Passage('123456');
     }
