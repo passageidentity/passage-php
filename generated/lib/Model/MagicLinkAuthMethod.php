@@ -367,9 +367,9 @@ class MagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable ttl cannot be null');
         }
 
-        // if (($ttl < 60)) {
-        //     throw new \InvalidArgumentException('invalid value for $ttl when calling MagicLinkAuthMethod., must be bigger than or equal to 60.');
-        // }
+        if (($ttl < 60)) {
+            throw new \InvalidArgumentException('invalid value for $ttl when calling MagicLinkAuthMethod., must be bigger than or equal to 60.');
+        }
 
         $this->container['ttl'] = $ttl;
 

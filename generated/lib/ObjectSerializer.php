@@ -499,10 +499,10 @@ class ObjectSerializer
 
 
         if (method_exists($class, 'getAllowableEnumValues')) {
-            // if (!in_array($data, $class::getAllowableEnumValues(), true)) {
-            //     $imploded = implode("', '", $class::getAllowableEnumValues());
-            //     throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
-            // }
+            if (!in_array($data, $class::getAllowableEnumValues(), true)) {
+                $imploded = implode("', '", $class::getAllowableEnumValues());
+                throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
+            }
             return $data;
         } else {
             $data = is_string($data) ? json_decode($data) : $data;
