@@ -1,4 +1,4 @@
-# # UpdatePasskeyAuthMethod
+# # UpdatePasskeysAuthMethod
 
 ## Properties
 
