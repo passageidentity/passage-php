@@ -67,6 +67,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'phone' => 'string',
         'phone_verified' => 'bool',
         'recent_events' => '\OpenAPI\Client\Model\UserEventInfo[]',
+        'social_connections' => '\OpenAPI\Client\Model\UserSocialConnections',
         'status' => '\OpenAPI\Client\Model\UserStatus',
         'updated_at' => '\DateTime',
         'user_metadata' => 'object',
@@ -92,6 +93,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'phone' => null,
         'phone_verified' => null,
         'recent_events' => null,
+        'social_connections' => null,
         'status' => null,
         'updated_at' => 'date-time',
         'user_metadata' => null,
@@ -115,6 +117,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 		'phone' => false,
 		'phone_verified' => false,
 		'recent_events' => false,
+		'social_connections' => false,
 		'status' => false,
 		'updated_at' => false,
 		'user_metadata' => true,
@@ -218,6 +221,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'phone' => 'phone',
         'phone_verified' => 'phone_verified',
         'recent_events' => 'recent_events',
+        'social_connections' => 'social_connections',
         'status' => 'status',
         'updated_at' => 'updated_at',
         'user_metadata' => 'user_metadata',
@@ -241,6 +245,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'phone' => 'setPhone',
         'phone_verified' => 'setPhoneVerified',
         'recent_events' => 'setRecentEvents',
+        'social_connections' => 'setSocialConnections',
         'status' => 'setStatus',
         'updated_at' => 'setUpdatedAt',
         'user_metadata' => 'setUserMetadata',
@@ -264,6 +269,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'phone' => 'getPhone',
         'phone_verified' => 'getPhoneVerified',
         'recent_events' => 'getRecentEvents',
+        'social_connections' => 'getSocialConnections',
         'status' => 'getStatus',
         'updated_at' => 'getUpdatedAt',
         'user_metadata' => 'getUserMetadata',
@@ -338,6 +344,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('phone', $data ?? [], null);
         $this->setIfExists('phone_verified', $data ?? [], null);
         $this->setIfExists('recent_events', $data ?? [], null);
+        $this->setIfExists('social_connections', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('user_metadata', $data ?? [], null);
@@ -399,6 +406,9 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['recent_events'] === null) {
             $invalidProperties[] = "'recent_events' can't be null";
+        }
+        if ($this->container['social_connections'] === null) {
+            $invalidProperties[] = "'social_connections' can't be null";
         }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
@@ -672,6 +682,33 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable recent_events cannot be null');
         }
         $this->container['recent_events'] = $recent_events;
+
+        return $this;
+    }
+
+    /**
+     * Gets social_connections
+     *
+     * @return \OpenAPI\Client\Model\UserSocialConnections
+     */
+    public function getSocialConnections()
+    {
+        return $this->container['social_connections'];
+    }
+
+    /**
+     * Sets social_connections
+     *
+     * @param \OpenAPI\Client\Model\UserSocialConnections $social_connections social_connections
+     *
+     * @return self
+     */
+    public function setSocialConnections($social_connections)
+    {
+        if (is_null($social_connections)) {
+            throw new \InvalidArgumentException('non-nullable social_connections cannot be null');
+        }
+        $this->container['social_connections'] = $social_connections;
 
         return $this;
     }
