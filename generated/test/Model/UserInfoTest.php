@@ -162,6 +162,15 @@ class UserInfoTest extends TestCase
     }
 
     /**
+     * Test attribute "social_connections"
+     */
+    public function testPropertySocialConnections()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "status"
      */
     public function testPropertyStatus()

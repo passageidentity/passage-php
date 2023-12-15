@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **phone** | **string** |  |
 **phone_verified** | **bool** |  |
 **recent_events** | [**\OpenAPI\Client\Model\UserEventInfo[]**](UserEventInfo.md) |  |
+**social_connections** | [**\OpenAPI\Client\Model\UserSocialConnections**](UserSocialConnections.md) |  |
 **status** | [**\OpenAPI\Client\Model\UserStatus**](UserStatus.md) |  |
 **updated_at** | **\DateTime** |  |
 **user_metadata** | **object** |  |
