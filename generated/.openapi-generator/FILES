@@ -16,6 +16,8 @@ docs/Model/CreateMagicLinkRequest.md
 docs/Model/CreateUserRequest.md
 docs/Model/ElementCustomization.md
 docs/Model/FontFamily.md
+docs/Model/GithubSocialConnection.md
+docs/Model/GoogleSocialConnection.md
 docs/Model/LayoutConfig.md
 docs/Model/Layouts.md
 docs/Model/ListDevicesResponse.md
@@ -41,6 +43,7 @@ docs/Model/UserInfo.md
 docs/Model/UserMetadataField.md
 docs/Model/UserMetadataFieldType.md
 docs/Model/UserResponse.md
+docs/Model/UserSocialConnections.md
 docs/Model/UserStatus.md
 docs/Model/WebAuthnDevices.md
 docs/Model/WebAuthnIcons.md
@@ -61,6 +64,8 @@ lib/Model/CreateMagicLinkRequest.php
 lib/Model/CreateUserRequest.php
 lib/Model/ElementCustomization.php
 lib/Model/FontFamily.php
+lib/Model/GithubSocialConnection.php
+lib/Model/GoogleSocialConnection.php
 lib/Model/LayoutConfig.php
 lib/Model/Layouts.php
 lib/Model/ListDevicesResponse.php
@@ -87,6 +92,7 @@ lib/Model/UserInfo.php
 lib/Model/UserMetadataField.php
 lib/Model/UserMetadataFieldType.php
 lib/Model/UserResponse.php
+lib/Model/UserSocialConnections.php
 lib/Model/UserStatus.php
 lib/Model/WebAuthnDevices.php
 lib/Model/WebAuthnIcons.php
@@ -105,6 +111,8 @@ test/Model/CreateMagicLinkRequestTest.php
 test/Model/CreateUserRequestTest.php
 test/Model/ElementCustomizationTest.php
 test/Model/FontFamilyTest.php
+test/Model/GithubSocialConnectionTest.php
+test/Model/GoogleSocialConnectionTest.php
 test/Model/LayoutConfigTest.php
 test/Model/LayoutsTest.php
 test/Model/ListDevicesResponseTest.php
@@ -130,6 +138,7 @@ test/Model/UserInfoTest.php
 test/Model/UserMetadataFieldTest.php
 test/Model/UserMetadataFieldTypeTest.php
 test/Model/UserResponseTest.php
+test/Model/UserSocialConnectionsTest.php
 test/Model/UserStatusTest.php
 test/Model/WebAuthnDevicesTest.php
 test/Model/WebAuthnIconsTest.php
