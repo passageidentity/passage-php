@@ -1,7 +1,7 @@
 {
     "name": "passageidentity/passage-php",
     "description": "Passage's management API to manage your Passage apps and users.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "keywords": [
         "passage",
         "identity",
