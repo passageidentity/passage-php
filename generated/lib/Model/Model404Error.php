@@ -247,11 +247,12 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CODE_FUNCTION_SECRET_KEY_NOT_FOUND = 'function_secret_key_not_found';
     public const CODE_FUNCTION_VERSION_NOT_FOUND = 'function_version_not_found';
     public const CODE_METADATA_FIELD_NOT_FOUND = 'metadata_field_not_found';
+    public const CODE_OAUTH2_APP_NOT_FOUND = 'oauth2_app_not_found';
     public const CODE_ORGANIZATION_MEMBER_NOT_FOUND = 'organization_member_not_found';
     public const CODE_SMS_PROVIDER_NOT_FOUND = 'sms_provider_not_found';
     public const CODE_SMS_TEMPLATE_NOT_FOUND = 'sms_template_not_found';
+    public const CODE_SOCIAL_CONNECTION_NOT_FOUND = 'social_connection_not_found';
     public const CODE_USER_NOT_FOUND = 'user_not_found';
-    public const CODE_OAUTH2_APP_NOT_FOUND = 'oauth2_app_not_found';
 
     /**
      * Gets allowable values of the enum
@@ -273,11 +274,12 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CODE_FUNCTION_SECRET_KEY_NOT_FOUND,
             self::CODE_FUNCTION_VERSION_NOT_FOUND,
             self::CODE_METADATA_FIELD_NOT_FOUND,
+            self::CODE_OAUTH2_APP_NOT_FOUND,
             self::CODE_ORGANIZATION_MEMBER_NOT_FOUND,
             self::CODE_SMS_PROVIDER_NOT_FOUND,
             self::CODE_SMS_TEMPLATE_NOT_FOUND,
+            self::CODE_SOCIAL_CONNECTION_NOT_FOUND,
             self::CODE_USER_NOT_FOUND,
-            self::CODE_OAUTH2_APP_NOT_FOUND,
         ];
     }
 
