@@ -1,6 +1,6 @@
 <?php
 /**
- * UserEventInfoTest
+ * AppleUserSocialConnectionTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UserEventInfoTest Class Doc Comment
+ * AppleUserSocialConnectionTest Class Doc Comment
  *
  * @category    Class
- * @description UserEventInfo
+ * @description AppleUserSocialConnection
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UserEventInfoTest extends TestCase
+class AppleUserSocialConnectionTest extends TestCase
 {
 
     /**
@@ -72,9 +72,18 @@ class UserEventInfoTest extends TestCase
     }
 
     /**
-     * Test "UserEventInfo"
+     * Test "AppleUserSocialConnection"
      */
-    public function testUserEventInfo()
+    public function testAppleUserSocialConnection()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "provider_id"
+     */
+    public function testPropertyProviderId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,36 +99,18 @@ class UserEventInfoTest extends TestCase
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "last_login_at"
      */
-    public function testPropertyId()
+    public function testPropertyLastLoginAt()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "ip_addr"
+     * Test attribute "provider_identifier"
      */
-    public function testPropertyIpAddr()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "type"
-     */
-    public function testPropertyType()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "user_agent"
-     */
-    public function testPropertyUserAgent()
+    public function testPropertyProviderIdentifier()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
