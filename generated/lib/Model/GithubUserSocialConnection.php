@@ -1,6 +1,6 @@
 <?php
 /**
- * Model404Error
+ * GithubUserSocialConnection
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Model404Error Class Doc Comment
+ * GithubUserSocialConnection Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class GithubUserSocialConnection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = '404Error';
+    protected static $openAPIModelName = 'GithubUserSocialConnection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'error' => 'string'
+        'provider_id' => 'string',
+        'created_at' => '\DateTime',
+        'last_login_at' => '\DateTime',
+        'provider_identifier' => 'string'
     ];
 
     /**
@@ -70,8 +72,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'error' => null
+        'provider_id' => null,
+        'created_at' => 'date-time',
+        'last_login_at' => 'date-time',
+        'provider_identifier' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-		'error' => false
+        'provider_id' => false,
+		'created_at' => false,
+		'last_login_at' => false,
+		'provider_identifier' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'error' => 'error'
+        'provider_id' => 'provider_id',
+        'created_at' => 'created_at',
+        'last_login_at' => 'last_login_at',
+        'provider_identifier' => 'provider_identifier'
     ];
 
     /**
@@ -180,8 +188,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'error' => 'setError'
+        'provider_id' => 'setProviderId',
+        'created_at' => 'setCreatedAt',
+        'last_login_at' => 'setLastLoginAt',
+        'provider_identifier' => 'setProviderIdentifier'
     ];
 
     /**
@@ -190,8 +200,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'error' => 'getError'
+        'provider_id' => 'getProviderId',
+        'created_at' => 'getCreatedAt',
+        'last_login_at' => 'getLastLoginAt',
+        'provider_identifier' => 'getProviderIdentifier'
     ];
 
     /**
@@ -235,53 +247,6 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CODE_ADMIN_NOT_FOUND = 'admin_not_found';
-    public const CODE_API_KEY_NOT_FOUND = 'api_key_not_found';
-    public const CODE_APP_NOT_FOUND = 'app_not_found';
-    public const CODE_DEVICE_NOT_FOUND = 'device_not_found';
-    public const CODE_DOMAIN_NOT_FOUND = 'domain_not_found';
-    public const CODE_EMAIL_PROVIDER_NOT_FOUND = 'email_provider_not_found';
-    public const CODE_EMAIL_TEMPLATE_NOT_FOUND = 'email_template_not_found';
-    public const CODE_EVENT_NOT_FOUND = 'event_not_found';
-    public const CODE_FUNCTION_NOT_FOUND = 'function_not_found';
-    public const CODE_FUNCTION_SECRET_KEY_NOT_FOUND = 'function_secret_key_not_found';
-    public const CODE_FUNCTION_VERSION_NOT_FOUND = 'function_version_not_found';
-    public const CODE_METADATA_FIELD_NOT_FOUND = 'metadata_field_not_found';
-    public const CODE_OAUTH2_APP_NOT_FOUND = 'oauth2_app_not_found';
-    public const CODE_ORGANIZATION_MEMBER_NOT_FOUND = 'organization_member_not_found';
-    public const CODE_SMS_PROVIDER_NOT_FOUND = 'sms_provider_not_found';
-    public const CODE_SMS_TEMPLATE_NOT_FOUND = 'sms_template_not_found';
-    public const CODE_SOCIAL_CONNECTION_NOT_FOUND = 'social_connection_not_found';
-    public const CODE_USER_NOT_FOUND = 'user_not_found';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_ADMIN_NOT_FOUND,
-            self::CODE_API_KEY_NOT_FOUND,
-            self::CODE_APP_NOT_FOUND,
-            self::CODE_DEVICE_NOT_FOUND,
-            self::CODE_DOMAIN_NOT_FOUND,
-            self::CODE_EMAIL_PROVIDER_NOT_FOUND,
-            self::CODE_EMAIL_TEMPLATE_NOT_FOUND,
-            self::CODE_EVENT_NOT_FOUND,
-            self::CODE_FUNCTION_NOT_FOUND,
-            self::CODE_FUNCTION_SECRET_KEY_NOT_FOUND,
-            self::CODE_FUNCTION_VERSION_NOT_FOUND,
-            self::CODE_METADATA_FIELD_NOT_FOUND,
-            self::CODE_OAUTH2_APP_NOT_FOUND,
-            self::CODE_ORGANIZATION_MEMBER_NOT_FOUND,
-            self::CODE_SMS_PROVIDER_NOT_FOUND,
-            self::CODE_SMS_TEMPLATE_NOT_FOUND,
-            self::CODE_SOCIAL_CONNECTION_NOT_FOUND,
-            self::CODE_USER_NOT_FOUND,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -298,8 +263,10 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('provider_id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('last_login_at', $data ?? [], null);
+        $this->setIfExists('provider_identifier', $data ?? [], null);
     }
 
     /**
@@ -329,20 +296,17 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+        if ($this->container['provider_id'] === null) {
+            $invalidProperties[] = "'provider_id' can't be null";
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'code', must be one of '%s'",
-                $this->container['code'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
-
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
+        if ($this->container['last_login_at'] === null) {
+            $invalidProperties[] = "'last_login_at' can't be null";
+        }
+        if ($this->container['provider_identifier'] === null) {
+            $invalidProperties[] = "'provider_identifier' can't be null";
         }
         return $invalidProperties;
     }
@@ -360,65 +324,109 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets provider_id
      *
      * @return string
      */
-    public function getCode()
+    public function getProviderId()
     {
-        return $this->container['code'];
+        return $this->container['provider_id'];
     }
 
     /**
-     * Sets code
+     * Sets provider_id
      *
-     * @param string $code code
+     * @param string $provider_id The external ID of the Social Connection.
      *
      * @return self
      */
-    public function setCode($code)
+    public function setProviderId($provider_id)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($provider_id)) {
+            throw new \InvalidArgumentException('non-nullable provider_id cannot be null');
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'code', must be one of '%s'",
-                    $code,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
+        $this->container['provider_id'] = $provider_id;
 
         return $this;
     }
 
     /**
-     * Gets error
+     * Gets created_at
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getError()
+    public function getCreatedAt()
     {
-        return $this->container['error'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets error
+     * Sets created_at
      *
-     * @param string $error error
+     * @param \DateTime $created_at created_at
      *
      * @return self
      */
-    public function setError($error)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $this->container['error'] = $error;
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_login_at
+     *
+     * @return \DateTime
+     */
+    public function getLastLoginAt()
+    {
+        return $this->container['last_login_at'];
+    }
+
+    /**
+     * Sets last_login_at
+     *
+     * @param \DateTime $last_login_at last_login_at
+     *
+     * @return self
+     */
+    public function setLastLoginAt($last_login_at)
+    {
+        if (is_null($last_login_at)) {
+            throw new \InvalidArgumentException('non-nullable last_login_at cannot be null');
+        }
+        $this->container['last_login_at'] = $last_login_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets provider_identifier
+     *
+     * @return string
+     */
+    public function getProviderIdentifier()
+    {
+        return $this->container['provider_identifier'];
+    }
+
+    /**
+     * Sets provider_identifier
+     *
+     * @param string $provider_identifier The email of connected social user.
+     *
+     * @return self
+     */
+    public function setProviderIdentifier($provider_identifier)
+    {
+        if (is_null($provider_identifier)) {
+            throw new \InvalidArgumentException('non-nullable provider_identifier cannot be null');
+        }
+        $this->container['provider_identifier'] = $provider_identifier;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * UserSocialConnectionsTest
+ * GithubUserSocialConnectionTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UserSocialConnectionsTest Class Doc Comment
+ * GithubUserSocialConnectionTest Class Doc Comment
  *
  * @category    Class
- * @description UserSocialConnections
+ * @description GithubUserSocialConnection
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UserSocialConnectionsTest extends TestCase
+class GithubUserSocialConnectionTest extends TestCase
 {
 
     /**
@@ -72,36 +72,45 @@ class UserSocialConnectionsTest extends TestCase
     }
 
     /**
-     * Test "UserSocialConnections"
+     * Test "GithubUserSocialConnection"
      */
-    public function testUserSocialConnections()
+    public function testGithubUserSocialConnection()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "apple"
+     * Test attribute "provider_id"
      */
-    public function testPropertyApple()
+    public function testPropertyProviderId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "github"
+     * Test attribute "created_at"
      */
-    public function testPropertyGithub()
+    public function testPropertyCreatedAt()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "google"
+     * Test attribute "last_login_at"
      */
-    public function testPropertyGoogle()
+    public function testPropertyLastLoginAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "provider_identifier"
+     */
+    public function testPropertyProviderIdentifier()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

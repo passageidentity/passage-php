@@ -1,4 +1,4 @@
-# # GithubSocialConnection
+# # GoogleUserSocialConnection
 
 ## Properties
 
