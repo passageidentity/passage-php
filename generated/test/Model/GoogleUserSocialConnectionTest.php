@@ -1,6 +1,6 @@
 <?php
 /**
- * GoogleSocialConnectionTest
+ * GoogleUserSocialConnectionTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * GoogleSocialConnectionTest Class Doc Comment
+ * GoogleUserSocialConnectionTest Class Doc Comment
  *
  * @category    Class
- * @description GoogleSocialConnection
+ * @description GoogleUserSocialConnection
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class GoogleSocialConnectionTest extends TestCase
+class GoogleUserSocialConnectionTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class GoogleSocialConnectionTest extends TestCase
     }
 
     /**
-     * Test "GoogleSocialConnection"
+     * Test "GoogleUserSocialConnection"
      */
-    public function testGoogleSocialConnection()
+    public function testGoogleUserSocialConnection()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

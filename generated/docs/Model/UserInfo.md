@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **login_count** | **int** |  |
 **phone** | **string** |  |
 **phone_verified** | **bool** |  |
-**recent_events** | [**\OpenAPI\Client\Model\UserEventInfo[]**](UserEventInfo.md) |  |
+**recent_events** | [**\OpenAPI\Client\Model\UserRecentEvent[]**](UserRecentEvent.md) |  |
 **social_connections** | [**\OpenAPI\Client\Model\UserSocialConnections**](UserSocialConnections.md) |  |
 **status** | [**\OpenAPI\Client\Model\UserStatus**](UserStatus.md) |  |
 **updated_at** | **\DateTime** |  |

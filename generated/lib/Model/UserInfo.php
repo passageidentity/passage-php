@@ -66,7 +66,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'login_count' => 'int',
         'phone' => 'string',
         'phone_verified' => 'bool',
-        'recent_events' => '\OpenAPI\Client\Model\UserEventInfo[]',
+        'recent_events' => '\OpenAPI\Client\Model\UserRecentEvent[]',
         'social_connections' => '\OpenAPI\Client\Model\UserSocialConnections',
         'status' => '\OpenAPI\Client\Model\UserStatus',
         'updated_at' => '\DateTime',
@@ -662,7 +662,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets recent_events
      *
-     * @return \OpenAPI\Client\Model\UserEventInfo[]
+     * @return \OpenAPI\Client\Model\UserRecentEvent[]
      */
     public function getRecentEvents()
     {
@@ -672,7 +672,7 @@ class UserInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recent_events
      *
-     * @param \OpenAPI\Client\Model\UserEventInfo[] $recent_events recent_events
+     * @param \OpenAPI\Client\Model\UserRecentEvent[] $recent_events recent_events
      *
      * @return self
      */

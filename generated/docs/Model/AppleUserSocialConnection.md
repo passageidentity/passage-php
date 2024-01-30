@@ -1,4 +1,4 @@
-# # GoogleSocialConnection
+# # AppleUserSocialConnection
 
 ## Properties
 

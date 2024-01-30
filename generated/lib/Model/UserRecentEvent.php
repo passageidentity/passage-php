@@ -1,6 +1,6 @@
 <?php
 /**
- * UserEventInfo
+ * UserRecentEvent
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UserEventInfo Class Doc Comment
+ * UserRecentEvent Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserEventInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UserEventInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserEventInfo';
+    protected static $openAPIModelName = 'UserRecentEvent';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
