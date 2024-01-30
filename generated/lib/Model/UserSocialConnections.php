@@ -58,8 +58,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'google' => '\OpenAPI\Client\Model\GoogleSocialConnection',
-        'github' => '\OpenAPI\Client\Model\GithubSocialConnection'
+        'apple' => '\OpenAPI\Client\Model\AppleUserSocialConnection',
+        'github' => '\OpenAPI\Client\Model\GithubUserSocialConnection',
+        'google' => '\OpenAPI\Client\Model\GoogleUserSocialConnection'
     ];
 
     /**
@@ -70,8 +71,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'google' => null,
-        'github' => null
+        'apple' => null,
+        'github' => null,
+        'google' => null
     ];
 
     /**
@@ -80,8 +82,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'google' => false,
-		'github' => false
+        'apple' => false,
+		'github' => false,
+		'google' => false
     ];
 
     /**
@@ -170,8 +173,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'google' => 'google',
-        'github' => 'github'
+        'apple' => 'apple',
+        'github' => 'github',
+        'google' => 'google'
     ];
 
     /**
@@ -180,8 +184,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'google' => 'setGoogle',
-        'github' => 'setGithub'
+        'apple' => 'setApple',
+        'github' => 'setGithub',
+        'google' => 'setGoogle'
     ];
 
     /**
@@ -190,8 +195,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'google' => 'getGoogle',
-        'github' => 'getGithub'
+        'apple' => 'getApple',
+        'github' => 'getGithub',
+        'google' => 'getGoogle'
     ];
 
     /**
@@ -251,8 +257,9 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('google', $data ?? [], null);
+        $this->setIfExists('apple', $data ?? [], null);
         $this->setIfExists('github', $data ?? [], null);
+        $this->setIfExists('google', $data ?? [], null);
     }
 
     /**
@@ -298,28 +305,28 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets google
+     * Gets apple
      *
-     * @return \OpenAPI\Client\Model\GoogleSocialConnection|null
+     * @return \OpenAPI\Client\Model\AppleUserSocialConnection|null
      */
-    public function getGoogle()
+    public function getApple()
     {
-        return $this->container['google'];
+        return $this->container['apple'];
     }
 
     /**
-     * Sets google
+     * Sets apple
      *
-     * @param \OpenAPI\Client\Model\GoogleSocialConnection|null $google google
+     * @param \OpenAPI\Client\Model\AppleUserSocialConnection|null $apple apple
      *
      * @return self
      */
-    public function setGoogle($google)
+    public function setApple($apple)
     {
-        if (is_null($google)) {
-            throw new \InvalidArgumentException('non-nullable google cannot be null');
+        if (is_null($apple)) {
+            throw new \InvalidArgumentException('non-nullable apple cannot be null');
         }
-        $this->container['google'] = $google;
+        $this->container['apple'] = $apple;
 
         return $this;
     }
@@ -327,7 +334,7 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets github
      *
-     * @return \OpenAPI\Client\Model\GithubSocialConnection|null
+     * @return \OpenAPI\Client\Model\GithubUserSocialConnection|null
      */
     public function getGithub()
     {
@@ -337,7 +344,7 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets github
      *
-     * @param \OpenAPI\Client\Model\GithubSocialConnection|null $github github
+     * @param \OpenAPI\Client\Model\GithubUserSocialConnection|null $github github
      *
      * @return self
      */
@@ -347,6 +354,33 @@ class UserSocialConnections implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable github cannot be null');
         }
         $this->container['github'] = $github;
+
+        return $this;
+    }
+
+    /**
+     * Gets google
+     *
+     * @return \OpenAPI\Client\Model\GoogleUserSocialConnection|null
+     */
+    public function getGoogle()
+    {
+        return $this->container['google'];
+    }
+
+    /**
+     * Sets google
+     *
+     * @param \OpenAPI\Client\Model\GoogleUserSocialConnection|null $google google
+     *
+     * @return self
+     */
+    public function setGoogle($google)
+    {
+        if (is_null($google)) {
+            throw new \InvalidArgumentException('non-nullable google cannot be null');
+        }
+        $this->container['google'] = $google;
 
         return $this;
     }

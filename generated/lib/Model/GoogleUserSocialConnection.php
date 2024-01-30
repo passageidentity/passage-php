@@ -1,6 +1,6 @@
 <?php
 /**
- * GoogleSocialConnection
+ * GoogleUserSocialConnection
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * GoogleSocialConnection Class Doc Comment
+ * GoogleUserSocialConnection Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GoogleSocialConnection implements ModelInterface, ArrayAccess, \JsonSerializable
+class GoogleUserSocialConnection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GoogleSocialConnection implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GoogleSocialConnection';
+    protected static $openAPIModelName = 'GoogleUserSocialConnection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

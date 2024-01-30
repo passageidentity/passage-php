@@ -1,6 +1,6 @@
 <?php
 /**
- * GithubSocialConnectionTest
+ * UserRecentEventTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * GithubSocialConnectionTest Class Doc Comment
+ * UserRecentEventTest Class Doc Comment
  *
  * @category    Class
- * @description GithubSocialConnection
+ * @description UserRecentEvent
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class GithubSocialConnectionTest extends TestCase
+class UserRecentEventTest extends TestCase
 {
 
     /**
@@ -72,18 +72,9 @@ class GithubSocialConnectionTest extends TestCase
     }
 
     /**
-     * Test "GithubSocialConnection"
+     * Test "UserRecentEvent"
      */
-    public function testGithubSocialConnection()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "provider_id"
-     */
-    public function testPropertyProviderId()
+    public function testUserRecentEvent()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -99,18 +90,36 @@ class GithubSocialConnectionTest extends TestCase
     }
 
     /**
-     * Test attribute "last_login_at"
+     * Test attribute "id"
      */
-    public function testPropertyLastLoginAt()
+    public function testPropertyId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "provider_identifier"
+     * Test attribute "ip_addr"
      */
-    public function testPropertyProviderIdentifier()
+    public function testPropertyIpAddr()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "type"
+     */
+    public function testPropertyType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "user_agent"
+     */
+    public function testPropertyUserAgent()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
