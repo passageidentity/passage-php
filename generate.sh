@@ -21,4 +21,4 @@ rm generated/composer.json
 rm generated/.gitignore
 rm -r ./docs/Model
 mv -f generated/docs/Model ./docs/Model
-rm -f generated/docs/
+rm -rf generated/docs/
