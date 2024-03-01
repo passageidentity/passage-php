@@ -121,6 +121,7 @@ Class | Method | HTTP request | Description
 - [UpdateOtpAuthMethod](docs/Model/UpdateOtpAuthMethod.md)
 - [UpdatePasskeysAuthMethod](docs/Model/UpdatePasskeysAuthMethod.md)
 - [UpdateUserRequest](docs/Model/UpdateUserRequest.md)
+- [UserEventStatus](docs/Model/UserEventStatus.md)
 - [UserInfo](docs/Model/UserInfo.md)
 - [UserMetadataField](docs/Model/UserMetadataField.md)
 - [UserMetadataFieldType](docs/Model/UserMetadataFieldType.md)

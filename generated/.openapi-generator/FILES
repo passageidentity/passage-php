@@ -39,6 +39,7 @@ docs/Model/UpdateMagicLinkAuthMethod.md
 docs/Model/UpdateOtpAuthMethod.md
 docs/Model/UpdatePasskeysAuthMethod.md
 docs/Model/UpdateUserRequest.md
+docs/Model/UserEventStatus.md
 docs/Model/UserInfo.md
 docs/Model/UserMetadataField.md
 docs/Model/UserMetadataFieldType.md
@@ -89,6 +90,7 @@ lib/Model/UpdateMagicLinkAuthMethod.php
 lib/Model/UpdateOtpAuthMethod.php
 lib/Model/UpdatePasskeysAuthMethod.php
 lib/Model/UpdateUserRequest.php
+lib/Model/UserEventStatus.php
 lib/Model/UserInfo.php
 lib/Model/UserMetadataField.php
 lib/Model/UserMetadataFieldType.php
@@ -136,6 +138,7 @@ test/Model/UpdateMagicLinkAuthMethodTest.php
 test/Model/UpdateOtpAuthMethodTest.php
 test/Model/UpdatePasskeysAuthMethodTest.php
 test/Model/UpdateUserRequestTest.php
+test/Model/UserEventStatusTest.php
 test/Model/UserInfoTest.php
 test/Model/UserMetadataFieldTest.php
 test/Model/UserMetadataFieldTypeTest.php

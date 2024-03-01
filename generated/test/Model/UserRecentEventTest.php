@@ -90,6 +90,15 @@ class UserRecentEventTest extends TestCase
     }
 
     /**
+     * Test attribute "completed_at"
+     */
+    public function testPropertyCompletedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()
@@ -102,6 +111,15 @@ class UserRecentEventTest extends TestCase
      * Test attribute "ip_addr"
      */
     public function testPropertyIpAddr()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

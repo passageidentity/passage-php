@@ -59,8 +59,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
+        'completed_at' => '\DateTime',
         'id' => 'string',
         'ip_addr' => 'string',
+        'status' => '\OpenAPI\Client\Model\UserEventStatus',
         'type' => 'string',
         'user_agent' => 'string'
     ];
@@ -74,8 +76,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
+        'completed_at' => 'date-time',
         'id' => null,
         'ip_addr' => null,
+        'status' => null,
         'type' => null,
         'user_agent' => null
     ];
@@ -87,8 +91,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'created_at' => false,
+		'completed_at' => true,
 		'id' => false,
 		'ip_addr' => false,
+		'status' => false,
 		'type' => false,
 		'user_agent' => false
     ];
@@ -180,8 +186,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'created_at' => 'created_at',
+        'completed_at' => 'completed_at',
         'id' => 'id',
         'ip_addr' => 'ip_addr',
+        'status' => 'status',
         'type' => 'type',
         'user_agent' => 'user_agent'
     ];
@@ -193,8 +201,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'created_at' => 'setCreatedAt',
+        'completed_at' => 'setCompletedAt',
         'id' => 'setId',
         'ip_addr' => 'setIpAddr',
+        'status' => 'setStatus',
         'type' => 'setType',
         'user_agent' => 'setUserAgent'
     ];
@@ -206,8 +216,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'created_at' => 'getCreatedAt',
+        'completed_at' => 'getCompletedAt',
         'id' => 'getId',
         'ip_addr' => 'getIpAddr',
+        'status' => 'getStatus',
         'type' => 'getType',
         'user_agent' => 'getUserAgent'
     ];
@@ -270,8 +282,10 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('completed_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('ip_addr', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('user_agent', $data ?? [], null);
     }
@@ -306,11 +320,17 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
+        if ($this->container['completed_at'] === null) {
+            $invalidProperties[] = "'completed_at' can't be null";
+        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
         if ($this->container['ip_addr'] === null) {
             $invalidProperties[] = "'ip_addr' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -356,6 +376,40 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets completed_at
+     *
+     * @return \DateTime
+     */
+    public function getCompletedAt()
+    {
+        return $this->container['completed_at'];
+    }
+
+    /**
+     * Sets completed_at
+     *
+     * @param \DateTime $completed_at completed_at
+     *
+     * @return self
+     */
+    public function setCompletedAt($completed_at)
+    {
+        if (is_null($completed_at)) {
+            array_push($this->openAPINullablesSetToNull, 'completed_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('completed_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['completed_at'] = $completed_at;
 
         return $this;
     }
@@ -410,6 +464,33 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable ip_addr cannot be null');
         }
         $this->container['ip_addr'] = $ip_addr;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \OpenAPI\Client\Model\UserEventStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \OpenAPI\Client\Model\UserEventStatus $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
