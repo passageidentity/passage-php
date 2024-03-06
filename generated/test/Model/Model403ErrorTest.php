@@ -1,6 +1,6 @@
 <?php
 /**
- * UserRecentEventTest
+ * Model403ErrorTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UserRecentEventTest Class Doc Comment
+ * Model403ErrorTest Class Doc Comment
  *
  * @category    Class
- * @description UserRecentEvent
+ * @description Model403Error
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UserRecentEventTest extends TestCase
+class Model403ErrorTest extends TestCase
 {
 
     /**
@@ -72,72 +72,27 @@ class UserRecentEventTest extends TestCase
     }
 
     /**
-     * Test "UserRecentEvent"
+     * Test "Model403Error"
      */
-    public function testUserRecentEvent()
+    public function testModel403Error()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "code"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCode()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "completed_at"
+     * Test attribute "error"
      */
-    public function testPropertyCompletedAt()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "ip_addr"
-     */
-    public function testPropertyIpAddr()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "type"
-     */
-    public function testPropertyType()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "user_agent"
-     */
-    public function testPropertyUserAgent()
+    public function testPropertyError()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

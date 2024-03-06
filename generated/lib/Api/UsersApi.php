@@ -87,6 +87,9 @@ class UsersApi
         'getUser' => [
             'application/json',
         ],
+        'listPaginatedUsers' => [
+            'application/json',
+        ],
         'updateUser' => [
             'application/json',
         ],
@@ -1879,6 +1882,565 @@ class UsersApi
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
                 ObjectSerializer::toPathValue($user_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listPaginatedUsers
+     *
+     * List Users
+     *
+     * @param  string $app_id App ID (required)
+     * @param  int $page page to fetch (min&#x3D;1) (optional)
+     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  bool $email_verified search users email_verified (pagination prepended operators email_verified&#x3D;&lt;val&gt;, email_verified&#x3D;&lt;ne:val&gt;, email_verified&#x3D;&lt;gt:val&gt;, email_verified&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ListPaginatedUsersResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
+     */
+    public function listPaginatedUsers($app_id, $page = null, $limit = null, $created_before = null, $order_by = null, $identifier = null, $id = null, $login_count = null, $status = null, $email_verified = null, $created_at = null, $updated_at = null, $last_login_at = null, string $contentType = self::contentTypes['listPaginatedUsers'][0])
+    {
+        list($response) = $this->listPaginatedUsersWithHttpInfo($app_id, $page, $limit, $created_before, $order_by, $identifier, $id, $login_count, $status, $email_verified, $created_at, $updated_at, $last_login_at, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listPaginatedUsersWithHttpInfo
+     *
+     * List Users
+     *
+     * @param  string $app_id App ID (required)
+     * @param  int $page page to fetch (min&#x3D;1) (optional)
+     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  bool $email_verified search users email_verified (pagination prepended operators email_verified&#x3D;&lt;val&gt;, email_verified&#x3D;&lt;ne:val&gt;, email_verified&#x3D;&lt;gt:val&gt;, email_verified&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ListPaginatedUsersResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listPaginatedUsersWithHttpInfo($app_id, $page = null, $limit = null, $created_before = null, $order_by = null, $identifier = null, $id = null, $login_count = null, $status = null, $email_verified = null, $created_at = null, $updated_at = null, $last_login_at = null, string $contentType = self::contentTypes['listPaginatedUsers'][0])
+    {
+        $request = $this->listPaginatedUsersRequest($app_id, $page, $limit, $created_before, $order_by, $identifier, $id, $login_count, $status, $email_verified, $created_at, $updated_at, $last_login_at, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ListPaginatedUsersResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ListPaginatedUsersResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ListPaginatedUsersResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\Model400Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Model400Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Model400Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\Model401Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Model401Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Model401Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\Model404Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Model404Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Model404Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\Model500Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Model500Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Model500Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ListPaginatedUsersResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ListPaginatedUsersResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Model400Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Model401Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Model404Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Model500Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listPaginatedUsersAsync
+     *
+     * List Users
+     *
+     * @param  string $app_id App ID (required)
+     * @param  int $page page to fetch (min&#x3D;1) (optional)
+     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  bool $email_verified search users email_verified (pagination prepended operators email_verified&#x3D;&lt;val&gt;, email_verified&#x3D;&lt;ne:val&gt;, email_verified&#x3D;&lt;gt:val&gt;, email_verified&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPaginatedUsersAsync($app_id, $page = null, $limit = null, $created_before = null, $order_by = null, $identifier = null, $id = null, $login_count = null, $status = null, $email_verified = null, $created_at = null, $updated_at = null, $last_login_at = null, string $contentType = self::contentTypes['listPaginatedUsers'][0])
+    {
+        return $this->listPaginatedUsersAsyncWithHttpInfo($app_id, $page, $limit, $created_before, $order_by, $identifier, $id, $login_count, $status, $email_verified, $created_at, $updated_at, $last_login_at, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listPaginatedUsersAsyncWithHttpInfo
+     *
+     * List Users
+     *
+     * @param  string $app_id App ID (required)
+     * @param  int $page page to fetch (min&#x3D;1) (optional)
+     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  bool $email_verified search users email_verified (pagination prepended operators email_verified&#x3D;&lt;val&gt;, email_verified&#x3D;&lt;ne:val&gt;, email_verified&#x3D;&lt;gt:val&gt;, email_verified&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listPaginatedUsersAsyncWithHttpInfo($app_id, $page = null, $limit = null, $created_before = null, $order_by = null, $identifier = null, $id = null, $login_count = null, $status = null, $email_verified = null, $created_at = null, $updated_at = null, $last_login_at = null, string $contentType = self::contentTypes['listPaginatedUsers'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ListPaginatedUsersResponse';
+        $request = $this->listPaginatedUsersRequest($app_id, $page, $limit, $created_before, $order_by, $identifier, $id, $login_count, $status, $email_verified, $created_at, $updated_at, $last_login_at, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listPaginatedUsers'
+     *
+     * @param  string $app_id App ID (required)
+     * @param  int $page page to fetch (min&#x3D;1) (optional)
+     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  bool $email_verified search users email_verified (pagination prepended operators email_verified&#x3D;&lt;val&gt;, email_verified&#x3D;&lt;ne:val&gt;, email_verified&#x3D;&lt;gt:val&gt;, email_verified&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listPaginatedUsersRequest($app_id, $page = null, $limit = null, $created_before = null, $order_by = null, $identifier = null, $id = null, $login_count = null, $status = null, $email_verified = null, $created_at = null, $updated_at = null, $last_login_at = null, string $contentType = self::contentTypes['listPaginatedUsers'][0])
+    {
+
+        // verify the required parameter 'app_id' is set
+        if ($app_id === null || (is_array($app_id) && count($app_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $app_id when calling listPaginatedUsers'
+            );
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/apps/{app_id}/users';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $created_before,
+            'created_before', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $order_by,
+            'order_by', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $identifier,
+            'identifier', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $login_count,
+            'login_count', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $status,
+            'status', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $email_verified,
+            'email_verified', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $created_at,
+            'created_at', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $updated_at,
+            'updated_at', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $last_login_at,
+            'last_login_at', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($app_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'app_id' . '}',
+                ObjectSerializer::toPathValue($app_id),
                 $resourcePath
             );
         }
