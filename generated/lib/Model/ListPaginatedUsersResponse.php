@@ -1,6 +1,6 @@
 <?php
 /**
- * UserRecentEvent
+ * ListPaginatedUsersResponse
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UserRecentEvent Class Doc Comment
+ * ListPaginatedUsersResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListPaginatedUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserRecentEvent';
+    protected static $openAPIModelName = 'ListPaginatedUsersResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'created_at' => '\DateTime',
-        'completed_at' => '\DateTime',
-        'id' => 'string',
-        'ip_addr' => 'string',
-        'status' => '\OpenAPI\Client\Model\UserEventStatus',
-        'type' => 'string',
-        'user_agent' => 'string'
+        '_links' => '\OpenAPI\Client\Model\PaginatedLinks',
+        'created_before' => 'int',
+        'limit' => 'int',
+        'page' => 'int',
+        'total_users' => 'int',
+        'users' => '\OpenAPI\Client\Model\ListPaginatedUsersItem[]'
     ];
 
     /**
@@ -75,13 +74,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'created_at' => 'date-time',
-        'completed_at' => 'date-time',
-        'id' => null,
-        'ip_addr' => null,
-        'status' => null,
-        'type' => null,
-        'user_agent' => null
+        '_links' => null,
+        'created_before' => 'int64',
+        'limit' => null,
+        'page' => null,
+        'total_users' => 'int64',
+        'users' => null
     ];
 
     /**
@@ -90,13 +88,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'created_at' => false,
-		'completed_at' => true,
-		'id' => false,
-		'ip_addr' => false,
-		'status' => false,
-		'type' => false,
-		'user_agent' => false
+        '_links' => false,
+		'created_before' => false,
+		'limit' => false,
+		'page' => false,
+		'total_users' => false,
+		'users' => false
     ];
 
     /**
@@ -185,13 +182,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'created_at' => 'created_at',
-        'completed_at' => 'completed_at',
-        'id' => 'id',
-        'ip_addr' => 'ip_addr',
-        'status' => 'status',
-        'type' => 'type',
-        'user_agent' => 'user_agent'
+        '_links' => '_links',
+        'created_before' => 'created_before',
+        'limit' => 'limit',
+        'page' => 'page',
+        'total_users' => 'total_users',
+        'users' => 'users'
     ];
 
     /**
@@ -200,13 +196,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'created_at' => 'setCreatedAt',
-        'completed_at' => 'setCompletedAt',
-        'id' => 'setId',
-        'ip_addr' => 'setIpAddr',
-        'status' => 'setStatus',
-        'type' => 'setType',
-        'user_agent' => 'setUserAgent'
+        '_links' => 'setLinks',
+        'created_before' => 'setCreatedBefore',
+        'limit' => 'setLimit',
+        'page' => 'setPage',
+        'total_users' => 'setTotalUsers',
+        'users' => 'setUsers'
     ];
 
     /**
@@ -215,13 +210,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'created_at' => 'getCreatedAt',
-        'completed_at' => 'getCompletedAt',
-        'id' => 'getId',
-        'ip_addr' => 'getIpAddr',
-        'status' => 'getStatus',
-        'type' => 'getType',
-        'user_agent' => 'getUserAgent'
+        '_links' => 'getLinks',
+        'created_before' => 'getCreatedBefore',
+        'limit' => 'getLimit',
+        'page' => 'getPage',
+        'total_users' => 'getTotalUsers',
+        'users' => 'getUsers'
     ];
 
     /**
@@ -281,13 +275,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('completed_at', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('ip_addr', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('_links', $data ?? [], null);
+        $this->setIfExists('created_before', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('page', $data ?? [], null);
+        $this->setIfExists('total_users', $data ?? [], null);
+        $this->setIfExists('users', $data ?? [], null);
     }
 
     /**
@@ -317,26 +310,23 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['_links'] === null) {
+            $invalidProperties[] = "'_links' can't be null";
         }
-        if ($this->container['completed_at'] === null) {
-            $invalidProperties[] = "'completed_at' can't be null";
+        if ($this->container['created_before'] === null) {
+            $invalidProperties[] = "'created_before' can't be null";
         }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
         }
-        if ($this->container['ip_addr'] === null) {
-            $invalidProperties[] = "'ip_addr' can't be null";
+        if ($this->container['page'] === null) {
+            $invalidProperties[] = "'page' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+        if ($this->container['total_users'] === null) {
+            $invalidProperties[] = "'total_users' can't be null";
         }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['user_agent'] === null) {
-            $invalidProperties[] = "'user_agent' can't be null";
+        if ($this->container['users'] === null) {
+            $invalidProperties[] = "'users' can't be null";
         }
         return $invalidProperties;
     }
@@ -354,197 +344,163 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets created_at
+     * Gets _links
      *
-     * @return \DateTime
+     * @return \OpenAPI\Client\Model\PaginatedLinks
      */
-    public function getCreatedAt()
+    public function getLinks()
     {
-        return $this->container['created_at'];
+        return $this->container['_links'];
     }
 
     /**
-     * Sets created_at
+     * Sets _links
      *
-     * @param \DateTime $created_at created_at
+     * @param \OpenAPI\Client\Model\PaginatedLinks $_links _links
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setLinks($_links)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($_links)) {
+            throw new \InvalidArgumentException('non-nullable _links cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['_links'] = $_links;
 
         return $this;
     }
 
     /**
-     * Gets completed_at
+     * Gets created_before
      *
-     * @return \DateTime
+     * @return int
      */
-    public function getCompletedAt()
+    public function getCreatedBefore()
     {
-        return $this->container['completed_at'];
+        return $this->container['created_before'];
     }
 
     /**
-     * Sets completed_at
+     * Sets created_before
      *
-     * @param \DateTime $completed_at completed_at
+     * @param int $created_before time anchor (Unix timestamp) --> all users returned created before this timestamp
      *
      * @return self
      */
-    public function setCompletedAt($completed_at)
+    public function setCreatedBefore($created_before)
     {
-        if (is_null($completed_at)) {
-            array_push($this->openAPINullablesSetToNull, 'completed_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('completed_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($created_before)) {
+            throw new \InvalidArgumentException('non-nullable created_before cannot be null');
         }
-        $this->container['completed_at'] = $completed_at;
+        $this->container['created_before'] = $created_before;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets limit
      *
-     * @return string
+     * @return int
      */
-    public function getId()
+    public function getLimit()
     {
-        return $this->container['id'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets id
+     * Sets limit
      *
-     * @param string $id id
+     * @param int $limit limit
      *
      * @return self
      */
-    public function setId($id)
+    public function setLimit($limit)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['limit'] = $limit;
 
         return $this;
     }
 
     /**
-     * Gets ip_addr
+     * Gets page
      *
-     * @return string
+     * @return int
      */
-    public function getIpAddr()
+    public function getPage()
     {
-        return $this->container['ip_addr'];
+        return $this->container['page'];
     }
 
     /**
-     * Sets ip_addr
+     * Sets page
      *
-     * @param string $ip_addr ip_addr
+     * @param int $page page
      *
      * @return self
      */
-    public function setIpAddr($ip_addr)
+    public function setPage($page)
     {
-        if (is_null($ip_addr)) {
-            throw new \InvalidArgumentException('non-nullable ip_addr cannot be null');
+        if (is_null($page)) {
+            throw new \InvalidArgumentException('non-nullable page cannot be null');
         }
-        $this->container['ip_addr'] = $ip_addr;
+        $this->container['page'] = $page;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets total_users
      *
-     * @return \OpenAPI\Client\Model\UserEventStatus
+     * @return int
      */
-    public function getStatus()
+    public function getTotalUsers()
     {
-        return $this->container['status'];
+        return $this->container['total_users'];
     }
 
     /**
-     * Sets status
+     * Sets total_users
      *
-     * @param \OpenAPI\Client\Model\UserEventStatus $status status
+     * @param int $total_users total number of users for a particular query
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setTotalUsers($total_users)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($total_users)) {
+            throw new \InvalidArgumentException('non-nullable total_users cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['total_users'] = $total_users;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets users
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\ListPaginatedUsersItem[]
      */
-    public function getType()
+    public function getUsers()
     {
-        return $this->container['type'];
+        return $this->container['users'];
     }
 
     /**
-     * Sets type
+     * Sets users
      *
-     * @param string $type type
+     * @param \OpenAPI\Client\Model\ListPaginatedUsersItem[] $users users
      *
      * @return self
      */
-    public function setType($type)
+    public function setUsers($users)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($users)) {
+            throw new \InvalidArgumentException('non-nullable users cannot be null');
         }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_agent
-     *
-     * @return string
-     */
-    public function getUserAgent()
-    {
-        return $this->container['user_agent'];
-    }
-
-    /**
-     * Sets user_agent
-     *
-     * @param string $user_agent user_agent
-     *
-     * @return self
-     */
-    public function setUserAgent($user_agent)
-    {
-        if (is_null($user_agent)) {
-            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
-        }
-        $this->container['user_agent'] = $user_agent;
+        $this->container['users'] = $users;
 
         return $this;
     }

@@ -459,6 +459,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_COMPLETE = 'complete';
     public const TYPE_FLEX = 'flex';
+    public const TYPE_FLEX_V2 = 'flex_v2';
 
     /**
      * Gets allowable values of the enum
@@ -470,6 +471,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_COMPLETE,
             self::TYPE_FLEX,
+            self::TYPE_FLEX_V2,
         ];
     }
 

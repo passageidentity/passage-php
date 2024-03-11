@@ -1,6 +1,6 @@
 <?php
 /**
- * UserRecentEvent
+ * PaginatedLinks
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UserRecentEvent Class Doc Comment
+ * PaginatedLinks Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaginatedLinks implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserRecentEvent';
+    protected static $openAPIModelName = 'PaginatedLinks';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'created_at' => '\DateTime',
-        'completed_at' => '\DateTime',
-        'id' => 'string',
-        'ip_addr' => 'string',
-        'status' => '\OpenAPI\Client\Model\UserEventStatus',
-        'type' => 'string',
-        'user_agent' => 'string'
+        'first' => '\OpenAPI\Client\Model\Link',
+        'last' => '\OpenAPI\Client\Model\Link',
+        'next' => '\OpenAPI\Client\Model\Link',
+        'previous' => '\OpenAPI\Client\Model\Link',
+        'self' => '\OpenAPI\Client\Model\Link'
     ];
 
     /**
@@ -75,13 +73,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'created_at' => 'date-time',
-        'completed_at' => 'date-time',
-        'id' => null,
-        'ip_addr' => null,
-        'status' => null,
-        'type' => null,
-        'user_agent' => null
+        'first' => null,
+        'last' => null,
+        'next' => null,
+        'previous' => null,
+        'self' => null
     ];
 
     /**
@@ -90,13 +86,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'created_at' => false,
-		'completed_at' => true,
-		'id' => false,
-		'ip_addr' => false,
-		'status' => false,
-		'type' => false,
-		'user_agent' => false
+        'first' => false,
+		'last' => false,
+		'next' => false,
+		'previous' => false,
+		'self' => false
     ];
 
     /**
@@ -185,13 +179,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'created_at' => 'created_at',
-        'completed_at' => 'completed_at',
-        'id' => 'id',
-        'ip_addr' => 'ip_addr',
-        'status' => 'status',
-        'type' => 'type',
-        'user_agent' => 'user_agent'
+        'first' => 'first',
+        'last' => 'last',
+        'next' => 'next',
+        'previous' => 'previous',
+        'self' => 'self'
     ];
 
     /**
@@ -200,13 +192,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'created_at' => 'setCreatedAt',
-        'completed_at' => 'setCompletedAt',
-        'id' => 'setId',
-        'ip_addr' => 'setIpAddr',
-        'status' => 'setStatus',
-        'type' => 'setType',
-        'user_agent' => 'setUserAgent'
+        'first' => 'setFirst',
+        'last' => 'setLast',
+        'next' => 'setNext',
+        'previous' => 'setPrevious',
+        'self' => 'setSelf'
     ];
 
     /**
@@ -215,13 +205,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'created_at' => 'getCreatedAt',
-        'completed_at' => 'getCompletedAt',
-        'id' => 'getId',
-        'ip_addr' => 'getIpAddr',
-        'status' => 'getStatus',
-        'type' => 'getType',
-        'user_agent' => 'getUserAgent'
+        'first' => 'getFirst',
+        'last' => 'getLast',
+        'next' => 'getNext',
+        'previous' => 'getPrevious',
+        'self' => 'getSelf'
     ];
 
     /**
@@ -281,13 +269,11 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('completed_at', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('ip_addr', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('first', $data ?? [], null);
+        $this->setIfExists('last', $data ?? [], null);
+        $this->setIfExists('next', $data ?? [], null);
+        $this->setIfExists('previous', $data ?? [], null);
+        $this->setIfExists('self', $data ?? [], null);
     }
 
     /**
@@ -317,26 +303,20 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['first'] === null) {
+            $invalidProperties[] = "'first' can't be null";
         }
-        if ($this->container['completed_at'] === null) {
-            $invalidProperties[] = "'completed_at' can't be null";
+        if ($this->container['last'] === null) {
+            $invalidProperties[] = "'last' can't be null";
         }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['next'] === null) {
+            $invalidProperties[] = "'next' can't be null";
         }
-        if ($this->container['ip_addr'] === null) {
-            $invalidProperties[] = "'ip_addr' can't be null";
+        if ($this->container['previous'] === null) {
+            $invalidProperties[] = "'previous' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['user_agent'] === null) {
-            $invalidProperties[] = "'user_agent' can't be null";
+        if ($this->container['self'] === null) {
+            $invalidProperties[] = "'self' can't be null";
         }
         return $invalidProperties;
     }
@@ -354,197 +334,136 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets created_at
+     * Gets first
      *
-     * @return \DateTime
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getCreatedAt()
+    public function getFirst()
     {
-        return $this->container['created_at'];
+        return $this->container['first'];
     }
 
     /**
-     * Sets created_at
+     * Sets first
      *
-     * @param \DateTime $created_at created_at
+     * @param \OpenAPI\Client\Model\Link $first first
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setFirst($first)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($first)) {
+            throw new \InvalidArgumentException('non-nullable first cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['first'] = $first;
 
         return $this;
     }
 
     /**
-     * Gets completed_at
+     * Gets last
      *
-     * @return \DateTime
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getCompletedAt()
+    public function getLast()
     {
-        return $this->container['completed_at'];
+        return $this->container['last'];
     }
 
     /**
-     * Sets completed_at
+     * Sets last
      *
-     * @param \DateTime $completed_at completed_at
+     * @param \OpenAPI\Client\Model\Link $last last
      *
      * @return self
      */
-    public function setCompletedAt($completed_at)
+    public function setLast($last)
     {
-        if (is_null($completed_at)) {
-            array_push($this->openAPINullablesSetToNull, 'completed_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('completed_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($last)) {
+            throw new \InvalidArgumentException('non-nullable last cannot be null');
         }
-        $this->container['completed_at'] = $completed_at;
+        $this->container['last'] = $last;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets next
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getId()
+    public function getNext()
     {
-        return $this->container['id'];
+        return $this->container['next'];
     }
 
     /**
-     * Sets id
+     * Sets next
      *
-     * @param string $id id
+     * @param \OpenAPI\Client\Model\Link $next next
      *
      * @return self
      */
-    public function setId($id)
+    public function setNext($next)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($next)) {
+            throw new \InvalidArgumentException('non-nullable next cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['next'] = $next;
 
         return $this;
     }
 
     /**
-     * Gets ip_addr
+     * Gets previous
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getIpAddr()
+    public function getPrevious()
     {
-        return $this->container['ip_addr'];
+        return $this->container['previous'];
     }
 
     /**
-     * Sets ip_addr
+     * Sets previous
      *
-     * @param string $ip_addr ip_addr
+     * @param \OpenAPI\Client\Model\Link $previous previous
      *
      * @return self
      */
-    public function setIpAddr($ip_addr)
+    public function setPrevious($previous)
     {
-        if (is_null($ip_addr)) {
-            throw new \InvalidArgumentException('non-nullable ip_addr cannot be null');
+        if (is_null($previous)) {
+            throw new \InvalidArgumentException('non-nullable previous cannot be null');
         }
-        $this->container['ip_addr'] = $ip_addr;
+        $this->container['previous'] = $previous;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets self
      *
-     * @return \OpenAPI\Client\Model\UserEventStatus
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getStatus()
+    public function getSelf()
     {
-        return $this->container['status'];
+        return $this->container['self'];
     }
 
     /**
-     * Sets status
+     * Sets self
      *
-     * @param \OpenAPI\Client\Model\UserEventStatus $status status
+     * @param \OpenAPI\Client\Model\Link $self self
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setSelf($self)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($self)) {
+            throw new \InvalidArgumentException('non-nullable self cannot be null');
         }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_agent
-     *
-     * @return string
-     */
-    public function getUserAgent()
-    {
-        return $this->container['user_agent'];
-    }
-
-    /**
-     * Sets user_agent
-     *
-     * @param string $user_agent user_agent
-     *
-     * @return self
-     */
-    public function setUserAgent($user_agent)
-    {
-        if (is_null($user_agent)) {
-            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
-        }
-        $this->container['user_agent'] = $user_agent;
+        $this->container['self'] = $self;
 
         return $this;
     }

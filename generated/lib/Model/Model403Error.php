@@ -1,6 +1,6 @@
 <?php
 /**
- * UserRecentEvent
+ * Model403Error
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UserRecentEvent Class Doc Comment
+ * Model403Error Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
+class Model403Error implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserRecentEvent';
+    protected static $openAPIModelName = '403Error';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'created_at' => '\DateTime',
-        'completed_at' => '\DateTime',
-        'id' => 'string',
-        'ip_addr' => 'string',
-        'status' => '\OpenAPI\Client\Model\UserEventStatus',
-        'type' => 'string',
-        'user_agent' => 'string'
+        'code' => 'string',
+        'error' => 'string'
     ];
 
     /**
@@ -75,13 +70,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'created_at' => 'date-time',
-        'completed_at' => 'date-time',
-        'id' => null,
-        'ip_addr' => null,
-        'status' => null,
-        'type' => null,
-        'user_agent' => null
+        'code' => null,
+        'error' => null
     ];
 
     /**
@@ -90,13 +80,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'created_at' => false,
-		'completed_at' => true,
-		'id' => false,
-		'ip_addr' => false,
-		'status' => false,
-		'type' => false,
-		'user_agent' => false
+        'code' => false,
+		'error' => false
     ];
 
     /**
@@ -185,13 +170,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'created_at' => 'created_at',
-        'completed_at' => 'completed_at',
-        'id' => 'id',
-        'ip_addr' => 'ip_addr',
-        'status' => 'status',
-        'type' => 'type',
-        'user_agent' => 'user_agent'
+        'code' => 'code',
+        'error' => 'error'
     ];
 
     /**
@@ -200,13 +180,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'created_at' => 'setCreatedAt',
-        'completed_at' => 'setCompletedAt',
-        'id' => 'setId',
-        'ip_addr' => 'setIpAddr',
-        'status' => 'setStatus',
-        'type' => 'setType',
-        'user_agent' => 'setUserAgent'
+        'code' => 'setCode',
+        'error' => 'setError'
     ];
 
     /**
@@ -215,13 +190,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'created_at' => 'getCreatedAt',
-        'completed_at' => 'getCompletedAt',
-        'id' => 'getId',
-        'ip_addr' => 'getIpAddr',
-        'status' => 'getStatus',
-        'type' => 'getType',
-        'user_agent' => 'getUserAgent'
+        'code' => 'getCode',
+        'error' => 'getError'
     ];
 
     /**
@@ -265,6 +235,29 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CODE_CANNOT_CREATE_ORGANIZATION_BILLING_PORTAL_SESSION = 'cannot_create_organization_billing_portal_session';
+    public const CODE_CANNOT_CREATE_TRANSACTION = 'cannot_create_transaction';
+    public const CODE_CANNOT_DELETE_ADMIN = 'cannot_delete_admin';
+    public const CODE_CANNOT_DELETE_ORGANIZATION_MEMBER = 'cannot_delete_organization_member';
+    public const CODE_CANNOT_SELF_UPDATE_ORGANIZATION_MEMBER = 'cannot_self_update_organization_member';
+    public const CODE_OPERATION_NOT_ALLOWED = 'operation_not_allowed';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCodeAllowableValues()
+    {
+        return [
+            self::CODE_CANNOT_CREATE_ORGANIZATION_BILLING_PORTAL_SESSION,
+            self::CODE_CANNOT_CREATE_TRANSACTION,
+            self::CODE_CANNOT_DELETE_ADMIN,
+            self::CODE_CANNOT_DELETE_ORGANIZATION_MEMBER,
+            self::CODE_CANNOT_SELF_UPDATE_ORGANIZATION_MEMBER,
+            self::CODE_OPERATION_NOT_ALLOWED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -281,13 +274,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('completed_at', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('ip_addr', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
     }
 
     /**
@@ -317,26 +305,20 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['code'] === null) {
+            $invalidProperties[] = "'code' can't be null";
         }
-        if ($this->container['completed_at'] === null) {
-            $invalidProperties[] = "'completed_at' can't be null";
+        $allowedValues = $this->getCodeAllowableValues();
+        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'code', must be one of '%s'",
+                $this->container['code'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['ip_addr'] === null) {
-            $invalidProperties[] = "'ip_addr' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['user_agent'] === null) {
-            $invalidProperties[] = "'user_agent' can't be null";
+
+        if ($this->container['error'] === null) {
+            $invalidProperties[] = "'error' can't be null";
         }
         return $invalidProperties;
     }
@@ -354,197 +336,65 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets completed_at
-     *
-     * @return \DateTime
-     */
-    public function getCompletedAt()
-    {
-        return $this->container['completed_at'];
-    }
-
-    /**
-     * Sets completed_at
-     *
-     * @param \DateTime $completed_at completed_at
-     *
-     * @return self
-     */
-    public function setCompletedAt($completed_at)
-    {
-        if (is_null($completed_at)) {
-            array_push($this->openAPINullablesSetToNull, 'completed_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('completed_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['completed_at'] = $completed_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
+     * Gets code
      *
      * @return string
      */
-    public function getId()
+    public function getCode()
     {
-        return $this->container['id'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets id
+     * Sets code
      *
-     * @param string $id id
+     * @param string $code code
      *
      * @return self
      */
-    public function setId($id)
+    public function setCode($code)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
-        $this->container['id'] = $id;
+        $allowedValues = $this->getCodeAllowableValues();
+        if (!in_array($code, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'code', must be one of '%s'",
+                    $code,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets ip_addr
+     * Gets error
      *
      * @return string
      */
-    public function getIpAddr()
+    public function getError()
     {
-        return $this->container['ip_addr'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets ip_addr
+     * Sets error
      *
-     * @param string $ip_addr ip_addr
+     * @param string $error error
      *
      * @return self
      */
-    public function setIpAddr($ip_addr)
+    public function setError($error)
     {
-        if (is_null($ip_addr)) {
-            throw new \InvalidArgumentException('non-nullable ip_addr cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-        $this->container['ip_addr'] = $ip_addr;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return \OpenAPI\Client\Model\UserEventStatus
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param \OpenAPI\Client\Model\UserEventStatus $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_agent
-     *
-     * @return string
-     */
-    public function getUserAgent()
-    {
-        return $this->container['user_agent'];
-    }
-
-    /**
-     * Sets user_agent
-     *
-     * @param string $user_agent user_agent
-     *
-     * @return self
-     */
-    public function setUserAgent($user_agent)
-    {
-        if (is_null($user_agent)) {
-            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
-        }
-        $this->container['user_agent'] = $user_agent;
+        $this->container['error'] = $error;
 
         return $this;
     }
