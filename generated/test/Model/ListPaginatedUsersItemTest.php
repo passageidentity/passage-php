@@ -1,6 +1,6 @@
 <?php
 /**
- * UserRecentEventTest
+ * ListPaginatedUsersItemTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UserRecentEventTest Class Doc Comment
+ * ListPaginatedUsersItemTest Class Doc Comment
  *
  * @category    Class
- * @description UserRecentEvent
+ * @description ListPaginatedUsersItem
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UserRecentEventTest extends TestCase
+class ListPaginatedUsersItemTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class UserRecentEventTest extends TestCase
     }
 
     /**
-     * Test "UserRecentEvent"
+     * Test "ListPaginatedUsersItem"
      */
-    public function testUserRecentEvent()
+    public function testListPaginatedUsersItem()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -90,9 +90,18 @@ class UserRecentEventTest extends TestCase
     }
 
     /**
-     * Test attribute "completed_at"
+     * Test attribute "email"
      */
-    public function testPropertyCompletedAt()
+    public function testPropertyEmail()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "email_verified"
+     */
+    public function testPropertyEmailVerified()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -108,9 +117,36 @@ class UserRecentEventTest extends TestCase
     }
 
     /**
-     * Test attribute "ip_addr"
+     * Test attribute "last_login_at"
      */
-    public function testPropertyIpAddr()
+    public function testPropertyLastLoginAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "login_count"
+     */
+    public function testPropertyLoginCount()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "phone"
+     */
+    public function testPropertyPhone()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "phone_verified"
+     */
+    public function testPropertyPhoneVerified()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -126,18 +162,18 @@ class UserRecentEventTest extends TestCase
     }
 
     /**
-     * Test attribute "type"
+     * Test attribute "updated_at"
      */
-    public function testPropertyType()
+    public function testPropertyUpdatedAt()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "user_agent"
+     * Test attribute "user_metadata"
      */
-    public function testPropertyUserAgent()
+    public function testPropertyUserMetadata()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
