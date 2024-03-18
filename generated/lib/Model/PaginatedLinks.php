@@ -1,6 +1,6 @@
 <?php
 /**
- * Model401Error
+ * PaginatedLinks
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Model401Error Class Doc Comment
+ * PaginatedLinks Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaginatedLinks implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = '401Error';
+    protected static $openAPIModelName = 'PaginatedLinks';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'error' => 'string'
+        'first' => '\OpenAPI\Client\Model\Link',
+        'last' => '\OpenAPI\Client\Model\Link',
+        'next' => '\OpenAPI\Client\Model\Link',
+        'previous' => '\OpenAPI\Client\Model\Link',
+        'self' => '\OpenAPI\Client\Model\Link'
     ];
 
     /**
@@ -70,8 +73,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'error' => null
+        'first' => null,
+        'last' => null,
+        'next' => null,
+        'previous' => null,
+        'self' => null
     ];
 
     /**
@@ -80,8 +86,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-		'error' => false
+        'first' => false,
+		'last' => false,
+		'next' => false,
+		'previous' => false,
+		'self' => false
     ];
 
     /**
@@ -170,8 +179,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'error' => 'error'
+        'first' => 'first',
+        'last' => 'last',
+        'next' => 'next',
+        'previous' => 'previous',
+        'self' => 'self'
     ];
 
     /**
@@ -180,8 +192,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'error' => 'setError'
+        'first' => 'setFirst',
+        'last' => 'setLast',
+        'next' => 'setNext',
+        'previous' => 'setPrevious',
+        'self' => 'setSelf'
     ];
 
     /**
@@ -190,8 +205,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'error' => 'getError'
+        'first' => 'getFirst',
+        'last' => 'getLast',
+        'next' => 'getNext',
+        'previous' => 'getPrevious',
+        'self' => 'getSelf'
     ];
 
     /**
@@ -235,21 +253,6 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CODE_ACCESS_TOKEN = 'invalid_access_token';
-    public const CODE_NONCE = 'invalid_nonce';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_ACCESS_TOKEN,
-            self::CODE_NONCE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -266,8 +269,11 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('first', $data ?? [], null);
+        $this->setIfExists('last', $data ?? [], null);
+        $this->setIfExists('next', $data ?? [], null);
+        $this->setIfExists('previous', $data ?? [], null);
+        $this->setIfExists('self', $data ?? [], null);
     }
 
     /**
@@ -297,20 +303,20 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+        if ($this->container['first'] === null) {
+            $invalidProperties[] = "'first' can't be null";
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'code', must be one of '%s'",
-                $this->container['code'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['last'] === null) {
+            $invalidProperties[] = "'last' can't be null";
         }
-
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
+        if ($this->container['next'] === null) {
+            $invalidProperties[] = "'next' can't be null";
+        }
+        if ($this->container['previous'] === null) {
+            $invalidProperties[] = "'previous' can't be null";
+        }
+        if ($this->container['self'] === null) {
+            $invalidProperties[] = "'self' can't be null";
         }
         return $invalidProperties;
     }
@@ -328,65 +334,136 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets first
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getCode()
+    public function getFirst()
     {
-        return $this->container['code'];
+        return $this->container['first'];
     }
 
     /**
-     * Sets code
+     * Sets first
      *
-     * @param string $code code
+     * @param \OpenAPI\Client\Model\Link $first first
      *
      * @return self
      */
-    public function setCode($code)
+    public function setFirst($first)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($first)) {
+            throw new \InvalidArgumentException('non-nullable first cannot be null');
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'code', must be one of '%s'",
-                    $code,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
+        $this->container['first'] = $first;
 
         return $this;
     }
 
     /**
-     * Gets error
+     * Gets last
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getError()
+    public function getLast()
     {
-        return $this->container['error'];
+        return $this->container['last'];
     }
 
     /**
-     * Sets error
+     * Sets last
      *
-     * @param string $error error
+     * @param \OpenAPI\Client\Model\Link $last last
      *
      * @return self
      */
-    public function setError($error)
+    public function setLast($last)
     {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        if (is_null($last)) {
+            throw new \InvalidArgumentException('non-nullable last cannot be null');
         }
-        $this->container['error'] = $error;
+        $this->container['last'] = $last;
+
+        return $this;
+    }
+
+    /**
+     * Gets next
+     *
+     * @return \OpenAPI\Client\Model\Link
+     */
+    public function getNext()
+    {
+        return $this->container['next'];
+    }
+
+    /**
+     * Sets next
+     *
+     * @param \OpenAPI\Client\Model\Link $next next
+     *
+     * @return self
+     */
+    public function setNext($next)
+    {
+        if (is_null($next)) {
+            throw new \InvalidArgumentException('non-nullable next cannot be null');
+        }
+        $this->container['next'] = $next;
+
+        return $this;
+    }
+
+    /**
+     * Gets previous
+     *
+     * @return \OpenAPI\Client\Model\Link
+     */
+    public function getPrevious()
+    {
+        return $this->container['previous'];
+    }
+
+    /**
+     * Sets previous
+     *
+     * @param \OpenAPI\Client\Model\Link $previous previous
+     *
+     * @return self
+     */
+    public function setPrevious($previous)
+    {
+        if (is_null($previous)) {
+            throw new \InvalidArgumentException('non-nullable previous cannot be null');
+        }
+        $this->container['previous'] = $previous;
+
+        return $this;
+    }
+
+    /**
+     * Gets self
+     *
+     * @return \OpenAPI\Client\Model\Link
+     */
+    public function getSelf()
+    {
+        return $this->container['self'];
+    }
+
+    /**
+     * Sets self
+     *
+     * @param \OpenAPI\Client\Model\Link $self self
+     *
+     * @return self
+     */
+    public function setSelf($self)
+    {
+        if (is_null($self)) {
+            throw new \InvalidArgumentException('non-nullable self cannot be null');
+        }
+        $this->container['self'] = $self;
 
         return $this;
     }

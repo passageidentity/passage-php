@@ -1,6 +1,6 @@
 <?php
 /**
- * Model401Error
+ * ListPaginatedUsersResponse
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Model401Error Class Doc Comment
+ * ListPaginatedUsersResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListPaginatedUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = '401Error';
+    protected static $openAPIModelName = 'ListPaginatedUsersResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'error' => 'string'
+        '_links' => '\OpenAPI\Client\Model\PaginatedLinks',
+        'created_before' => 'int',
+        'limit' => 'int',
+        'page' => 'int',
+        'total_users' => 'int',
+        'users' => '\OpenAPI\Client\Model\ListPaginatedUsersItem[]'
     ];
 
     /**
@@ -70,8 +74,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'error' => null
+        '_links' => null,
+        'created_before' => 'int64',
+        'limit' => null,
+        'page' => null,
+        'total_users' => 'int64',
+        'users' => null
     ];
 
     /**
@@ -80,8 +88,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-		'error' => false
+        '_links' => false,
+		'created_before' => false,
+		'limit' => false,
+		'page' => false,
+		'total_users' => false,
+		'users' => false
     ];
 
     /**
@@ -170,8 +182,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'error' => 'error'
+        '_links' => '_links',
+        'created_before' => 'created_before',
+        'limit' => 'limit',
+        'page' => 'page',
+        'total_users' => 'total_users',
+        'users' => 'users'
     ];
 
     /**
@@ -180,8 +196,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'error' => 'setError'
+        '_links' => 'setLinks',
+        'created_before' => 'setCreatedBefore',
+        'limit' => 'setLimit',
+        'page' => 'setPage',
+        'total_users' => 'setTotalUsers',
+        'users' => 'setUsers'
     ];
 
     /**
@@ -190,8 +210,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'error' => 'getError'
+        '_links' => 'getLinks',
+        'created_before' => 'getCreatedBefore',
+        'limit' => 'getLimit',
+        'page' => 'getPage',
+        'total_users' => 'getTotalUsers',
+        'users' => 'getUsers'
     ];
 
     /**
@@ -235,21 +259,6 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CODE_ACCESS_TOKEN = 'invalid_access_token';
-    public const CODE_NONCE = 'invalid_nonce';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_ACCESS_TOKEN,
-            self::CODE_NONCE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -266,8 +275,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('_links', $data ?? [], null);
+        $this->setIfExists('created_before', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('page', $data ?? [], null);
+        $this->setIfExists('total_users', $data ?? [], null);
+        $this->setIfExists('users', $data ?? [], null);
     }
 
     /**
@@ -297,20 +310,23 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+        if ($this->container['_links'] === null) {
+            $invalidProperties[] = "'_links' can't be null";
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'code', must be one of '%s'",
-                $this->container['code'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['created_before'] === null) {
+            $invalidProperties[] = "'created_before' can't be null";
         }
-
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
+        }
+        if ($this->container['page'] === null) {
+            $invalidProperties[] = "'page' can't be null";
+        }
+        if ($this->container['total_users'] === null) {
+            $invalidProperties[] = "'total_users' can't be null";
+        }
+        if ($this->container['users'] === null) {
+            $invalidProperties[] = "'users' can't be null";
         }
         return $invalidProperties;
     }
@@ -328,65 +344,163 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets _links
      *
-     * @return string
+     * @return \OpenAPI\Client\Model\PaginatedLinks
      */
-    public function getCode()
+    public function getLinks()
     {
-        return $this->container['code'];
+        return $this->container['_links'];
     }
 
     /**
-     * Sets code
+     * Sets _links
      *
-     * @param string $code code
+     * @param \OpenAPI\Client\Model\PaginatedLinks $_links _links
      *
      * @return self
      */
-    public function setCode($code)
+    public function setLinks($_links)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($_links)) {
+            throw new \InvalidArgumentException('non-nullable _links cannot be null');
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'code', must be one of '%s'",
-                    $code,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
+        $this->container['_links'] = $_links;
 
         return $this;
     }
 
     /**
-     * Gets error
+     * Gets created_before
      *
-     * @return string
+     * @return int
      */
-    public function getError()
+    public function getCreatedBefore()
     {
-        return $this->container['error'];
+        return $this->container['created_before'];
     }
 
     /**
-     * Sets error
+     * Sets created_before
      *
-     * @param string $error error
+     * @param int $created_before time anchor (Unix timestamp) --> all users returned created before this timestamp
      *
      * @return self
      */
-    public function setError($error)
+    public function setCreatedBefore($created_before)
     {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        if (is_null($created_before)) {
+            throw new \InvalidArgumentException('non-nullable created_before cannot be null');
         }
-        $this->container['error'] = $error;
+        $this->container['created_before'] = $created_before;
+
+        return $this;
+    }
+
+    /**
+     * Gets limit
+     *
+     * @return int
+     */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+     * Sets limit
+     *
+     * @param int $limit limit
+     *
+     * @return self
+     */
+    public function setLimit($limit)
+    {
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
+        }
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets page
+     *
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->container['page'];
+    }
+
+    /**
+     * Sets page
+     *
+     * @param int $page page
+     *
+     * @return self
+     */
+    public function setPage($page)
+    {
+        if (is_null($page)) {
+            throw new \InvalidArgumentException('non-nullable page cannot be null');
+        }
+        $this->container['page'] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_users
+     *
+     * @return int
+     */
+    public function getTotalUsers()
+    {
+        return $this->container['total_users'];
+    }
+
+    /**
+     * Sets total_users
+     *
+     * @param int $total_users total number of users for a particular query
+     *
+     * @return self
+     */
+    public function setTotalUsers($total_users)
+    {
+        if (is_null($total_users)) {
+            throw new \InvalidArgumentException('non-nullable total_users cannot be null');
+        }
+        $this->container['total_users'] = $total_users;
+
+        return $this;
+    }
+
+    /**
+     * Gets users
+     *
+     * @return \OpenAPI\Client\Model\ListPaginatedUsersItem[]
+     */
+    public function getUsers()
+    {
+        return $this->container['users'];
+    }
+
+    /**
+     * Sets users
+     *
+     * @param \OpenAPI\Client\Model\ListPaginatedUsersItem[] $users users
+     *
+     * @return self
+     */
+    public function setUsers($users)
+    {
+        if (is_null($users)) {
+            throw new \InvalidArgumentException('non-nullable users cannot be null');
+        }
+        $this->container['users'] = $users;
 
         return $this;
     }

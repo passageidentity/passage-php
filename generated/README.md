@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**deactivateUser**](docs/Api/UsersApi.md#deactivateuser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User
 *UsersApi* | [**deleteUser**](docs/Api/UsersApi.md#deleteuser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User
 *UsersApi* | [**getUser**](docs/Api/UsersApi.md#getuser) | **GET** /apps/{app_id}/users/{user_id} | Get User
+*UsersApi* | [**listPaginatedUsers**](docs/Api/UsersApi.md#listpaginatedusers) | **GET** /apps/{app_id}/users | List Users
 *UsersApi* | [**updateUser**](docs/Api/UsersApi.md#updateuser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User
 
 ## Models
@@ -103,7 +104,10 @@ Class | Method | HTTP request | Description
 - [GoogleUserSocialConnection](docs/Model/GoogleUserSocialConnection.md)
 - [LayoutConfig](docs/Model/LayoutConfig.md)
 - [Layouts](docs/Model/Layouts.md)
+- [Link](docs/Model/Link.md)
 - [ListDevicesResponse](docs/Model/ListDevicesResponse.md)
+- [ListPaginatedUsersItem](docs/Model/ListPaginatedUsersItem.md)
+- [ListPaginatedUsersResponse](docs/Model/ListPaginatedUsersResponse.md)
 - [MagicLink](docs/Model/MagicLink.md)
 - [MagicLinkAuthMethod](docs/Model/MagicLinkAuthMethod.md)
 - [MagicLinkChannel](docs/Model/MagicLinkChannel.md)
@@ -111,9 +115,12 @@ Class | Method | HTTP request | Description
 - [MagicLinkType](docs/Model/MagicLinkType.md)
 - [Model400Error](docs/Model/Model400Error.md)
 - [Model401Error](docs/Model/Model401Error.md)
+- [Model403Error](docs/Model/Model403Error.md)
 - [Model404Error](docs/Model/Model404Error.md)
 - [Model500Error](docs/Model/Model500Error.md)
+- [Nonce](docs/Model/Nonce.md)
 - [OtpAuthMethod](docs/Model/OtpAuthMethod.md)
+- [PaginatedLinks](docs/Model/PaginatedLinks.md)
 - [PasskeysAuthMethod](docs/Model/PasskeysAuthMethod.md)
 - [Technologies](docs/Model/Technologies.md)
 - [TtlDisplayUnit](docs/Model/TtlDisplayUnit.md)
@@ -121,6 +128,7 @@ Class | Method | HTTP request | Description
 - [UpdateOtpAuthMethod](docs/Model/UpdateOtpAuthMethod.md)
 - [UpdatePasskeysAuthMethod](docs/Model/UpdatePasskeysAuthMethod.md)
 - [UpdateUserRequest](docs/Model/UpdateUserRequest.md)
+- [UserEventStatus](docs/Model/UserEventStatus.md)
 - [UserInfo](docs/Model/UserInfo.md)
 - [UserMetadataField](docs/Model/UserMetadataField.md)
 - [UserMetadataFieldType](docs/Model/UserMetadataFieldType.md)
