@@ -9,6 +9,7 @@ All URIs are relative to https://api.passage.id/v1, except if the operation defi
 | [**deactivateUser()**](UsersApi.md#deactivateUser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User |
 | [**deleteUser()**](UsersApi.md#deleteUser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User |
 | [**getUser()**](UsersApi.md#getUser) | **GET** /apps/{app_id}/users/{user_id} | Get User |
+| [**getUserByIdentifier()**](UsersApi.md#getUser) | **GET** /apps/{app_id}/users | Get User By Identifier |
 | [**updateUser()**](UsersApi.md#updateUser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User |
 
 
@@ -293,6 +294,66 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **user_id** | **string**| User ID | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\UserInfo**](../Model/UserInfo.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getUserByIdentifier()`
+
+```php
+getUserByIdentifier($identifier): \OpenAPI\Client\Model\UserInfo
+```
+
+Get User By Identifier
+
+Get information about a user.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer (JWT) authorization: bearerAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Passage\Client\Controllers\Passage(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$user_email = 'user_email_example'; // string | User ID
+
+try {
+    $result = $apiInstance->getUserByIdentifier($user_email);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UsersApi->getUserByIdentifier: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **identifier** | **string**| User email or phone number | |
 
 ### Return type
 
