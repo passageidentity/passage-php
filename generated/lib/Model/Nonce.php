@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateOtpAuthMethod
+ * Nonce
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UpdateOtpAuthMethod Class Doc Comment
+ * Nonce Class Doc Comment
  *
  * @category Class
+ * @description the nonce to exchange for an authentication token
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class Nonce implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateOtpAuthMethod';
+    protected static $openAPIModelName = 'Nonce';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +59,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enabled' => 'bool',
-        'ttl' => 'int',
-        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
+        'nonce' => 'string'
     ];
 
     /**
@@ -71,9 +70,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enabled' => null,
-        'ttl' => null,
-        'ttl_display_unit' => null
+        'nonce' => null
     ];
 
     /**
@@ -82,9 +79,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'enabled' => false,
-		'ttl' => false,
-		'ttl_display_unit' => false
+        'nonce' => false
     ];
 
     /**
@@ -173,9 +168,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'enabled' => 'enabled',
-        'ttl' => 'ttl',
-        'ttl_display_unit' => 'ttl_display_unit'
+        'nonce' => 'nonce'
     ];
 
     /**
@@ -184,9 +177,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'enabled' => 'setEnabled',
-        'ttl' => 'setTtl',
-        'ttl_display_unit' => 'setTtlDisplayUnit'
+        'nonce' => 'setNonce'
     ];
 
     /**
@@ -195,9 +186,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'enabled' => 'getEnabled',
-        'ttl' => 'getTtl',
-        'ttl_display_unit' => 'getTtlDisplayUnit'
+        'nonce' => 'getNonce'
     ];
 
     /**
@@ -257,9 +246,7 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enabled', $data ?? [], null);
-        $this->setIfExists('ttl', $data ?? [], 300);
-        $this->setIfExists('ttl_display_unit', $data ?? [], null);
+        $this->setIfExists('nonce', $data ?? [], null);
     }
 
     /**
@@ -289,10 +276,9 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 60)) {
-            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
+        if ($this->container['nonce'] === null) {
+            $invalidProperties[] = "'nonce' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -309,89 +295,28 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets enabled
+     * Gets nonce
      *
-     * @return bool|null
+     * @return string
      */
-    public function getEnabled()
+    public function getNonce()
     {
-        return $this->container['enabled'];
+        return $this->container['nonce'];
     }
 
     /**
-     * Sets enabled
+     * Sets nonce
      *
-     * @param bool|null $enabled enabled
+     * @param string $nonce nonce
      *
      * @return self
      */
-    public function setEnabled($enabled)
+    public function setNonce($nonce)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
+        if (is_null($nonce)) {
+            throw new \InvalidArgumentException('non-nullable nonce cannot be null');
         }
-        $this->container['enabled'] = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets ttl
-     *
-     * @return int|null
-     */
-    public function getTtl()
-    {
-        return $this->container['ttl'];
-    }
-
-    /**
-     * Sets ttl
-     *
-     * @param int|null $ttl Maximum time (IN SECONDS) for the auth to expire.
-     *
-     * @return self
-     */
-    public function setTtl($ttl)
-    {
-        if (is_null($ttl)) {
-            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
-        }
-
-        if (($ttl < 60)) {
-            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateOtpAuthMethod., must be bigger than or equal to 60.');
-        }
-
-        $this->container['ttl'] = $ttl;
-
-        return $this;
-    }
-
-    /**
-     * Gets ttl_display_unit
-     *
-     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
-     * @deprecated
-     */
-    public function getTtlDisplayUnit()
-    {
-        return $this->container['ttl_display_unit'];
-    }
-
-    /**
-     * Sets ttl_display_unit
-     *
-     * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setTtlDisplayUnit($ttl_display_unit)
-    {
-        if (is_null($ttl_display_unit)) {
-            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
-        }
-        $this->container['ttl_display_unit'] = $ttl_display_unit;
+        $this->container['nonce'] = $nonce;
 
         return $this;
     }
