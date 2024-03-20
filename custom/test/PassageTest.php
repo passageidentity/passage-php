@@ -119,7 +119,7 @@ class PassageTest extends TestCase {
 
     public function testGetUserByIdentifierError()
     {
-        $this->expectException(NotFound::class);
+        $this->expectException(ApiException::class);
         $errorEmail = 'error@passage.id';
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
