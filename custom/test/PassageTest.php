@@ -99,7 +99,7 @@ class PassageTest extends TestCase {
         $this->assertEquals($user['id'], $this->userId);
     }
 
-    public function testGetUser()
+    public function testGetUserByIdentifier()
     {
         $email = 'test-create@passage.id'
         $userRequest = new CreateUserRequest(array(
@@ -115,6 +115,20 @@ class PassageTest extends TestCase {
         $this->assertEquals($userByIdentifier['id'],$createUser['id']);
 
         $this->assertEquals($userByIdentifier, $user)
+    }
+
+    public function testGetUserByIdentifierError()
+    {
+        $email = 'test-create@passage.id'
+        $errorEmail = 'error@passage.id'
+        $userRequest = new CreateUserRequest(array(
+            'email' => $email,
+        ));
+
+        $createUser = $this->passageClient->createUser($userRequest);
+
+        $this->expectException(NotFound::class);
+        $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
 
     public function testDeactivateUser()
