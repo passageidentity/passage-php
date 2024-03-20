@@ -115,7 +115,11 @@ class Passage {
         $users = $this->usersApi->listPaginatedUsers($this->appId, limit: 1, identifier:$identifier)['users']
 
         if (count($users) == 0) {
-            // throw 404 exception
+            throw new ApiException(
+                "[404] Could not find user with that identifier.",
+                404,
+                null,
+                null);
         }
 
         return $this->usersApi->getUser($this->appId, $users[0]['id'])['user'];
