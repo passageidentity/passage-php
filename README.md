@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**deactivateUser**](docs/Passage/UsersApi.md#deactivateuser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User
 *UsersApi* | [**deleteUser**](docs/Passage/UsersApi.md#deleteuser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User
 *UsersApi* | [**getUser**](docs/Passage/UsersApi.md#getuser) | **GET** /apps/{app_id}/users/{user_id} | Get User
+*UsersApi* | [**getUserByIdentifier**](docs/Passage/UsersApi.md#getuserbyidentifier) | **GET** /apps/{app_id}/users | Get User By Identifier
 *UsersApi* | [**updateUser**](docs/Passage/UsersApi.md#updateuser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User
 
 ## Models
