@@ -9,7 +9,7 @@ All URIs are relative to https://api.passage.id/v1, except if the operation defi
 | [**deactivateUser()**](UsersApi.md#deactivateUser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User |
 | [**deleteUser()**](UsersApi.md#deleteUser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User |
 | [**getUser()**](UsersApi.md#getUser) | **GET** /apps/{app_id}/users/{user_id} | Get User |
-| [**getUserByIdentifier()**](UsersApi.md#getUser) | **GET** /apps/{app_id}/users | Get User By Identifier |
+| [**getUserByIdentifier()**](UsersApi.md#getUserByIdentifier) | **GET** /apps/{app_id}/users | Get User By Identifier |
 | [**updateUser()**](UsersApi.md#updateUser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User |
 
 
