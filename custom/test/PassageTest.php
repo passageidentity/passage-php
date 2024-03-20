@@ -99,6 +99,24 @@ class PassageTest extends TestCase {
         $this->assertEquals($user['id'], $this->userId);
     }
 
+    public function testGetUser()
+    {
+        $email = 'test-create@passage.id'
+        $userRequest = new CreateUserRequest(array(
+            'email' => $email,
+        ));
+
+        $createUser = $this->passageClient->createUser($userRequest);
+        
+        $user = $this->passageClient->getUser($createUser['id']);
+        $this->assertEquals($user['id'],$createUser['id']);
+
+        $userByIdentifier = $this->passageClient->getUserByIdentifier($email);
+        $this->assertEquals($userByIdentifier['id'],$createUser['id']);
+
+        $this->assertEquals($userByIdentifier, $user)
+    }
+
     public function testDeactivateUser()
     {
         $user = $this->passageClient->deactivateUser($this->userId);

@@ -108,6 +108,20 @@ class Passage {
     }
 
     /**
+     * Get a user by identifier
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
+     */
+    public function getUserByIdentifier(string $identifier): UserInfo|Model401Error|Model404Error|Model500Error {
+        $users = $this->usersApi->listPaginatedUsers($this->appId, limit: 1, identifier:$identifier)['users']
+
+        if (count($users) == 0) {
+            // throw 404 exception
+        }
+
+        return $this->usersApi->getUser($this->appId, $users[0]['id'])['user'];
+    }
+
+    /**
      * Activate a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
