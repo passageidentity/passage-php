@@ -114,13 +114,13 @@ class PassageTest extends TestCase {
         $userByIdentifier = $this->passageClient->getUserByIdentifier($email);
         $this->assertEquals($userByIdentifier['id'],$createUser['id']);
 
-        $this->assertEquals($userByIdentifier, $user)
+        $this->assertEquals($userByIdentifier, $user);
     }
 
     public function testGetUserByIdentifierError()
     {
         $this->expectException(NotFound::class);
-        $errorEmail = 'error@passage.id'
+        $errorEmail = 'error@passage.id';
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
 
