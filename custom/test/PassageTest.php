@@ -119,15 +119,8 @@ class PassageTest extends TestCase {
 
     public function testGetUserByIdentifierError()
     {
-        $email = 'test-create@passage.id'
-        $errorEmail = 'error@passage.id'
-        $userRequest = new CreateUserRequest(array(
-            'email' => $email,
-        ));
-
-        $createUser = $this->passageClient->createUser($userRequest);
-
         $this->expectException(NotFound::class);
+        $errorEmail = 'error@passage.id'
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
 
