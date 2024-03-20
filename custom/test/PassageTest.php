@@ -101,7 +101,7 @@ class PassageTest extends TestCase {
 
     public function testGetUserByIdentifier()
     {
-        $email = 'test-create@passage.id'
+        $email = 'test-create@passage.id';
         $userRequest = new CreateUserRequest(array(
             'email' => $email,
         ));
