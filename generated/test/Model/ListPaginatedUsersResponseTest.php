@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdatePasskeysAuthMethodTest
+ * ListPaginatedUsersResponseTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdatePasskeysAuthMethodTest Class Doc Comment
+ * ListPaginatedUsersResponseTest Class Doc Comment
  *
  * @category    Class
- * @description UpdatePasskeysAuthMethod
+ * @description ListPaginatedUsersResponse
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UpdatePasskeysAuthMethodTest extends TestCase
+class ListPaginatedUsersResponseTest extends TestCase
 {
 
     /**
@@ -72,18 +72,63 @@ class UpdatePasskeysAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "UpdatePasskeysAuthMethod"
+     * Test "ListPaginatedUsersResponse"
      */
-    public function testUpdatePasskeysAuthMethod()
+    public function testListPaginatedUsersResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "enabled"
+     * Test attribute "_links"
      */
-    public function testPropertyEnabled()
+    public function testPropertyLinks()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "created_before"
+     */
+    public function testPropertyCreatedBefore()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "limit"
+     */
+    public function testPropertyLimit()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "page"
+     */
+    public function testPropertyPage()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "total_users"
+     */
+    public function testPropertyTotalUsers()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "users"
+     */
+    public function testPropertyUsers()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

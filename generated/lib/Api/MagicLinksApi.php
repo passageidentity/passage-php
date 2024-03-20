@@ -134,7 +134,7 @@ class MagicLinksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MagicLinkResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
+     * @return \OpenAPI\Client\Model\MagicLinkResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model403Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
      */
     public function createMagicLink($app_id, $create_magic_link_request, string $contentType = self::contentTypes['createMagicLink'][0])
     {
@@ -153,7 +153,7 @@ class MagicLinksApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MagicLinkResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\MagicLinkResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model403Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function createMagicLinkWithHttpInfo($app_id, $create_magic_link_request, string $contentType = self::contentTypes['createMagicLink'][0])
     {
@@ -240,6 +240,21 @@ class MagicLinksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\Model403Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Model403Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Model403Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 404:
                     if ('\OpenAPI\Client\Model\Model404Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -310,6 +325,14 @@ class MagicLinksApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\OpenAPI\Client\Model\Model401Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\Model403Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

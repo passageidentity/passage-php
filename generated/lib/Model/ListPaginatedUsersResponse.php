@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdatePasskeysAuthMethod
+ * ListPaginatedUsersResponse
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UpdatePasskeysAuthMethod Class Doc Comment
+ * ListPaginatedUsersResponse Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListPaginatedUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdatePasskeysAuthMethod';
+    protected static $openAPIModelName = 'ListPaginatedUsersResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enabled' => 'bool'
+        '_links' => '\OpenAPI\Client\Model\PaginatedLinks',
+        'created_before' => 'int',
+        'limit' => 'int',
+        'page' => 'int',
+        'total_users' => 'int',
+        'users' => '\OpenAPI\Client\Model\ListPaginatedUsersItem[]'
     ];
 
     /**
@@ -69,7 +74,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enabled' => null
+        '_links' => null,
+        'created_before' => 'int64',
+        'limit' => null,
+        'page' => null,
+        'total_users' => 'int64',
+        'users' => null
     ];
 
     /**
@@ -78,7 +88,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'enabled' => false
+        '_links' => false,
+		'created_before' => false,
+		'limit' => false,
+		'page' => false,
+		'total_users' => false,
+		'users' => false
     ];
 
     /**
@@ -167,7 +182,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'enabled' => 'enabled'
+        '_links' => '_links',
+        'created_before' => 'created_before',
+        'limit' => 'limit',
+        'page' => 'page',
+        'total_users' => 'total_users',
+        'users' => 'users'
     ];
 
     /**
@@ -176,7 +196,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'enabled' => 'setEnabled'
+        '_links' => 'setLinks',
+        'created_before' => 'setCreatedBefore',
+        'limit' => 'setLimit',
+        'page' => 'setPage',
+        'total_users' => 'setTotalUsers',
+        'users' => 'setUsers'
     ];
 
     /**
@@ -185,7 +210,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'enabled' => 'getEnabled'
+        '_links' => 'getLinks',
+        'created_before' => 'getCreatedBefore',
+        'limit' => 'getLimit',
+        'page' => 'getPage',
+        'total_users' => 'getTotalUsers',
+        'users' => 'getUsers'
     ];
 
     /**
@@ -245,7 +275,12 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enabled', $data ?? [], true);
+        $this->setIfExists('_links', $data ?? [], null);
+        $this->setIfExists('created_before', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('page', $data ?? [], null);
+        $this->setIfExists('total_users', $data ?? [], null);
+        $this->setIfExists('users', $data ?? [], null);
     }
 
     /**
@@ -275,6 +310,24 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['_links'] === null) {
+            $invalidProperties[] = "'_links' can't be null";
+        }
+        if ($this->container['created_before'] === null) {
+            $invalidProperties[] = "'created_before' can't be null";
+        }
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
+        }
+        if ($this->container['page'] === null) {
+            $invalidProperties[] = "'page' can't be null";
+        }
+        if ($this->container['total_users'] === null) {
+            $invalidProperties[] = "'total_users' can't be null";
+        }
+        if ($this->container['users'] === null) {
+            $invalidProperties[] = "'users' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -291,28 +344,163 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets enabled
+     * Gets _links
      *
-     * @return bool|null
+     * @return \OpenAPI\Client\Model\PaginatedLinks
      */
-    public function getEnabled()
+    public function getLinks()
     {
-        return $this->container['enabled'];
+        return $this->container['_links'];
     }
 
     /**
-     * Sets enabled
+     * Sets _links
      *
-     * @param bool|null $enabled enabled
+     * @param \OpenAPI\Client\Model\PaginatedLinks $_links _links
      *
      * @return self
      */
-    public function setEnabled($enabled)
+    public function setLinks($_links)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
+        if (is_null($_links)) {
+            throw new \InvalidArgumentException('non-nullable _links cannot be null');
         }
-        $this->container['enabled'] = $enabled;
+        $this->container['_links'] = $_links;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_before
+     *
+     * @return int
+     */
+    public function getCreatedBefore()
+    {
+        return $this->container['created_before'];
+    }
+
+    /**
+     * Sets created_before
+     *
+     * @param int $created_before time anchor (Unix timestamp) --> all users returned created before this timestamp
+     *
+     * @return self
+     */
+    public function setCreatedBefore($created_before)
+    {
+        if (is_null($created_before)) {
+            throw new \InvalidArgumentException('non-nullable created_before cannot be null');
+        }
+        $this->container['created_before'] = $created_before;
+
+        return $this;
+    }
+
+    /**
+     * Gets limit
+     *
+     * @return int
+     */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+     * Sets limit
+     *
+     * @param int $limit limit
+     *
+     * @return self
+     */
+    public function setLimit($limit)
+    {
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
+        }
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets page
+     *
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->container['page'];
+    }
+
+    /**
+     * Sets page
+     *
+     * @param int $page page
+     *
+     * @return self
+     */
+    public function setPage($page)
+    {
+        if (is_null($page)) {
+            throw new \InvalidArgumentException('non-nullable page cannot be null');
+        }
+        $this->container['page'] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_users
+     *
+     * @return int
+     */
+    public function getTotalUsers()
+    {
+        return $this->container['total_users'];
+    }
+
+    /**
+     * Sets total_users
+     *
+     * @param int $total_users total number of users for a particular query
+     *
+     * @return self
+     */
+    public function setTotalUsers($total_users)
+    {
+        if (is_null($total_users)) {
+            throw new \InvalidArgumentException('non-nullable total_users cannot be null');
+        }
+        $this->container['total_users'] = $total_users;
+
+        return $this;
+    }
+
+    /**
+     * Gets users
+     *
+     * @return \OpenAPI\Client\Model\ListPaginatedUsersItem[]
+     */
+    public function getUsers()
+    {
+        return $this->container['users'];
+    }
+
+    /**
+     * Sets users
+     *
+     * @param \OpenAPI\Client\Model\ListPaginatedUsersItem[] $users users
+     *
+     * @return self
+     */
+    public function setUsers($users)
+    {
+        if (is_null($users)) {
+            throw new \InvalidArgumentException('non-nullable users cannot be null');
+        }
+        $this->container['users'] = $users;
 
         return $this;
     }

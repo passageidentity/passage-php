@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateMagicLinkAuthMethodTest
+ * NonceTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdateMagicLinkAuthMethodTest Class Doc Comment
+ * NonceTest Class Doc Comment
  *
  * @category    Class
- * @description UpdateMagicLinkAuthMethod
+ * @description the nonce to exchange for an authentication token
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UpdateMagicLinkAuthMethodTest extends TestCase
+class NonceTest extends TestCase
 {
 
     /**
@@ -72,36 +72,18 @@ class UpdateMagicLinkAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "UpdateMagicLinkAuthMethod"
+     * Test "Nonce"
      */
-    public function testUpdateMagicLinkAuthMethod()
+    public function testNonce()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "enabled"
+     * Test attribute "nonce"
      */
-    public function testPropertyEnabled()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "ttl"
-     */
-    public function testPropertyTtl()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "ttl_display_unit"
-     */
-    public function testPropertyTtlDisplayUnit()
+    public function testPropertyNonce()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
