@@ -112,7 +112,7 @@ class Passage {
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
     public function getUserByIdentifier(string $identifier): UserInfo|Model401Error|Model404Error|Model500Error {
-        $users = $this->usersApi->listPaginatedUsers($this->appId, limit: 1, identifier:$identifier)['users'];
+        $users = $this->usersApi->listPaginatedUsers($this->appId, limit: 1, identifier:strtolower($identifier))['users'];
 
         if (count($users) == 0) {
             throw new ApiException(
