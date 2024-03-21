@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateMagicLinkAuthMethod
+ * PaginatedLinks
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UpdateMagicLinkAuthMethod Class Doc Comment
+ * PaginatedLinks Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
+class PaginatedLinks implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UpdateMagicLinkAuthMethod';
+    protected static $openAPIModelName = 'PaginatedLinks';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'enabled' => 'bool',
-        'ttl' => 'int',
-        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
+        'first' => '\OpenAPI\Client\Model\Link',
+        'last' => '\OpenAPI\Client\Model\Link',
+        'next' => '\OpenAPI\Client\Model\Link',
+        'previous' => '\OpenAPI\Client\Model\Link',
+        'self' => '\OpenAPI\Client\Model\Link'
     ];
 
     /**
@@ -71,9 +73,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'enabled' => null,
-        'ttl' => null,
-        'ttl_display_unit' => null
+        'first' => null,
+        'last' => null,
+        'next' => null,
+        'previous' => null,
+        'self' => null
     ];
 
     /**
@@ -82,9 +86,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'enabled' => false,
-		'ttl' => false,
-		'ttl_display_unit' => false
+        'first' => false,
+		'last' => false,
+		'next' => false,
+		'previous' => false,
+		'self' => false
     ];
 
     /**
@@ -173,9 +179,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'enabled' => 'enabled',
-        'ttl' => 'ttl',
-        'ttl_display_unit' => 'ttl_display_unit'
+        'first' => 'first',
+        'last' => 'last',
+        'next' => 'next',
+        'previous' => 'previous',
+        'self' => 'self'
     ];
 
     /**
@@ -184,9 +192,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'enabled' => 'setEnabled',
-        'ttl' => 'setTtl',
-        'ttl_display_unit' => 'setTtlDisplayUnit'
+        'first' => 'setFirst',
+        'last' => 'setLast',
+        'next' => 'setNext',
+        'previous' => 'setPrevious',
+        'self' => 'setSelf'
     ];
 
     /**
@@ -195,9 +205,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'enabled' => 'getEnabled',
-        'ttl' => 'getTtl',
-        'ttl_display_unit' => 'getTtlDisplayUnit'
+        'first' => 'getFirst',
+        'last' => 'getLast',
+        'next' => 'getNext',
+        'previous' => 'getPrevious',
+        'self' => 'getSelf'
     ];
 
     /**
@@ -257,9 +269,11 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('enabled', $data ?? [], null);
-        $this->setIfExists('ttl', $data ?? [], 300);
-        $this->setIfExists('ttl_display_unit', $data ?? [], null);
+        $this->setIfExists('first', $data ?? [], null);
+        $this->setIfExists('last', $data ?? [], null);
+        $this->setIfExists('next', $data ?? [], null);
+        $this->setIfExists('previous', $data ?? [], null);
+        $this->setIfExists('self', $data ?? [], null);
     }
 
     /**
@@ -289,10 +303,21 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 60)) {
-            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
+        if ($this->container['first'] === null) {
+            $invalidProperties[] = "'first' can't be null";
         }
-
+        if ($this->container['last'] === null) {
+            $invalidProperties[] = "'last' can't be null";
+        }
+        if ($this->container['next'] === null) {
+            $invalidProperties[] = "'next' can't be null";
+        }
+        if ($this->container['previous'] === null) {
+            $invalidProperties[] = "'previous' can't be null";
+        }
+        if ($this->container['self'] === null) {
+            $invalidProperties[] = "'self' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -309,89 +334,136 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets enabled
+     * Gets first
      *
-     * @return bool|null
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getEnabled()
+    public function getFirst()
     {
-        return $this->container['enabled'];
+        return $this->container['first'];
     }
 
     /**
-     * Sets enabled
+     * Sets first
      *
-     * @param bool|null $enabled enabled
+     * @param \OpenAPI\Client\Model\Link $first first
      *
      * @return self
      */
-    public function setEnabled($enabled)
+    public function setFirst($first)
     {
-        if (is_null($enabled)) {
-            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
+        if (is_null($first)) {
+            throw new \InvalidArgumentException('non-nullable first cannot be null');
         }
-        $this->container['enabled'] = $enabled;
+        $this->container['first'] = $first;
 
         return $this;
     }
 
     /**
-     * Gets ttl
+     * Gets last
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getTtl()
+    public function getLast()
     {
-        return $this->container['ttl'];
+        return $this->container['last'];
     }
 
     /**
-     * Sets ttl
+     * Sets last
      *
-     * @param int|null $ttl Maximum time (IN SECONDS) for the auth to expire.
+     * @param \OpenAPI\Client\Model\Link $last last
      *
      * @return self
      */
-    public function setTtl($ttl)
+    public function setLast($last)
     {
-        if (is_null($ttl)) {
-            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
+        if (is_null($last)) {
+            throw new \InvalidArgumentException('non-nullable last cannot be null');
         }
-
-        if (($ttl < 60)) {
-            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateMagicLinkAuthMethod., must be bigger than or equal to 60.');
-        }
-
-        $this->container['ttl'] = $ttl;
+        $this->container['last'] = $last;
 
         return $this;
     }
 
     /**
-     * Gets ttl_display_unit
+     * Gets next
      *
-     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
-     * @deprecated
+     * @return \OpenAPI\Client\Model\Link
      */
-    public function getTtlDisplayUnit()
+    public function getNext()
     {
-        return $this->container['ttl_display_unit'];
+        return $this->container['next'];
     }
 
     /**
-     * Sets ttl_display_unit
+     * Sets next
      *
-     * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
+     * @param \OpenAPI\Client\Model\Link $next next
      *
      * @return self
-     * @deprecated
      */
-    public function setTtlDisplayUnit($ttl_display_unit)
+    public function setNext($next)
     {
-        if (is_null($ttl_display_unit)) {
-            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
+        if (is_null($next)) {
+            throw new \InvalidArgumentException('non-nullable next cannot be null');
         }
-        $this->container['ttl_display_unit'] = $ttl_display_unit;
+        $this->container['next'] = $next;
+
+        return $this;
+    }
+
+    /**
+     * Gets previous
+     *
+     * @return \OpenAPI\Client\Model\Link
+     */
+    public function getPrevious()
+    {
+        return $this->container['previous'];
+    }
+
+    /**
+     * Sets previous
+     *
+     * @param \OpenAPI\Client\Model\Link $previous previous
+     *
+     * @return self
+     */
+    public function setPrevious($previous)
+    {
+        if (is_null($previous)) {
+            throw new \InvalidArgumentException('non-nullable previous cannot be null');
+        }
+        $this->container['previous'] = $previous;
+
+        return $this;
+    }
+
+    /**
+     * Gets self
+     *
+     * @return \OpenAPI\Client\Model\Link
+     */
+    public function getSelf()
+    {
+        return $this->container['self'];
+    }
+
+    /**
+     * Sets self
+     *
+     * @param \OpenAPI\Client\Model\Link $self self
+     *
+     * @return self
+     */
+    public function setSelf($self)
+    {
+        if (is_null($self)) {
+            throw new \InvalidArgumentException('non-nullable self cannot be null');
+        }
+        $this->container['self'] = $self;
 
         return $this;
     }

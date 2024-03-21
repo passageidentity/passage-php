@@ -1,6 +1,6 @@
 <?php
 /**
- * Model401Error
+ * Model403Error
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Model401Error Class Doc Comment
+ * Model403Error Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -41,7 +41,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class Model403Error implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = '401Error';
+    protected static $openAPIModelName = '403Error';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -235,8 +235,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CODE_ACCESS_TOKEN = 'invalid_access_token';
-    public const CODE_NONCE = 'invalid_nonce';
+    public const CODE_CANNOT_CREATE_ORGANIZATION_BILLING_PORTAL_SESSION = 'cannot_create_organization_billing_portal_session';
+    public const CODE_CANNOT_CREATE_TRANSACTION = 'cannot_create_transaction';
+    public const CODE_CANNOT_DELETE_ADMIN = 'cannot_delete_admin';
+    public const CODE_CANNOT_DELETE_ORGANIZATION_MEMBER = 'cannot_delete_organization_member';
+    public const CODE_CANNOT_SELF_UPDATE_ORGANIZATION_MEMBER = 'cannot_self_update_organization_member';
+    public const CODE_OPERATION_NOT_ALLOWED = 'operation_not_allowed';
 
     /**
      * Gets allowable values of the enum
@@ -246,8 +250,12 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getCodeAllowableValues()
     {
         return [
-            self::CODE_ACCESS_TOKEN,
-            self::CODE_NONCE,
+            self::CODE_CANNOT_CREATE_ORGANIZATION_BILLING_PORTAL_SESSION,
+            self::CODE_CANNOT_CREATE_TRANSACTION,
+            self::CODE_CANNOT_DELETE_ADMIN,
+            self::CODE_CANNOT_DELETE_ORGANIZATION_MEMBER,
+            self::CODE_CANNOT_SELF_UPDATE_ORGANIZATION_MEMBER,
+            self::CODE_OPERATION_NOT_ALLOWED,
         ];
     }
 
