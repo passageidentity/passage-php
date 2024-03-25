@@ -117,6 +117,42 @@ class PassageTest extends TestCase {
         $this->assertEquals($userByIdentifier, $user);
     }
 
+    public function testGetUserByIdentifierUpperCase()
+    {
+        $email = 'test-create@passage.id';
+        $userRequest = new CreateUserRequest(array(
+            'email' => $email,
+        ));
+
+        $createUser = $this->passageClient->createUser($userRequest);
+
+        $user = $this->passageClient->getUser($createUser['id']);
+        $this->assertEquals($user['id'],$createUser['id']);
+
+        $userByIdentifier = $this->passageClient->getUserByIdentifier(strtoupper($email));
+        $this->assertEquals($userByIdentifier['id'],$createUser['id']);
+
+        $this->assertEquals($userByIdentifier, $user);
+    }
+
+    public function testGetUserByIdentifierPhone()
+    {
+        $phone = '+15005550007';
+        $userRequest = new CreateUserRequest(array(
+            'phone' => $phone,
+        ));
+
+        $createUser = $this->passageClient->createUser($userRequest);
+
+        $user = $this->passageClient->getUser($createUser['id']);
+        $this->assertEquals($user['id'],$createUser['id']);
+
+        $userByIdentifier = $this->passageClient->getUserByIdentifier(strtoupper($phone));
+        $this->assertEquals($userByIdentifier['id'],$createUser['id']);
+
+        $this->assertEquals($userByIdentifier, $user);
+    }
+
     public function testGetUserByIdentifierError()
     {
         $this->expectException(Error::class);
