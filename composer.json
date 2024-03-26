@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": { 
-            "OpenAPI\\Client\\" : "generated/lib/",
+            "OpenAPI\\Client\\" : ["generated/lib/", "custom/models/"],
             "Passage\\Client\\": "custom/lib/"
         }
     },
