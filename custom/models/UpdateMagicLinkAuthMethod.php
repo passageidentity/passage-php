@@ -1,6 +1,6 @@
 <?php
 /**
- * Model401Error
+ * UpdateMagicLinkAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Model401Error Class Doc Comment
+ * UpdateMagicLinkAuthMethod Class Doc Comment
  *
+ * @deprecated deprecated in version 1.0.0
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = '401Error';
+    protected static $openAPIModelName = 'UpdateMagicLinkAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +59,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'error' => 'string'
+        'enabled' => 'bool',
+        'ttl' => 'int',
+        'ttl_display_unit' => '\OpenAPI\Client\Model\TtlDisplayUnit'
     ];
 
     /**
@@ -70,8 +72,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'error' => null
+        'enabled' => null,
+        'ttl' => null,
+        'ttl_display_unit' => null
     ];
 
     /**
@@ -80,8 +83,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-		'error' => false
+        'enabled' => false,
+		'ttl' => false,
+		'ttl_display_unit' => false
     ];
 
     /**
@@ -170,8 +174,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'error' => 'error'
+        'enabled' => 'enabled',
+        'ttl' => 'ttl',
+        'ttl_display_unit' => 'ttl_display_unit'
     ];
 
     /**
@@ -180,8 +185,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'error' => 'setError'
+        'enabled' => 'setEnabled',
+        'ttl' => 'setTtl',
+        'ttl_display_unit' => 'setTtlDisplayUnit'
     ];
 
     /**
@@ -190,8 +196,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'error' => 'getError'
+        'enabled' => 'getEnabled',
+        'ttl' => 'getTtl',
+        'ttl_display_unit' => 'getTtlDisplayUnit'
     ];
 
     /**
@@ -235,21 +242,6 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CODE_ACCESS_TOKEN = 'invalid_access_token';
-    public const CODE_NONCE = 'invalid_nonce';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_ACCESS_TOKEN,
-            self::CODE_NONCE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -266,8 +258,9 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], null);
+        $this->setIfExists('ttl', $data ?? [], 300);
+        $this->setIfExists('ttl_display_unit', $data ?? [], null);
     }
 
     /**
@@ -297,21 +290,10 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'code', must be one of '%s'",
-                $this->container['code'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 60)) {
+            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 60.";
         }
 
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -328,65 +310,89 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets enabled
      *
-     * @return string
+     * @return bool|null
      */
-    public function getCode()
+    public function getEnabled()
     {
-        return $this->container['code'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets code
+     * Sets enabled
      *
-     * @param string $code code
+     * @param bool|null $enabled enabled
      *
      * @return self
      */
-    public function setCode($code)
+    public function setEnabled($enabled)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'code', must be one of '%s'",
-                    $code,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
 
     /**
-     * Gets error
+     * Gets ttl
      *
-     * @return string
+     * @return int|null
      */
-    public function getError()
+    public function getTtl()
     {
-        return $this->container['error'];
+        return $this->container['ttl'];
     }
 
     /**
-     * Sets error
+     * Sets ttl
      *
-     * @param string $error error
+     * @param int|null $ttl Maximum time (IN SECONDS) for the auth to expire.
      *
      * @return self
      */
-    public function setError($error)
+    public function setTtl($ttl)
     {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        if (is_null($ttl)) {
+            throw new \InvalidArgumentException('non-nullable ttl cannot be null');
         }
-        $this->container['error'] = $error;
+
+        if (($ttl < 60)) {
+            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateMagicLinkAuthMethod., must be bigger than or equal to 60.');
+        }
+
+        $this->container['ttl'] = $ttl;
+
+        return $this;
+    }
+
+    /**
+     * Gets ttl_display_unit
+     *
+     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
+     * @deprecated
+     */
+    public function getTtlDisplayUnit()
+    {
+        return $this->container['ttl_display_unit'];
+    }
+
+    /**
+     * Sets ttl_display_unit
+     *
+     * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setTtlDisplayUnit($ttl_display_unit)
+    {
+        if (is_null($ttl_display_unit)) {
+            throw new \InvalidArgumentException('non-nullable ttl_display_unit cannot be null');
+        }
+        $this->container['ttl_display_unit'] = $ttl_display_unit;
 
         return $this;
     }
@@ -480,5 +486,3 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

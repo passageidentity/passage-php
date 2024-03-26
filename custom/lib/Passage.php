@@ -107,6 +107,24 @@ class Passage {
         return $this->usersApi->getUser($this->appId, $user_id)['user'];
     }
 
+        /**
+     * Get a user by identifier
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
+     */
+    public function getUserByIdentifier(string $identifier): UserInfo|Model401Error|Model404Error|Model500Error {
+        $users = $this->usersApi->listPaginatedUsers($this->appId, limit: 1, identifier:strtolower($identifier))['users'];
+
+        if (count($users) == 0) {
+            throw new ApiException(
+                "[404] Could not find user with that identifier.",
+                404,
+                null,
+                null);
+        }
+
+        return $this->usersApi->getUser($this->appId, $users[0]['id'])['user'];
+    }
+
     /**
      * Activate a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error

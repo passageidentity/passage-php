@@ -1,9 +1,10 @@
-# # UpdatePasskeysAuthMethod
+# # Model403Error
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled** | **bool** |  | [optional] [default to true]
+**code** | **string** |  |
+**error** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -1,6 +1,6 @@
 <?php
 /**
- * Model401Error
+ * UpdatePasskeysAuthMethod
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Model401Error Class Doc Comment
+ * UpdatePasskeysAuthMethod Class Doc Comment
  *
+ * @deprecated deprecated in version 1.0.0
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = '401Error';
+    protected static $openAPIModelName = 'UpdatePasskeysAuthMethod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +59,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'error' => 'string'
+        'enabled' => 'bool'
     ];
 
     /**
@@ -70,8 +70,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'error' => null
+        'enabled' => null
     ];
 
     /**
@@ -80,8 +79,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-		'error' => false
+        'enabled' => false
     ];
 
     /**
@@ -170,8 +168,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'error' => 'error'
+        'enabled' => 'enabled'
     ];
 
     /**
@@ -180,8 +177,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'error' => 'setError'
+        'enabled' => 'setEnabled'
     ];
 
     /**
@@ -190,8 +186,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'error' => 'getError'
+        'enabled' => 'getEnabled'
     ];
 
     /**
@@ -235,21 +230,6 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CODE_ACCESS_TOKEN = 'invalid_access_token';
-    public const CODE_NONCE = 'invalid_nonce';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getCodeAllowableValues()
-    {
-        return [
-            self::CODE_ACCESS_TOKEN,
-            self::CODE_NONCE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -266,8 +246,7 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], true);
     }
 
     /**
@@ -297,21 +276,6 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'code', must be one of '%s'",
-                $this->container['code'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['error'] === null) {
-            $invalidProperties[] = "'error' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -328,65 +292,28 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets enabled
      *
-     * @return string
+     * @return bool|null
      */
-    public function getCode()
+    public function getEnabled()
     {
-        return $this->container['code'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets code
+     * Sets enabled
      *
-     * @param string $code code
+     * @param bool|null $enabled enabled
      *
      * @return self
      */
-    public function setCode($code)
+    public function setEnabled($enabled)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
-        $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'code', must be one of '%s'",
-                    $code,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets error
-     *
-     * @return string
-     */
-    public function getError()
-    {
-        return $this->container['error'];
-    }
-
-    /**
-     * Sets error
-     *
-     * @param string $error error
-     *
-     * @return self
-     */
-    public function setError($error)
-    {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
-        }
-        $this->container['error'] = $error;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
@@ -480,5 +407,3 @@ class Model401Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

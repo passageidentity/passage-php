@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateOtpAuthMethodTest
+ * PaginatedLinksTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdateOtpAuthMethodTest Class Doc Comment
+ * PaginatedLinksTest Class Doc Comment
  *
  * @category    Class
- * @description UpdateOtpAuthMethod
+ * @description PaginatedLinks
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class UpdateOtpAuthMethodTest extends TestCase
+class PaginatedLinksTest extends TestCase
 {
 
     /**
@@ -72,36 +72,54 @@ class UpdateOtpAuthMethodTest extends TestCase
     }
 
     /**
-     * Test "UpdateOtpAuthMethod"
+     * Test "PaginatedLinks"
      */
-    public function testUpdateOtpAuthMethod()
+    public function testPaginatedLinks()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "enabled"
+     * Test attribute "first"
      */
-    public function testPropertyEnabled()
+    public function testPropertyFirst()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "ttl"
+     * Test attribute "last"
      */
-    public function testPropertyTtl()
+    public function testPropertyLast()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "ttl_display_unit"
+     * Test attribute "next"
      */
-    public function testPropertyTtlDisplayUnit()
+    public function testPropertyNext()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "previous"
+     */
+    public function testPropertyPrevious()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "self"
+     */
+    public function testPropertySelf()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
