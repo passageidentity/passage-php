@@ -162,6 +162,15 @@ class AppInfoTest extends TestCase
     }
 
     /**
+     * Test attribute "auto_theme_enabled"
+     */
+    public function testPropertyAutoThemeEnabled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

@@ -67,6 +67,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'int',
         'auth_methods' => '\OpenAPI\Client\Model\AuthMethods',
         'auth_origin' => 'string',
+        'auto_theme_enabled' => 'bool',
         'created_at' => '\DateTime',
         'default_language' => 'string',
         'id' => 'string',
@@ -116,6 +117,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => null,
         'auth_methods' => null,
         'auth_origin' => null,
+        'auto_theme_enabled' => null,
         'created_at' => 'date-time',
         'default_language' => null,
         'id' => null,
@@ -163,6 +165,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 		'auth_fallback_method_ttl' => false,
 		'auth_methods' => false,
 		'auth_origin' => false,
+		'auto_theme_enabled' => false,
 		'created_at' => false,
 		'default_language' => false,
 		'id' => false,
@@ -290,6 +293,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'auth_fallback_method_ttl',
         'auth_methods' => 'auth_methods',
         'auth_origin' => 'auth_origin',
+        'auto_theme_enabled' => 'auto_theme_enabled',
         'created_at' => 'created_at',
         'default_language' => 'default_language',
         'id' => 'id',
@@ -337,6 +341,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'setAuthFallbackMethodTtl',
         'auth_methods' => 'setAuthMethods',
         'auth_origin' => 'setAuthOrigin',
+        'auto_theme_enabled' => 'setAutoThemeEnabled',
         'created_at' => 'setCreatedAt',
         'default_language' => 'setDefaultLanguage',
         'id' => 'setId',
@@ -384,6 +389,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'getAuthFallbackMethodTtl',
         'auth_methods' => 'getAuthMethods',
         'auth_origin' => 'getAuthOrigin',
+        'auto_theme_enabled' => 'getAutoThemeEnabled',
         'created_at' => 'getCreatedAt',
         'default_language' => 'getDefaultLanguage',
         'id' => 'getId',
@@ -497,6 +503,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('auth_fallback_method_ttl', $data ?? [], null);
         $this->setIfExists('auth_methods', $data ?? [], null);
         $this->setIfExists('auth_origin', $data ?? [], null);
+        $this->setIfExists('auto_theme_enabled', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('default_language', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -582,6 +589,9 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['auth_origin'] === null) {
             $invalidProperties[] = "'auth_origin' can't be null";
+        }
+        if ($this->container['auto_theme_enabled'] === null) {
+            $invalidProperties[] = "'auto_theme_enabled' can't be null";
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
@@ -928,6 +938,33 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable auth_origin cannot be null');
         }
         $this->container['auth_origin'] = $auth_origin;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_theme_enabled
+     *
+     * @return bool
+     */
+    public function getAutoThemeEnabled()
+    {
+        return $this->container['auto_theme_enabled'];
+    }
+
+    /**
+     * Sets auto_theme_enabled
+     *
+     * @param bool $auto_theme_enabled auto_theme_enabled
+     *
+     * @return self
+     */
+    public function setAutoThemeEnabled($auto_theme_enabled)
+    {
+        if (is_null($auto_theme_enabled)) {
+            throw new \InvalidArgumentException('non-nullable auto_theme_enabled cannot be null');
+        }
+        $this->container['auto_theme_enabled'] = $auto_theme_enabled;
 
         return $this;
     }
