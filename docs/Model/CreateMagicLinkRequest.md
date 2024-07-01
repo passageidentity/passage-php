@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **channel** | [**\OpenAPI\Client\Model\MagicLinkChannel**](MagicLinkChannel.md) |  |
 **email** | **string** |  |
 **language** | **string** | language of the email to send (optional) | [optional]
-**magic_link_path** | **string** |  |
+**magic_link_path** | **string** | must be a relative url |
 **phone** | **string** |  |
 **redirect_url** | **string** |  |
 **send** | **bool** |  |

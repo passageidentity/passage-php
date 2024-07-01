@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **email** | **string** |  |
 **email_verified** | **bool** |  |
+**external_id** | **string** | The external ID of the user. Only set if the user was created in a Flex app. |
 **id** | **string** |  |
 **last_login_at** | **\DateTime** |  |
 **login_count** | **int** |  |

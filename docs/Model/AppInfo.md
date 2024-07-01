@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **auth_fallback_method_ttl** | **int** | Deprecated Property. Please refer to &#x60;auth_methods&#x60; to view settings for individual authentication methods. |
 **auth_methods** | [**\OpenAPI\Client\Model\AuthMethods**](AuthMethods.md) |  |
 **auth_origin** | **string** |  |
+**auto_theme_enabled** | **bool** |  |
 **created_at** | **\DateTime** |  |
 **default_language** | **string** |  |
 **id** | **string** |  |
