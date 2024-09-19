@@ -471,7 +471,7 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets magic_link_path
      *
-     * @param string $magic_link_path magic_link_path
+     * @param string $magic_link_path must be a relative url
      *
      * @return self
      */
