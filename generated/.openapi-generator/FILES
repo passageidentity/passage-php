@@ -40,6 +40,7 @@ docs/Model/OtpAuthMethod.md
 docs/Model/PaginatedLinks.md
 docs/Model/PasskeysAuthMethod.md
 docs/Model/Technologies.md
+docs/Model/ThemeType.md
 docs/Model/TtlDisplayUnit.md
 docs/Model/UpdateUserRequest.md
 docs/Model/UserEventStatus.md
@@ -94,6 +95,7 @@ lib/Model/OtpAuthMethod.php
 lib/Model/PaginatedLinks.php
 lib/Model/PasskeysAuthMethod.php
 lib/Model/Technologies.php
+lib/Model/ThemeType.php
 lib/Model/TtlDisplayUnit.php
 lib/Model/UpdateUserRequest.php
 lib/Model/UserEventStatus.php
@@ -145,6 +147,7 @@ test/Model/OtpAuthMethodTest.php
 test/Model/PaginatedLinksTest.php
 test/Model/PasskeysAuthMethodTest.php
 test/Model/TechnologiesTest.php
+test/Model/ThemeTypeTest.php
 test/Model/TtlDisplayUnitTest.php
 test/Model/UpdateUserRequestTest.php
 test/Model/UserEventStatusTest.php
