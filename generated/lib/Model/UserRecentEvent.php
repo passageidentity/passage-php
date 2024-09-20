@@ -64,7 +64,9 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'ip_addr' => 'string',
         'status' => '\OpenAPI\Client\Model\UserEventStatus',
         'type' => 'string',
-        'user_agent' => 'string'
+        'user_agent' => 'string',
+        'action' => '\OpenAPI\Client\Model\UserEventAction',
+        'social_login_type' => '\OpenAPI\Client\Model\SocialConnectionType'
     ];
 
     /**
@@ -81,7 +83,9 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'ip_addr' => null,
         'status' => null,
         'type' => null,
-        'user_agent' => null
+        'user_agent' => null,
+        'action' => null,
+        'social_login_type' => null
     ];
 
     /**
@@ -96,7 +100,9 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
 		'ip_addr' => false,
 		'status' => false,
 		'type' => false,
-		'user_agent' => false
+		'user_agent' => false,
+		'action' => false,
+		'social_login_type' => true
     ];
 
     /**
@@ -191,7 +197,9 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'ip_addr' => 'ip_addr',
         'status' => 'status',
         'type' => 'type',
-        'user_agent' => 'user_agent'
+        'user_agent' => 'user_agent',
+        'action' => 'action',
+        'social_login_type' => 'social_login_type'
     ];
 
     /**
@@ -206,7 +214,9 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'ip_addr' => 'setIpAddr',
         'status' => 'setStatus',
         'type' => 'setType',
-        'user_agent' => 'setUserAgent'
+        'user_agent' => 'setUserAgent',
+        'action' => 'setAction',
+        'social_login_type' => 'setSocialLoginType'
     ];
 
     /**
@@ -221,7 +231,9 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         'ip_addr' => 'getIpAddr',
         'status' => 'getStatus',
         'type' => 'getType',
-        'user_agent' => 'getUserAgent'
+        'user_agent' => 'getUserAgent',
+        'action' => 'getAction',
+        'social_login_type' => 'getSocialLoginType'
     ];
 
     /**
@@ -288,6 +300,8 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('action', $data ?? [], null);
+        $this->setIfExists('social_login_type', $data ?? [], null);
     }
 
     /**
@@ -337,6 +351,12 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['user_agent'] === null) {
             $invalidProperties[] = "'user_agent' can't be null";
+        }
+        if ($this->container['action'] === null) {
+            $invalidProperties[] = "'action' can't be null";
+        }
+        if ($this->container['social_login_type'] === null) {
+            $invalidProperties[] = "'social_login_type' can't be null";
         }
         return $invalidProperties;
     }
@@ -545,6 +565,67 @@ class UserRecentEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
         }
         $this->container['user_agent'] = $user_agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets action
+     *
+     * @return \OpenAPI\Client\Model\UserEventAction
+     */
+    public function getAction()
+    {
+        return $this->container['action'];
+    }
+
+    /**
+     * Sets action
+     *
+     * @param \OpenAPI\Client\Model\UserEventAction $action action
+     *
+     * @return self
+     */
+    public function setAction($action)
+    {
+        if (is_null($action)) {
+            throw new \InvalidArgumentException('non-nullable action cannot be null');
+        }
+        $this->container['action'] = $action;
+
+        return $this;
+    }
+
+    /**
+     * Gets social_login_type
+     *
+     * @return \OpenAPI\Client\Model\SocialConnectionType
+     */
+    public function getSocialLoginType()
+    {
+        return $this->container['social_login_type'];
+    }
+
+    /**
+     * Sets social_login_type
+     *
+     * @param \OpenAPI\Client\Model\SocialConnectionType $social_login_type social_login_type
+     *
+     * @return self
+     */
+    public function setSocialLoginType($social_login_type)
+    {
+        if (is_null($social_login_type)) {
+            array_push($this->openAPINullablesSetToNull, 'social_login_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('social_login_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['social_login_type'] = $social_login_type;
 
         return $this;
     }
