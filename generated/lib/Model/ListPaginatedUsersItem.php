@@ -61,6 +61,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         'created_at' => '\DateTime',
         'email' => 'string',
         'email_verified' => 'bool',
+        'external_id' => 'string',
         'id' => 'string',
         'last_login_at' => '\DateTime',
         'login_count' => 'int',
@@ -82,6 +83,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         'created_at' => 'date-time',
         'email' => null,
         'email_verified' => null,
+        'external_id' => null,
         'id' => null,
         'last_login_at' => 'date-time',
         'login_count' => null,
@@ -101,6 +103,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         'created_at' => false,
 		'email' => false,
 		'email_verified' => false,
+		'external_id' => false,
 		'id' => false,
 		'last_login_at' => false,
 		'login_count' => false,
@@ -200,6 +203,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         'created_at' => 'created_at',
         'email' => 'email',
         'email_verified' => 'email_verified',
+        'external_id' => 'external_id',
         'id' => 'id',
         'last_login_at' => 'last_login_at',
         'login_count' => 'login_count',
@@ -219,6 +223,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         'created_at' => 'setCreatedAt',
         'email' => 'setEmail',
         'email_verified' => 'setEmailVerified',
+        'external_id' => 'setExternalId',
         'id' => 'setId',
         'last_login_at' => 'setLastLoginAt',
         'login_count' => 'setLoginCount',
@@ -238,6 +243,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         'created_at' => 'getCreatedAt',
         'email' => 'getEmail',
         'email_verified' => 'getEmailVerified',
+        'external_id' => 'getExternalId',
         'id' => 'getId',
         'last_login_at' => 'getLastLoginAt',
         'login_count' => 'getLoginCount',
@@ -308,6 +314,7 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('email_verified', $data ?? [], null);
+        $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('last_login_at', $data ?? [], null);
         $this->setIfExists('login_count', $data ?? [], null);
@@ -353,6 +360,9 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
         }
         if ($this->container['email_verified'] === null) {
             $invalidProperties[] = "'email_verified' can't be null";
+        }
+        if ($this->container['external_id'] === null) {
+            $invalidProperties[] = "'external_id' can't be null";
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
@@ -470,6 +480,33 @@ class ListPaginatedUsersItem implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable email_verified cannot be null');
         }
         $this->container['email_verified'] = $email_verified;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_id
+     *
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return $this->container['external_id'];
+    }
+
+    /**
+     * Sets external_id
+     *
+     * @param string $external_id The external ID of the user. Only set if the user was created in a Flex app.
+     *
+     * @return self
+     */
+    public function setExternalId($external_id)
+    {
+        if (is_null($external_id)) {
+            throw new \InvalidArgumentException('non-nullable external_id cannot be null');
+        }
+        $this->container['external_id'] = $external_id;
 
         return $this;
     }
