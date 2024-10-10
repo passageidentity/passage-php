@@ -253,6 +253,7 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
     public const CODE_SMS_TEMPLATE_NOT_FOUND = 'sms_template_not_found';
     public const CODE_SOCIAL_CONNECTION_NOT_FOUND = 'social_connection_not_found';
     public const CODE_USER_NOT_FOUND = 'user_not_found';
+    public const CODE_NATIVE_CLIENT_NOT_FOUND = 'native_client_not_found';
 
     /**
      * Gets allowable values of the enum
@@ -280,6 +281,7 @@ class Model404Error implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CODE_SMS_TEMPLATE_NOT_FOUND,
             self::CODE_SOCIAL_CONNECTION_NOT_FOUND,
             self::CODE_USER_NOT_FOUND,
+            self::CODE_NATIVE_CLIENT_NOT_FOUND,
         ];
     }
 

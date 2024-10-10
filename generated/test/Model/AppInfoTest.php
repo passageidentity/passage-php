@@ -162,6 +162,15 @@ class AppInfoTest extends TestCase
     }
 
     /**
+     * Test attribute "auto_theme_enabled"
+     */
+    public function testPropertyAutoThemeEnabled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
@@ -246,6 +255,15 @@ class AppInfoTest extends TestCase
      * Test attribute "hosted_subdomain"
      */
     public function testPropertyHostedSubdomain()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "hosted_theme"
+     */
+    public function testPropertyHostedTheme()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
