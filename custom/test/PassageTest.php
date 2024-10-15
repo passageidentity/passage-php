@@ -3,6 +3,7 @@
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
 use OpenAPI\Client\Model\CreateUserRequest;
 use OpenAPI\Client\Model\UpdateUserRequest;
@@ -36,6 +37,14 @@ class PassageTest extends TestCase {
         $this->expectExceptionMessage('Too few arguments to function Passage\Client\Passage::__construct()');
 
         new Passage('123456');
+    }
+
+    public function testPassageVersionHeader()
+    {
+        $headerSelector = new HeaderSelector();
+        $headers = $headerSelector->selectHeaders(['application/json'], 'application/json', false);
+
+        $this->assertMatchesRegularExpression('/^passage-php \d+\.\d+\.\d+$/', $headers['Passage-Version']);
     }
 
     public function testConstructorWithAppId()
