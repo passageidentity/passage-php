@@ -35,12 +35,15 @@ add_passage_version_header() {
 
   sed -i "/return \$headers;/i \\
         $header_comment\\
+        \$packageVersion = 'unknown';\\
+\\
         try {\\
             \$packageVersion = \\\\Composer\\\\InstalledVersions::getPrettyVersion('passageidentity/$package_name');\\
-            \$headers['Passage-Version'] = '$package_name ' . \$packageVersion;\\
         } catch (\\\\Throwable \$ignored) {\\
             // Don't throw an exception if we can't determine the package version\\
         }\\
+\\
+        \$headers['Passage-Version'] = '$package_name ' . \$packageVersion;\\
 " \
   generated/lib/HeaderSelector.php
 }

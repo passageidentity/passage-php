@@ -62,12 +62,15 @@ class HeaderSelector
         }
 
         // Add Passage version header
+        $packageVersion = 'unknown';
+
         try {
             $packageVersion = \Composer\InstalledVersions::getPrettyVersion('passageidentity/passage-php');
-            $headers['Passage-Version'] = 'passage-php ' . $packageVersion;
         } catch (\Throwable $ignored) {
             // Don't throw an exception if we can't determine the package version
         }
+
+        $headers['Passage-Version'] = 'passage-php ' . $packageVersion;
 
         return $headers;
     }
