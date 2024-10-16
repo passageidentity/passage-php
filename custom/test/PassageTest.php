@@ -21,7 +21,7 @@ class PassageTest extends TestCase {
         parent::setUp();
 
         require __DIR__ . '/../../vendor/autoload.php';
-        Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->load();
+        Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->safeLoad();
 
         $this->appId = getenv('APP_ID');
         $this->apiKey = getenv('API_KEY');
