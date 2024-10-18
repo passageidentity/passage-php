@@ -80,7 +80,7 @@ class Authentication {
             $audience = $decodedToken->aud;
 
             if (is_string($audience)) {
-              $audience = array($audience)
+              $audience = array($audience);
             }
 
             if (empty($audience)) {
@@ -90,7 +90,7 @@ class Authentication {
               );
             }
 
-            $appInfo = $this->passage->getApp()
+            $appInfo = $this->passage->getApp();
             if ($appInfo['hosted']) {
               if (!in_array($appInfo['id'], $audience)) {
                 throw new ApiException(
