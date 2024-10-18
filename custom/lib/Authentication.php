@@ -79,11 +79,32 @@ class Authentication {
             $decodedToken = JWT::decode($jwtString, $this->jwks);
             $audience = $decodedToken->aud;
 
+            if is_string($audience) {
+              $audience = array($audience)
+            }
+
             if (empty($audience)) {
               throw new ApiException(
                 'Could not verify audience',
                 401
               );
+            }
+
+            $appInfo = $this->passage->getApp()
+            if $appInfo['hosted'] {
+              if !in_array($appInfo['id'], $audience) {
+                throw new ApiException(
+                  'Could not verify audience',
+                  401
+                );
+              }
+            } else {
+              if !in_array($appInfo['auth_origin'], $audience) {
+                throw new ApiException(
+                  'Could not verify audience',
+                  401
+                );
+              }
             }
 
             $appId = $this->passage->getAppId();
