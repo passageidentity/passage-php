@@ -77,6 +77,23 @@ class Authentication {
             }
 
             $decodedToken = JWT::decode($jwtString, $this->jwks);
+            $audience = $decodedToken->aud;
+
+            if (empty($audience)) {
+              throw new ApiException(
+                'Could not verify audience',
+                401
+              );
+            }
+
+            $appId = $this->passage->getAppId();
+            if (!in_array($appId, $audience)) {
+              throw new ApiException(
+                'Could not verify audience',
+                401
+              );
+            }
+
             $userID = $decodedToken->sub;
       
             if ($userID) {
