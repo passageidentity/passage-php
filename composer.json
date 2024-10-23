@@ -1,15 +1,25 @@
 {
     "name": "passageidentity/passage-php",
-    "description": "Passage's management API to manage your Passage apps and users.",
-    "version": "0.4.0",
+    "description": "Passkey Complete for PHP - Integrate into your PHP API or service to enable a completely passwordless standalone auth solution with Passage by 1Password.",
+    "version": "0.4.1",
     "keywords": [
-        "passage",
-        "identity",
-        "passageidentity",
         "authentication",
-        "login"
+        "passkeys",
+        "passwordless",
+        "webauthn",
+        "passkey-complete",
+        "biometrics",
+        "ciam",
+        "identity",
+        "magic-links",
+        "oauth2",
+        "oidc",
+        "otp",
+        "1password",
+        "passage",
+        "passage-sdk"
     ],
-    "homepage": "https://passage.id",
+    "homepage": "http://docs.passage.id/complete",
     "license": "MIT",
     "authors": [
         {
