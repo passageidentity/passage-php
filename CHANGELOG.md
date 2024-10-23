@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [0.4.0] - 2024-03-21
+
+### Added
+
+- Update to the new README template, updated license, updated metadata in composer.json
+
 ### Added
 
 - `Passage-Version` header added to all API requests

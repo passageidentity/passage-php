@@ -1,134 +1,84 @@
-<img src="https://storage.googleapis.com/passage-docs/passage-logo-gradient.svg" alt="Passage logo" style="width:250px;"/>
-
-# passage-php
+![passage-php](https://storage.googleapis.com/passage-docs/github-md-assets/passage-php.png)
 
 
-This PHP SDK allows for verification of server-side authentication for applications using [Passage](https://passage.id)
+![GitHub License](https://img.shields.io/github/license/passageidentity/passage-node)
+![Static Badge](https://img.shields.io/badge/Built_by_1Password-grey?logo=1password)
 
-For more information, please visit [Passage Documentation](https://docs.passage.id).
+## About
 
+[Passage by 1Password](https://1password.com/product/passage) unlocks the passwordless future with a simpler, more secure passkey authentication experience. Passage handles the complexities of the [WebAuthn API](https://blog.1password.com/what-is-webauthn/), and allows you to implement passkeys with ease.
 
-## Installation & Usage
+Use [Passkey Flex](https://docs.passage.id/flex) to add passkeys to an existing authentication experience.
 
-### Requirements
+Use [Passkey Complete](https://docs.passage.id/complete) as a standalone passwordless auth solution.
 
-PHP 7.4 and later.
-Should also work with PHP 8.0.
+Use [Passkey Ready](https://docs.passage.id/passkey-ready) to determine if your users are ready for passkeys.
 
-### Composer
+### In passage-node
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+Use passage-php to implement Passkey Complete into your PHP backend to authenticate requests and manage users.
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
-    }
-  ],
-  "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
-  }
-}
-```
+| Product | Compatible |
+| --- | --- |
+| ![Passkey Flex](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-flex-icon.png) Passkey **Flex** | ✖️ For Passkey Flex, check out the [Passkey Flex APIs](https://docs.passage.id/flex/apis)
+| ![Passkey Complete](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-complete-icon.png) Passkey **Complete** | ✅
+| ![Passkey Ready](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-ready-icon.png) Passkey **Ready** | ✖️ For Passkey Ready, check out [Authentikit](https://www.npmjs.com/package/@passageidentity/authentikit)
 
-Then run `composer install`
-
-### Manual Installation
-
-Download the files and include `autoload.php`:
-
-```php
-<?php
-require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
-```
+<br />
 
 ## Getting Started
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+### Check Prerequisites
+
+<p>
+ You'll need a free Passage account and a Passkey Complete app set up in <a href="https://console.passage.id/">Passage Console</a> to get started. <br />
+ <sub><a href="https://docs.passage.id/home#passage-console">Learn more about Passage Console →</a></sub>
+</p>
+
+### Install
+
+```shell
+composer require passageidentity/passage-php
+```
+
+### Import
 
 ```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
+use Passage\Client\Controllers\Passage;
+```
 
-$app_id = 'app_id_example'; // string | App ID
-$api_key = 'app_id_example'; // string | App ID
-$passageInstance = new Passage\Client\Controllers\Passage(
+### Initialize
+
+```php
+$app_id = 'YOUR_PASSAGE_APP_ID';
+$api_key = 'YOUR_PASSAGE_API_KEY';
+$passage = new Passage(
   $app_id,
   $api_key
 );
-
-try {
-    $result = $passageInstance->getApp($app_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AppsApi->getApp: ', $e->getMessage(), PHP_EOL;
-}
-
 ```
 
-## API Endpoints
+### Go Passwordless
 
-All URIs are relative to *https://api.passage.id/v1*
+Find all core functions, user management details, and more implementation guidance on our [Passkey Complete PHP Documentation](https://docs.passage.id/complete/backend-sdks/php) page.
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*AppsApi* | [**getApp**](docs/Passage/AppsApi.md#getapp) | **GET** /apps/{app_id} | Get App
-*MagicLinksApi* | [**createMagicLink**](docs/Passage/MagicLinksApi.md#createmagiclink) | **POST** /apps/{app_id}/magic-links | Create Embeddable Magic Link
-*TokensApi* | [**revokeUserRefreshTokens**](docs/Passage/TokensApi.md#revokeuserrefreshtokens) | **DELETE** /apps/{app_id}/users/{user_id}/tokens | Revokes refresh tokens
-*UserDevicesApi* | [**deleteUserDevices**](docs/Passage/UserDevicesApi.md#deleteuserdevices) | **DELETE** /apps/{app_id}/users/{user_id}/devices/{device_id} | Delete a device for a user
-*UserDevicesApi* | [**listUserDevices**](docs/Passage/UserDevicesApi.md#listuserdevices) | **GET** /apps/{app_id}/users/{user_id}/devices | List User Devices
-*UsersApi* | [**activateUser**](docs/Passage/UsersApi.md#activateuser) | **PATCH** /apps/{app_id}/users/{user_id}/activate | Activate User
-*UsersApi* | [**createUser**](docs/Passage/UsersApi.md#createuser) | **POST** /apps/{app_id}/users | Create User
-*UsersApi* | [**deactivateUser**](docs/Passage/UsersApi.md#deactivateuser) | **PATCH** /apps/{app_id}/users/{user_id}/deactivate | Deactivate User
-*UsersApi* | [**deleteUser**](docs/Passage/UsersApi.md#deleteuser) | **DELETE** /apps/{app_id}/users/{user_id} | Delete User
-*UsersApi* | [**getUser**](docs/Passage/UsersApi.md#getuser) | **GET** /apps/{app_id}/users/{user_id} | Get User
-*UsersApi* | [**getUserByIdentifier**](docs/Passage/UsersApi.md#getuserbyidentifier) | **GET** /apps/{app_id}/users | Get User By Identifier
-*UsersApi* | [**updateUser**](docs/Passage/UsersApi.md#updateuser) | **PATCH** /apps/{app_id}/users/{user_id} | Update User
+## Support & Feedback
 
-## Models
+We are here to help! Find additional docs, the best ways to get in touch with our team, and more within our [support resources](https://github.com/passageidentity/.github/blob/main/SUPPORT.md).
 
-- [AppInfo](docs/Model/AppInfo.md)
-- [AppResponse](docs/Model/AppResponse.md)
-- [CreateMagicLinkRequest](docs/Model/CreateMagicLinkRequest.md)
-- [CreateUserRequest](docs/Model/CreateUserRequest.md)
-- [ElementCustomization](docs/Model/ElementCustomization.md)
-- [FontFamily](docs/Model/FontFamily.md)
-- [LayoutConfig](docs/Model/LayoutConfig.md)
-- [Layouts](docs/Model/Layouts.md)
-- [ListDevicesResponse](docs/Model/ListDevicesResponse.md)
-- [MagicLink](docs/Model/MagicLink.md)
-- [MagicLinkResponse](docs/Model/MagicLinkResponse.md)
-- [MagicLinkType](docs/Model/MagicLinkType.md)
-- [Model400Error](docs/Model/Model400Error.md)
-- [Model401Error](docs/Model/Model401Error.md)
-- [Model404Error](docs/Model/Model404Error.md)
-- [Model500Error](docs/Model/Model500Error.md)
-- [Technologies](docs/Model/Technologies.md)
-- [UpdateUserRequest](docs/Model/UpdateUserRequest.md)
-- [UserEventInfo](docs/Model/UserEventInfo.md)
-- [UserInfo](docs/Model/UserInfo.md)
-- [UserMetadataField](docs/Model/UserMetadataField.md)
-- [UserMetadataFieldType](docs/Model/UserMetadataFieldType.md)
-- [UserResponse](docs/Model/UserResponse.md)
-- [WebAuthnDevices](docs/Model/WebAuthnDevices.md)
+<br />
 
-## Authorization
+---
 
-Authentication schemes defined for the API:
-### bearerAuth
+<p align="center">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-light.png">
+      <img alt="Passage by 1Password Logo" src="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-light.png">
+    </picture>
+</p>
 
-**Type**: Bearer authentication (JWT)
-
-**Method**: [validateJWT](docs/Passage/Authentication.md#validatejwt)
-
-## Tests
-
-To run the tests, use:
-
-```bash
-composer install
-vendor/bin/phpunit
-```
-
+<p align="center">
+    <sub>Passage is a product by <a href="https://1password.com/product/passage">1Password</a>, the global leader in access management solutions with nearly 150k business customers.</sub><br />
+    <sub>This project is licensed under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</sub>
+</p>
