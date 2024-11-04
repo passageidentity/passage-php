@@ -1,8 +1,9 @@
-name: Run Tests on PR
+name: Lint, Format, and Test
 
 on:
-  pull_request:
+  workflow_call:
   workflow_dispatch:
+  pull_request:
 
 env:
   API_KEY: ${{ secrets.API_KEY }}
@@ -11,16 +12,37 @@ env:
   EXAMPLE_USER_ID: ${{ secrets.EXAMPLE_USER_ID }}
 
 jobs:
-  test:
-    name: Run Tests on PR
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install Dependencies
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: phpcs, cs2pr
+      - name: Lint
+        run: phpcs -q --report=checkstyle custom | cs2pr
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: php-cs-fixer, cs2pr
+      - name: Format
+        run: php-cs-fixer fix --dry-run --allow-risky=yes --format=checkstyle | cs2pr
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+      - name: Install dependencies
         run: composer install
-
-      - name: Unit Test
+      - name: Test
         run: ./vendor/bin/phpunit custom/test/
