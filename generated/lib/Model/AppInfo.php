@@ -67,6 +67,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'int',
         'auth_methods' => '\OpenAPI\Client\Model\AuthMethods',
         'auth_origin' => 'string',
+        'auto_theme_enabled' => 'bool',
         'created_at' => '\DateTime',
         'default_language' => 'string',
         'id' => 'string',
@@ -77,6 +78,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'hosted' => 'bool',
         'hosted_subdomain' => 'string',
+        'hosted_theme' => '\OpenAPI\Client\Model\ThemeType',
         'id_token_lifetime' => 'int',
         'passage_branding' => 'bool',
         'profile_management' => 'bool',
@@ -116,6 +118,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => null,
         'auth_methods' => null,
         'auth_origin' => null,
+        'auto_theme_enabled' => null,
         'created_at' => 'date-time',
         'default_language' => null,
         'id' => null,
@@ -126,6 +129,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'hosted' => null,
         'hosted_subdomain' => null,
+        'hosted_theme' => null,
         'id_token_lifetime' => null,
         'passage_branding' => null,
         'profile_management' => null,
@@ -163,6 +167,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 		'auth_fallback_method_ttl' => false,
 		'auth_methods' => false,
 		'auth_origin' => false,
+		'auto_theme_enabled' => false,
 		'created_at' => false,
 		'default_language' => false,
 		'id' => false,
@@ -173,6 +178,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 		'name' => false,
 		'hosted' => false,
 		'hosted_subdomain' => false,
+		'hosted_theme' => false,
 		'id_token_lifetime' => false,
 		'passage_branding' => false,
 		'profile_management' => false,
@@ -290,6 +296,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'auth_fallback_method_ttl',
         'auth_methods' => 'auth_methods',
         'auth_origin' => 'auth_origin',
+        'auto_theme_enabled' => 'auto_theme_enabled',
         'created_at' => 'created_at',
         'default_language' => 'default_language',
         'id' => 'id',
@@ -300,6 +307,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'hosted' => 'hosted',
         'hosted_subdomain' => 'hosted_subdomain',
+        'hosted_theme' => 'hosted_theme',
         'id_token_lifetime' => 'id_token_lifetime',
         'passage_branding' => 'passage_branding',
         'profile_management' => 'profile_management',
@@ -337,6 +345,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'setAuthFallbackMethodTtl',
         'auth_methods' => 'setAuthMethods',
         'auth_origin' => 'setAuthOrigin',
+        'auto_theme_enabled' => 'setAutoThemeEnabled',
         'created_at' => 'setCreatedAt',
         'default_language' => 'setDefaultLanguage',
         'id' => 'setId',
@@ -347,6 +356,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'hosted' => 'setHosted',
         'hosted_subdomain' => 'setHostedSubdomain',
+        'hosted_theme' => 'setHostedTheme',
         'id_token_lifetime' => 'setIdTokenLifetime',
         'passage_branding' => 'setPassageBranding',
         'profile_management' => 'setProfileManagement',
@@ -384,6 +394,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'auth_fallback_method_ttl' => 'getAuthFallbackMethodTtl',
         'auth_methods' => 'getAuthMethods',
         'auth_origin' => 'getAuthOrigin',
+        'auto_theme_enabled' => 'getAutoThemeEnabled',
         'created_at' => 'getCreatedAt',
         'default_language' => 'getDefaultLanguage',
         'id' => 'getId',
@@ -394,6 +405,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'hosted' => 'getHosted',
         'hosted_subdomain' => 'getHostedSubdomain',
+        'hosted_theme' => 'getHostedTheme',
         'id_token_lifetime' => 'getIdTokenLifetime',
         'passage_branding' => 'getPassageBranding',
         'profile_management' => 'getProfileManagement',
@@ -497,6 +509,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('auth_fallback_method_ttl', $data ?? [], null);
         $this->setIfExists('auth_methods', $data ?? [], null);
         $this->setIfExists('auth_origin', $data ?? [], null);
+        $this->setIfExists('auto_theme_enabled', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('default_language', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -507,6 +520,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('hosted', $data ?? [], null);
         $this->setIfExists('hosted_subdomain', $data ?? [], null);
+        $this->setIfExists('hosted_theme', $data ?? [], null);
         $this->setIfExists('id_token_lifetime', $data ?? [], null);
         $this->setIfExists('passage_branding', $data ?? [], null);
         $this->setIfExists('profile_management', $data ?? [], null);
@@ -583,6 +597,9 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['auth_origin'] === null) {
             $invalidProperties[] = "'auth_origin' can't be null";
         }
+        if ($this->container['auto_theme_enabled'] === null) {
+            $invalidProperties[] = "'auto_theme_enabled' can't be null";
+        }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -606,6 +623,9 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['hosted_subdomain'] === null) {
             $invalidProperties[] = "'hosted_subdomain' can't be null";
+        }
+        if ($this->container['hosted_theme'] === null) {
+            $invalidProperties[] = "'hosted_theme' can't be null";
         }
         if ($this->container['passage_branding'] === null) {
             $invalidProperties[] = "'passage_branding' can't be null";
@@ -933,6 +953,35 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets auto_theme_enabled
+     *
+     * @return bool
+     * @deprecated
+     */
+    public function getAutoThemeEnabled()
+    {
+        return $this->container['auto_theme_enabled'];
+    }
+
+    /**
+     * Sets auto_theme_enabled
+     *
+     * @param bool $auto_theme_enabled Deprecated Property. Please use `hosted_theme` to set hosted page theming instead.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setAutoThemeEnabled($auto_theme_enabled)
+    {
+        if (is_null($auto_theme_enabled)) {
+            throw new \InvalidArgumentException('non-nullable auto_theme_enabled cannot be null');
+        }
+        $this->container['auto_theme_enabled'] = $auto_theme_enabled;
+
+        return $this;
+    }
+
+    /**
      * Gets created_at
      *
      * @return \DateTime
@@ -1161,7 +1210,7 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets hosted
      *
-     * @param bool $hosted whether or not the app's login page hosted by passage
+     * @param bool $hosted whether or not the app's login page is hosted by Passage
      *
      * @return self
      */
@@ -1198,6 +1247,33 @@ class AppInfo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable hosted_subdomain cannot be null');
         }
         $this->container['hosted_subdomain'] = $hosted_subdomain;
+
+        return $this;
+    }
+
+    /**
+     * Gets hosted_theme
+     *
+     * @return \OpenAPI\Client\Model\ThemeType
+     */
+    public function getHostedTheme()
+    {
+        return $this->container['hosted_theme'];
+    }
+
+    /**
+     * Sets hosted_theme
+     *
+     * @param \OpenAPI\Client\Model\ThemeType $hosted_theme hosted_theme
+     *
+     * @return self
+     */
+    public function setHostedTheme($hosted_theme)
+    {
+        if (is_null($hosted_theme)) {
+            throw new \InvalidArgumentException('non-nullable hosted_theme cannot be null');
+        }
+        $this->container['hosted_theme'] = $hosted_theme;
 
         return $this;
     }
