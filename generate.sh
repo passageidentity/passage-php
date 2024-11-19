@@ -9,12 +9,11 @@ fi
 file="$1"
 
 rm -rf ./generated
-npm install @openapitools/openapi-generator-cli -g
 
-openapi-generator-cli generate \
-  -i "$file" \
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:latest generate \
+  -i "/local/$file" \
   -g php \
-  -o ./generated \
+  -o /local/generated \
   --additional-properties=modelPropertyNaming=original
 
 rm generated/composer.json

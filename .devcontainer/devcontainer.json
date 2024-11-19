@@ -1,0 +1,20 @@
+{
+	"name": "PHP",
+	"image": "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye",
+	"features": {
+		"ghcr.io/itsmechlark/features/act:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"arahata.linter-actionlint",
+				"DEVSENSE.phptools-vscode",
+				"junstyle.php-cs-fixer",
+				"-dbaeumer.vscode-eslint",
+				"-mrmlnc.vscode-apache"
+			]
+		}
+	},
+	"postCreateCommand": "composer install"
+}
