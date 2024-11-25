@@ -12,17 +12,20 @@ use OpenAPI\Client\ApiException;
 
 require 'vendor/autoload.php';
 
-class Authentication {
+class Authentication
+{
     private $passage;
     private $jwks;
 
     /**
      * Initialize a new Passage instance.
+     *
      * @param Passage $passage
      * 
      * @throws \InvalidArgumentException
      */
-    public function __construct(Passage $passage) {
+    public function __construct(Passage $passage)
+    {
         $this->passage = $passage;
 
         $appId = $this->passage->getAppId();
@@ -34,10 +37,11 @@ class Authentication {
     /**
      * Returns the JWKS for the current app
      *
-     * @param string $url
+     * @param  string $url
      * @return CachedKeySet UserId of the Passage user
-    */
-    private function fetchJWKS(string $url): CachedKeySet {
+     */
+    private function fetchJWKS(string $url): CachedKeySet
+    {
         $httpClient = new Client();
         $httpFactory = new HttpFactory();
 
@@ -59,10 +63,11 @@ class Authentication {
      * Determine if the provided token is valid when compared with its
      * respective public key.
      *
-     * @param string Authentication token
+     * @param  string Authentication token
      * @return string sub claim if the jwt can be verified, or Error
-    */
-    public function validateJWT(string $jwtString): string | null {
+     */
+    public function validateJWT(string $jwtString): string | null
+    {
         try {
             $decodedHeader = JWT::urlsafeB64Decode(explode('.', $jwtString)[0]);
             $header = json_decode($decodedHeader);
@@ -70,27 +75,27 @@ class Authentication {
             $kid = $header->kid;
 
             if (!$kid) {
-              throw new ApiException(
-                'Could not verify token: Missing kid in token',
-                401
-              );
+                throw new ApiException(
+                    'Could not verify token: Missing kid in token',
+                    401
+                );
             }
 
             $decodedToken = JWT::decode($jwtString, $this->jwks);
             $userID = $decodedToken->sub;
       
             if ($userID) {
-              return strval($userID);
+                return strval($userID);
             } else {
-              throw new ApiException(
-                'Could not verify token: Could not retrieve user id',
-                401
-              );
+                throw new ApiException(
+                    'Could not verify token: Could not retrieve user id',
+                    401
+                );
             }
-          } catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new ApiException(
-              'Could not verify token: ' . $e->getMessage(),
-              401
+                'Could not verify token: ' . $e->getMessage(),
+                401
             );
         }
     }

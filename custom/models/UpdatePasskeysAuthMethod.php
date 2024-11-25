@@ -36,10 +36,10 @@ use \OpenAPI\Client\ObjectSerializer;
  * UpdatePasskeysAuthMethod Class Doc Comment
  *
  * @deprecated deprecated in version 1.0.0
- * @category Class
- * @package  OpenAPI\Client
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ * @category   Class
+ * @package    OpenAPI\Client
+ * @author     OpenAPI Generator team
+ * @link       https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -47,46 +47,46 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'UpdatePasskeysAuthMethod';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'enabled' => 'bool'
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @var         string[]
+     * @phpstan-var array<string, string|null>
+     * @psalm-var   array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'enabled' => null
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization
+     *
+     * @var boolean[]
+     */
     protected static array $openAPINullables = [
         'enabled' => false
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here
+     *
+     * @var boolean[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
@@ -142,7 +142,7 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Checks if a property is nullable
      *
-     * @param string $property
+     * @param  string $property
      * @return bool
      */
     public static function isNullable(string $property): bool
@@ -153,7 +153,7 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Checks if a nullable property is set to null.
      *
-     * @param string $property
+     * @param  string $property
      * @return bool
      */
     public function isNullableSetToNull(string $property): bool
@@ -250,14 +250,14 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array
+     *
+     * @param string $variableName
+     * @param array  $fields
+     * @param mixed  $defaultValue
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -373,6 +373,7 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
+     *
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
@@ -381,7 +382,7 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

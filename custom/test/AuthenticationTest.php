@@ -8,7 +8,8 @@ use Passage\Client\Passage;
 
 
 
-class AuthenticationTest extends TestCase {
+class AuthenticationTest extends TestCase
+{
     private $appId;
     private $apiKey;
     private $appToken;
@@ -18,7 +19,7 @@ class AuthenticationTest extends TestCase {
     {
         parent::setUp();
 
-        require __DIR__ . '/../../vendor/autoload.php';
+        include __DIR__ . '/../../vendor/autoload.php';
         Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->safeLoad();
 
         $this->appId = getenv('APP_ID');
@@ -27,7 +28,8 @@ class AuthenticationTest extends TestCase {
         $this->userId = getenv('EXAMPLE_USER_ID');
     }
 
-    public function testValidJWT() {
+    public function testValidJWT()
+    {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
         
@@ -37,7 +39,8 @@ class AuthenticationTest extends TestCase {
         $this->assertEquals($this->userId, $user);
     }
 
-    public function testInvalidJWT() {
+    public function testInvalidJWT()
+    {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
         
