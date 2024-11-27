@@ -26,6 +26,7 @@ class Authentication
      */
     public function __construct(Passage $passage)
     {
+        // require_once 'vendor/autoload.php';
         $this->passage = $passage;
 
         $appId = $this->passage->getAppId();

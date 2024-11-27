@@ -1,5 +1,7 @@
 <?php
 
+namespace Passage\Test;
+
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
@@ -175,7 +177,7 @@ class PassageTest extends TestCase
 
     public function testGetUserByIdentifierError()
     {
-        $this->expectException(Error::class);
+        $this->expectException(\Error::class);
         $errorEmail = 'error@passage.id';
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
