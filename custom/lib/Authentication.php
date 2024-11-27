@@ -10,8 +10,6 @@ use Firebase\JWT\CachedKeySet;
 use Phpfastcache\CacheManager;
 use OpenAPI\Client\ApiException;
 
-require 'vendor/autoload.php';
-
 class Authentication
 {
     private $passage;
@@ -26,7 +24,6 @@ class Authentication
      */
     public function __construct(Passage $passage)
     {
-        // require_once 'vendor/autoload.php';
         $this->passage = $passage;
 
         $appId = $this->passage->getAppId();

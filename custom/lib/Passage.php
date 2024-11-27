@@ -119,11 +119,11 @@ class Passage
         return $this->usersApi->getUser($this->appId, $user_id)['user'];
     }
 
-        /**
-         * Get a user by identifier
-         *
-         * @return UserInfo|Model401Error|Model404Error|Model500Error
-         */
+    /**
+     * Get a user by identifier
+     *
+     * @return UserInfo|Model401Error|Model404Error|Model500Error
+     */
     public function getUserByIdentifier(string $identifier): UserInfo|Model401Error|Model404Error|Model500Error
     {
         $users = $this->usersApi->listPaginatedUsers(

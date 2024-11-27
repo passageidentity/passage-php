@@ -33,7 +33,7 @@ jobs:
           php-version: '8.3'
           tools: php-cs-fixer, cs2pr
       - name: Format
-        run: php-cs-fixer fix --dry-run --allow-risky=yes --format=checkstyle | cs2pr
+        run: php-cs-fixer fix --dry-run --allow-risky=yes --format=checkstyle --rules=@PSR12 | cs2pr
   test:
     name: Test
     runs-on: ubuntu-latest
