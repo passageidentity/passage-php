@@ -28,7 +28,8 @@
         }
     ],
     "scripts": {
-        "lint": "./vendor/bin/phpcs --report=full custom"
+        "lint": "./vendor/bin/phpcs  --standard=PSR12 --report=full custom",
+        "lint-fix": "./vendor/bin/phpcbf  --standard=PSR12 custom"
     },
     "require": {
         "php": "^7.4 || ^8.0",

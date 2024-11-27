@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdatePasskeysAuthMethod
  *
@@ -29,8 +30,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use OpenAPI\Client\ObjectSerializer;
 
 /**
  * UpdatePasskeysAuthMethod Class Doc Comment
@@ -260,8 +261,10 @@ class UpdatePasskeysAuthMethod implements ModelInterface, ArrayAccess, \JsonSeri
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        if self::isNullable($variableName) {
+            && array_key_exists($variableName, $fields)
+            && is_null($fields[$variableName])
+            ) $this->openAPINullablesSetToNull[] = $variableName;
         }
 
         $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;

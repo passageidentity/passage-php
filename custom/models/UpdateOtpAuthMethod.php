@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateOtpAuthMethod
  *
@@ -29,8 +30,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use OpenAPI\Client\ObjectSerializer;
 
 /**
  * UpdateOtpAuthMethod Class Doc Comment
@@ -274,7 +275,11 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields)
+            && is_null($fields[$variableName])
+        ) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
@@ -360,7 +365,9 @@ class UpdateOtpAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializa
         }
 
         if (($ttl < 60)) {
-            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateOtpAuthMethod., must be bigger than or equal to 60.');
+            throw new \InvalidArgumentException(
+                'invalid value for $ttl when calling UpdateOtpAuthMethod., must be bigger than or equal to 60.'
+            );
         }
 
         $this->container['ttl'] = $ttl;

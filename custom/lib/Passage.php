@@ -3,13 +3,11 @@
 namespace Passage\Client;
 
 use OpenAPI\Client\Configuration;
-
 use OpenAPI\Client\Api\AppsApi;
 use OpenAPI\Client\Api\MagicLinksApi;
 use OpenAPI\Client\Api\TokensApi;
 use OpenAPI\Client\Api\UsersApi;
 use OpenAPI\Client\Api\UserDevicesApi;
-
 use OpenAPI\Client\Model\AppInfo;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
 use OpenAPI\Client\Model\CreateUserRequest;
@@ -34,7 +32,7 @@ class Passage
      *
      * @param appId  $appId  Passage app id (required)
      * @param apiKey $apiKey Passage api key (required)
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct(string $appId, string $apiKey)
@@ -59,9 +57,6 @@ class Passage
     }
 
     /**
-     * @param string $app_id      App ID (required)
-     * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getApp'] to see the possible values for this operation
-     *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return AppInfo|Model401Error|Model404Error|Model500Error
@@ -77,8 +72,9 @@ class Passage
      *
      * @return MagicLink|Model401Error|Model404Error|Model500Error MagicLink object
      */
-    public function createMagicLink(CreateMagicLinkRequest $create_magic_link_request): MagicLink|Model401Error|Model404Error|Model500Error
-    {
+    public function createMagicLink(
+        CreateMagicLinkRequest $create_magic_link_request
+    ): MagicLink|Model401Error|Model404Error|Model500Error {
         $magicLinksApi = new MagicLinksApi(null, $this->clientConfiguration);
         return $magicLinksApi->createMagicLink($this->appId, $create_magic_link_request)['magic_link'];
     }
@@ -130,7 +126,11 @@ class Passage
          */
     public function getUserByIdentifier(string $identifier): UserInfo|Model401Error|Model404Error|Model500Error
     {
-        $users = $this->usersApi->listPaginatedUsers($this->appId, limit: 1, identifier:strtolower($identifier))['users'];
+        $users = $this->usersApi->listPaginatedUsers(
+            $this->appId,
+            limit: 1,
+            identifier: strtolower($identifier)
+        )['users'];
 
         if (count($users) == 0) {
             throw new ApiException(
@@ -159,8 +159,9 @@ class Passage
      *
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function createUser(CreateUserRequest $create_user_request): UserInfo|Model401Error|Model404Error|Model500Error
-    {
+    public function createUser(
+        CreateUserRequest $create_user_request
+    ): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->createUser($this->appId, $create_user_request)['user'];
     }
 
@@ -189,9 +190,10 @@ class Passage
      *
      * @return UserInfo|Model401Error|Model404Error|Model500Error
      */
-    public function updateUser(string $user_id, UpdateUserRequest $update_user_request): UserInfo|Model401Error|Model404Error|Model500Error
-    {
+    public function updateUser(
+        string $user_id,
+        UpdateUserRequest $update_user_request
+    ): UserInfo|Model401Error|Model404Error|Model500Error {
         return $this->usersApi->updateUser($this->appId, $user_id, $update_user_request)['user'];
     }
 }
-?>

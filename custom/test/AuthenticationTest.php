@@ -1,12 +1,12 @@
 <?php
 
+namespace Passage\Test;
+
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
 use Passage\Client\Authentication;
 use Passage\Client\Passage;
-
-
 
 class AuthenticationTest extends TestCase
 {
@@ -32,7 +32,7 @@ class AuthenticationTest extends TestCase
     {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
-        
+
         $user = $authentication->validateJWT($this->appToken);
 
 
@@ -43,7 +43,7 @@ class AuthenticationTest extends TestCase
     {
         $passage = new Passage($this->appId, $this->apiKey);
         $authentication = new Authentication($passage);
-        
+
         $this->expectException(ApiException::class);
         $user = $authentication->validateJWT('incorrect.token');
     }

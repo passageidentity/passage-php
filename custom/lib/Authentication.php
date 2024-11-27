@@ -1,4 +1,5 @@
 <?php
+
 namespace Passage\Client;
 
 use GuzzleHttp\Client;
@@ -7,7 +8,6 @@ use GuzzleHttp\Psr7\Request;
 use Firebase\JWT\JWT;
 use Firebase\JWT\CachedKeySet;
 use Phpfastcache\CacheManager;
-
 use OpenAPI\Client\ApiException;
 
 require 'vendor/autoload.php';
@@ -21,7 +21,7 @@ class Authentication
      * Initialize a new Passage instance.
      *
      * @param Passage $passage
-     * 
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct(Passage $passage)
@@ -30,14 +30,15 @@ class Authentication
 
         $appId = $this->passage->getAppId();
         $jwtIssuer = 'https://auth.passage.id/v1/apps/' . $appId . '/.well-known/jwks.json';
-        
+
         $this->jwks = $this->fetchJWKS($jwtIssuer);
     }
-    
+
     /**
      * Returns the JWKS for the current app
      *
-     * @param  string $url
+     * @param string $url
+     *
      * @return CachedKeySet UserId of the Passage user
      */
     private function fetchJWKS(string $url): CachedKeySet
@@ -63,7 +64,8 @@ class Authentication
      * Determine if the provided token is valid when compared with its
      * respective public key.
      *
-     * @param  string Authentication token
+     * @param string $jwtString Authentication token
+     *
      * @return string sub claim if the jwt can be verified, or Error
      */
     public function validateJWT(string $jwtString): string | null
@@ -83,7 +85,7 @@ class Authentication
 
             $decodedToken = JWT::decode($jwtString, $this->jwks);
             $userID = $decodedToken->sub;
-      
+
             if ($userID) {
                 return strval($userID);
             } else {
@@ -100,5 +102,3 @@ class Authentication
         }
     }
 }
-
-?>

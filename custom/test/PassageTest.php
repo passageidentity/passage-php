@@ -179,7 +179,7 @@ class PassageTest extends TestCase
         $errorEmail = 'error@passage.id';
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
-    
+
     public function testDeactivateUser()
     {
         $user = $this->passageClient->deactivateUser($this->userId);
