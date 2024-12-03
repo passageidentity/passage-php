@@ -1,5 +1,7 @@
 <?php
 
+namespace Passage\Test;
+
 use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
@@ -9,7 +11,8 @@ use OpenAPI\Client\Model\CreateUserRequest;
 use OpenAPI\Client\Model\UpdateUserRequest;
 use Passage\Client\Passage;
 
-class PassageTest extends TestCase {
+class PassageTest extends TestCase
+{
     private $appId;
     private $apiKey;
     private $appToken;
@@ -20,7 +23,7 @@ class PassageTest extends TestCase {
     {
         parent::setUp();
 
-        require __DIR__ . '/../../vendor/autoload.php';
+        include __DIR__ . '/../../vendor/autoload.php';
         Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->safeLoad();
 
         $this->appId = getenv('APP_ID');
@@ -68,11 +71,13 @@ class PassageTest extends TestCase {
 
     public function testCreateMagicLink()
     {
-        $magicLinkRequest = new CreateMagicLinkRequest(array(
+        $magicLinkRequest = new CreateMagicLinkRequest(
+            array(
             'email' => 'chris@passage.id',
             'channel' => 'email',
             'ttl' => 62
-        ));
+            )
+        );
 
         $magicLink = $this->passageClient->createMagicLink($magicLinkRequest);
 
@@ -83,12 +88,14 @@ class PassageTest extends TestCase {
 
     public function testCreateDeleteUser()
     {
-        $userRequest = new CreateUserRequest(array(
+        $userRequest = new CreateUserRequest(
+            array(
             'email' => 'chris+test-create-delete@passage.id',
             'user_metadata' => array(
                 'example1' => 'cool'
             )
-        ));
+            )
+        );
 
         $user = $this->passageClient->createUser($userRequest);
 
@@ -111,17 +118,19 @@ class PassageTest extends TestCase {
     public function testGetUserByIdentifier()
     {
         $email = 'test-create@passage.id';
-        $userRequest = new CreateUserRequest(array(
+        $userRequest = new CreateUserRequest(
+            array(
             'email' => $email,
-        ));
+            )
+        );
 
         $createUser = $this->passageClient->createUser($userRequest);
 
         $user = $this->passageClient->getUser($createUser['id']);
-        $this->assertEquals($user['id'],$createUser['id']);
+        $this->assertEquals($user['id'], $createUser['id']);
 
         $userByIdentifier = $this->passageClient->getUserByIdentifier($email);
-        $this->assertEquals($userByIdentifier['id'],$createUser['id']);
+        $this->assertEquals($userByIdentifier['id'], $createUser['id']);
 
         $this->assertEquals($userByIdentifier, $user);
     }
@@ -129,17 +138,19 @@ class PassageTest extends TestCase {
     public function testGetUserByIdentifierUpperCase()
     {
         $email = 'test-create@passage.id';
-        $userRequest = new CreateUserRequest(array(
+        $userRequest = new CreateUserRequest(
+            array(
             'email' => $email,
-        ));
+            )
+        );
 
         $createUser = $this->passageClient->createUser($userRequest);
 
         $user = $this->passageClient->getUser($createUser['id']);
-        $this->assertEquals($user['id'],$createUser['id']);
+        $this->assertEquals($user['id'], $createUser['id']);
 
         $userByIdentifier = $this->passageClient->getUserByIdentifier(strtoupper($email));
-        $this->assertEquals($userByIdentifier['id'],$createUser['id']);
+        $this->assertEquals($userByIdentifier['id'], $createUser['id']);
 
         $this->assertEquals($userByIdentifier, $user);
     }
@@ -147,28 +158,30 @@ class PassageTest extends TestCase {
     public function testGetUserByIdentifierPhone()
     {
         $phone = '+15005550007';
-        $userRequest = new CreateUserRequest(array(
+        $userRequest = new CreateUserRequest(
+            array(
             'phone' => $phone,
-        ));
+            )
+        );
 
         $createUser = $this->passageClient->createUser($userRequest);
 
         $user = $this->passageClient->getUser($createUser['id']);
-        $this->assertEquals($user['id'],$createUser['id']);
+        $this->assertEquals($user['id'], $createUser['id']);
 
         $userByIdentifier = $this->passageClient->getUserByIdentifier(strtoupper($phone));
-        $this->assertEquals($userByIdentifier['id'],$createUser['id']);
+        $this->assertEquals($userByIdentifier['id'], $createUser['id']);
 
         $this->assertEquals($userByIdentifier, $user);
     }
 
     public function testGetUserByIdentifierError()
     {
-        $this->expectException(Error::class);
+        $this->expectException(\Error::class);
         $errorEmail = 'error@passage.id';
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
-    
+
     public function testDeactivateUser()
     {
         $user = $this->passageClient->deactivateUser($this->userId);
@@ -190,9 +203,11 @@ class PassageTest extends TestCase {
 
     public function testUpdateUser()
     {
-        $userRequest = new UpdateUserRequest(array(
+        $userRequest = new UpdateUserRequest(
+            array(
             'email' => 'chris+test-update@passage.id'
-        ));
+            )
+        );
 
         $user = $this->passageClient->updateUser($this->userId, $userRequest);
 
@@ -200,7 +215,8 @@ class PassageTest extends TestCase {
         $this->assertEquals($user['email'], 'chris+test-update@passage.id');
     }
 
-    public function testListUserDevices() {
+    public function testListUserDevices()
+    {
         $devices = $this->passageClient->listUserDevices($this->userId);
 
         // Assert that devices exist

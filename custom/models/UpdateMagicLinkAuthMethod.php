@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateMagicLinkAuthMethod
  *
@@ -29,17 +30,17 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use OpenAPI\Client\ObjectSerializer;
 
 /**
  * UpdateMagicLinkAuthMethod Class Doc Comment
  *
  * @deprecated deprecated in version 1.0.0
- * @category Class
- * @package  OpenAPI\Client
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ * @category   Class
+ * @package    OpenAPI\Client
+ * @author     OpenAPI Generator team
+ * @link       https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSerializable
@@ -47,17 +48,17 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'UpdateMagicLinkAuthMethod';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
         'enabled' => 'bool',
         'ttl' => 'int',
@@ -65,12 +66,12 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @var         string[]
+     * @phpstan-var array<string, string|null>
+     * @psalm-var   array<string, string|null>
+     */
     protected static $openAPIFormats = [
         'enabled' => null,
         'ttl' => null,
@@ -78,21 +79,21 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization
+     *
+     * @var boolean[]
+     */
     protected static array $openAPINullables = [
         'enabled' => false,
-		'ttl' => false,
-		'ttl_display_unit' => false
+    'ttl' => false,
+    'ttl_display_unit' => false
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here
+     *
+     * @var boolean[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
@@ -148,7 +149,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Checks if a property is nullable
      *
-     * @param string $property
+     * @param  string $property
      * @return bool
      */
     public static function isNullable(string $property): bool
@@ -159,7 +160,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Checks if a nullable property is set to null.
      *
-     * @param string $property
+     * @param  string $property
      * @return bool
      */
     public function isNullableSetToNull(string $property): bool
@@ -264,17 +265,21 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array
+     *
+     * @param string $variableName
+     * @param array  $fields
+     * @param mixed  $defaultValue
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+        if (
+            self::isNullable($variableName)
+            && array_key_exists($variableName, $fields)
+            && is_null($fields[$variableName])
+        ) {
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
@@ -360,7 +365,9 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
         }
 
         if (($ttl < 60)) {
-            throw new \InvalidArgumentException('invalid value for $ttl when calling UpdateMagicLinkAuthMethod., must be bigger than or equal to 60.');
+            throw new \InvalidArgumentException(
+                'invalid value for $ttl when calling UpdateMagicLinkAuthMethod., must be bigger than or equal to 60.'
+            );
         }
 
         $this->container['ttl'] = $ttl;
@@ -371,7 +378,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets ttl_display_unit
      *
-     * @return \OpenAPI\Client\Model\TtlDisplayUnit|null
+     * @return     \OpenAPI\Client\Model\TtlDisplayUnit|null
      * @deprecated
      */
     public function getTtlDisplayUnit()
@@ -384,7 +391,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \OpenAPI\Client\Model\TtlDisplayUnit|null $ttl_display_unit ttl_display_unit
      *
-     * @return self
+     * @return     self
      * @deprecated
      */
     public function setTtlDisplayUnit($ttl_display_unit)
@@ -452,6 +459,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
+     *
      * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
@@ -460,7 +468,7 @@ class UpdateMagicLinkAuthMethod implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
