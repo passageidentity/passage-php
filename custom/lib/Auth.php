@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;
 use Firebase\JWT\JWT;
 use Firebase\JWT\CachedKeySet;
+use OpenAPI\Client\ApiException;
 use Phpfastcache\CacheManager;
 use InvalidArgumentException;
 use UnexpectedValueException;
@@ -80,6 +81,7 @@ class Auth
      * @param MagicLinkOptions|null $options Optional options for creating a MagicLink
      * @return MagicLink Passage MagicLink object
      * @throws InvalidArgumentException Args must contain an email, phone, or userId
+     * @throws PassageError
      */
     public function createMagicLink(
         MagicLinkWithEmailArgs|MagicLinkWithPhoneArgs|MagicLinkWithUserArgs $args,
@@ -119,6 +121,11 @@ class Auth
         }
 
         $magicLinksApi = new MagicLinksApi(null, $this->config);
-        return $magicLinksApi->createMagicLink($this->appId, $payload)->getMagicLink();
+        
+        try {
+            return $magicLinksApi->createMagicLink($this->appId, $payload)->getMagicLink();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 }
