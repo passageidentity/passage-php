@@ -10,6 +10,9 @@ use Phpfastcache\CacheManager;
 use InvalidArgumentException;
 use UnexpectedValueException;
 use OpenAPI\Client\Configuration;
+use OpenAPI\Client\Api\MagicLinksApi;
+use OpenAPI\Client\Model\CreateMagicLinkRequest;
+use OpenAPI\Client\Model\MagicLink;
 
 class Auth
 {
@@ -67,5 +70,55 @@ class Auth
         }
 
         return strval($userId);
+    }
+
+    /**
+     * Create a Magic Link for your app.
+     *
+     * @param MagicLinkWithEmailArgs|MagicLinkWithPhoneArgs|MagicLinkWithUserArgs $args
+     * Required args for creating a MagicLink
+     * @param MagicLinkOptions|null $options Optional options for creating a MagicLink
+     * @return MagicLink Passage MagicLink object
+     * @throws InvalidArgumentException Args must contain an email, phone, or userId
+     */
+    public function createMagicLink(
+        MagicLinkWithEmailArgs|MagicLinkWithPhoneArgs|MagicLinkWithUserArgs $args,
+        MagicLinkOptions|null $options,
+    ): MagicLink {
+        $payload = new CreateMagicLinkRequest();
+        $payload->setType($args->type);
+        $payload->setSend($args->send);
+
+        switch ($args) {
+            case $args instanceof MagicLinkWithEmailArgs:
+                $payload->setEmail($args->email);
+                break;
+            case $args instanceof MagicLinkWithPhoneArgs:
+                $payload->setPhone($args->phone);
+                break;
+            case $args instanceof MagicLinkWithUserArgs:
+                $payload->setUserId($args->userId);
+                break;
+            default:
+                throw new InvalidArgumentException("args must contain an email, phone, or userId");
+        }
+
+        if ($options) {
+            if ($options->language) {
+                $payload->setLanguage($options->language);
+            }
+            if ($options->magicLinkPath) {
+                $payload->setMagicLinkPath($options->magicLinkPath);
+            }
+            if ($options->redirectUrl) {
+                $payload->setRedirectUrl($options->redirectUrl);
+            }
+            if ($options->ttl) {
+                $payload->setTtl($options->ttl);
+            }
+        }
+
+        $magicLinksApi = new MagicLinksApi(null, $this->config);
+        return $magicLinksApi->createMagicLink($this->appId, $payload)->getMagicLink();
     }
 }
