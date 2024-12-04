@@ -29,8 +29,6 @@ class Passage
      *
      * @param string $appId  Passage app id (required)
      * @param string $apiKey Passage api key (required)
-     *
-     * @throws \InvalidArgumentException
      */
     public function __construct(string $appId, string $apiKey)
     {
@@ -59,9 +57,8 @@ class Passage
     /**
      * @deprecated 1.0.0 Will not be replaced.
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
      * @return AppInfo|Model401Error|Model404Error|Model500Error
+     * @throws ApiException
      */
     public function getApp(): AppInfo
     {
@@ -79,6 +76,7 @@ class Passage
      *
      * @param CreateMagicLinkRequest $create_magic_link_request Args for creating a Magic Link
      * @return MagicLink|Model401Error|Model404Error|Model500Error MagicLink object
+     * @throws ApiException
      */
     public function createMagicLink(
         CreateMagicLinkRequest $create_magic_link_request
@@ -97,13 +95,18 @@ class Passage
      *
      * @param string $user_id The Passage user ID
      * @return null|Model401Error|Model404Error|Model500Error
+     * @throws ApiException
      */
     public function revokeUserRefreshTokens(string $user_id): null|array|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        $this->user->revokeRefreshTokens($user_id);
-        return null;
+        try {
+            $this->user->revokeRefreshTokens($user_id);
+            return null;
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -115,13 +118,18 @@ class Passage
      * @param string $user_id The Passage user ID
      * @param string $device_id The Passage user's device ID
      * @return null|Model401Error|Model404Error|Model500Error
+     * @throws ApiException
      */
     public function deleteUserDevice(string $user_id, string $device_id): null|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        $this->user->revokeDevice($user_id, $device_id);
-        return null;
+        try {
+            $this->user->revokeDevice($user_id, $device_id);
+            return null;
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -132,12 +140,17 @@ class Passage
      *
      * @param string $user_id The Passage user ID
      * @return WebAuthnDevices[]|Model401Error|Model404Error|Model500Error List of devices
+     * @throws ApiException
      */
     public function listUserDevices(string $user_id): array|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        return $this->user->listDevices($user_id);
+        try {
+            return $this->user->listDevices($user_id);
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -148,12 +161,17 @@ class Passage
      *
      * @param string $user_id The Passage user ID
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User object
+     * @throws ApiException
      */
     public function getUser(string $user_id): UserInfo|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        return $this->user->get($user_id);
+        try {
+            return $this->user->get($user_id);
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -164,7 +182,7 @@ class Passage
      *
      * @param string $identifier The Passage user email or phone number
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User object
-     * @throws ApiException If the user is not found
+     * @throws ApiException
      */
     public function getUserByIdentifier(string $identifier): UserInfo|Model401Error|Model404Error|Model500Error
     {
@@ -172,13 +190,8 @@ class Passage
 
         try {
             return $this->user->getByIdentifier($identifier);
-        } catch (ApiException $e) {
-            throw new ApiException(
-                "Could not find user with that identifier.",
-                404,
-                null,
-                null
-            );
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
         }
     }
 
@@ -190,12 +203,17 @@ class Passage
      *
      * @param string $user_id The Passage user ID
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User object
+     * @throws ApiException
      */
     public function activateUser(string $user_id): UserInfo|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        return $this->user->activate($user_id);
+        try {
+            return $this->user->activate($user_id);
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -206,13 +224,18 @@ class Passage
      *
      * @param CreateUserRequest $create_user_request Arguments for creating a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User object
+     * @throws ApiException
      */
     public function createUser(
         CreateUserRequest $create_user_request
     ): UserInfo|Model401Error|Model404Error|Model500Error {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        return $this->user->create($create_user_request);
+        try {
+            return $this->user->create($create_user_request);
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -223,12 +246,17 @@ class Passage
      *
      * @param string $user_id The Passage user ID
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User object
+     * @throws ApiException
      */
     public function deactivateUser(string $user_id): UserInfo|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        return $this->user->deactivate($user_id);
+        try {
+            return $this->user->deactivate($user_id);
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -236,13 +264,18 @@ class Passage
      *
      * @param string $user_id The Passage user ID used to delete the corresponding user.
      * @return null|Model401Error|Model404Error|Model500Error
+     * @throws ApiException
      */
     public function deleteUser(string $user_id): null|Model401Error|Model404Error|Model500Error
     {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        $this->user->delete($user_id);
-        return null;
+        try {
+            $this->user->delete($user_id);
+            return null;
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 
     /**
@@ -254,6 +287,7 @@ class Passage
      * @param string $user_id The Passage user ID
      * @param UpdateUserRequest $update_user_request The updated user information
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User Object
+     * @throws ApiException
      */
     public function updateUser(
         string $user_id,
@@ -261,6 +295,10 @@ class Passage
     ): UserInfo|Model401Error|Model404Error|Model500Error {
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-        return $this->user->update($user_id, $update_user_request);
+        try {
+            return $this->user->update($user_id, $update_user_request);
+        } catch (PassageError $e) {
+            throw $e->getPrevious();
+        }
     }
 }

@@ -34,10 +34,15 @@ class User
      *
      * @param string $userId The Passage user ID
      * @return PassageUser Passage User object
+     * @throws PassageError
      */
     public function get(string $userId): PassageUser
     {
-        return $this->usersApi->getUser($this->appId, $userId)->getUser();
+        try {
+            return $this->usersApi->getUser($this->appId, $userId)->getUser();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -45,27 +50,33 @@ class User
      *
      * @param string $identifier The Passage user email or phone number
      * @return PassageUser Passage User object
-     * @throws ApiException
+     * @throws PassageError
      */
     public function getByIdentifier(string $identifier): PassageUser
     {
-        $users = $this->usersApi->listPaginatedUsers(
-            $this->appId,
-            limit: 1,
-            identifier: strtolower($identifier)
-        )->getUsers();
+        try {
+            $users = $this->usersApi->listPaginatedUsers(
+                $this->appId,
+                limit: 1,
+                identifier: strtolower($identifier)
+            )->getUsers();
 
-        if (count($users) === 0) {
-            throw new ApiException(
-                "[404] Could not find user with that identifier.",
-                404,
-                null,
-                null
-            );
+            if (count($users) === 0) {
+                throw PassageError::fromApiException(
+                    new ApiException(
+                        null,
+                        404,
+                        null,
+                        "{\"code\":\"user_not_found\",\"error\":\"Could not find user with that identifier.\"}",
+                    ),
+                );
+            }
+
+            $userId = $users[0]->getId();
+            return $this->usersApi->getUser($this->appId, $userId)->getUser();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
         }
-
-        $userId = $users[0]->getId();
-        return $this->usersApi->getUser($this->appId, $userId)->getUser();
     }
 
     /**
@@ -73,10 +84,15 @@ class User
      *
      * @param string $userId The Passage user ID
      * @return PassageUser Passage User object
+     * @throws PassageError
      */
     public function activate(string $userId): PassageUser
     {
-        return $this->usersApi->activateUser($this->appId, $userId)->getUser();
+        try {
+            return $this->usersApi->activateUser($this->appId, $userId)->getUser();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -84,10 +100,15 @@ class User
      *
      * @param string $userId The Passage user ID
      * @return PassageUser Passage User object
+     * @throws PassageError
      */
     public function deactivate(string $userId): PassageUser
     {
-        return $this->usersApi->deactivateUser($this->appId, $userId)->getUser();
+        try {
+            return $this->usersApi->deactivateUser($this->appId, $userId)->getUser();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -96,10 +117,15 @@ class User
      * @param string $userId The Passage user ID
      * @param UpdateUserArgs $args The updated user information
      * @return PassageUser Passage User Object
+     * @throws PassageError
      */
     public function update(string $userId, UpdateUserArgs $args): PassageUser
     {
-        return $this->usersApi->updateUser($this->appId, $userId, $args)->getUser();
+        try {
+            return $this->usersApi->updateUser($this->appId, $userId, $args)->getUser();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -107,10 +133,15 @@ class User
      *
      * @param CreateUserArgs $args Arguments for creating a user
      * @return PassageUser Passage User object
+     * @throws PassageError
      */
     public function create(CreateUserArgs $args): PassageUser
     {
-        return $this->usersApi->createUser($this->appId, $args)->getUser();
+        try {
+            return $this->usersApi->createUser($this->appId, $args)->getUser();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -118,10 +149,15 @@ class User
      *
      * @param string $userId The Passage user ID used to delete the corresponding user.
      * @return void
+     * @throws PassageError
      */
     public function delete(string $userId): void
     {
-        $this->usersApi->deleteUser($this->appId, $userId);
+        try {
+            $this->usersApi->deleteUser($this->appId, $userId);
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -129,10 +165,15 @@ class User
      *
      * @param string $userId The Passage user ID
      * @return WebAuthnDevices[] List of devices
+     * @throws PassageError
      */
     public function listDevices(string $userId): array
     {
-        return $this->userDevicesApi->listUserDevices($this->appId, $userId)->getDevices();
+        try {
+            return $this->userDevicesApi->listUserDevices($this->appId, $userId)->getDevices();
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -141,10 +182,15 @@ class User
      * @param string $userId The Passage user ID
      * @param string $deviceId The Passage user's device ID
      * @return void
+     * @throws PassageError
      */
     public function revokeDevice(string $userId, string $deviceId): void
     {
-        $this->userDevicesApi->deleteUserDevices($this->appId, $userId, $deviceId);
+        try {
+            $this->userDevicesApi->deleteUserDevices($this->appId, $userId, $deviceId);
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 
     /**
@@ -152,9 +198,14 @@ class User
      *
      * @param string $userId The Passage user ID
      * @return void
+     * @throws PassageError
      */
     public function revokeRefreshTokens(string $userId): void
     {
-        $this->tokensApi->revokeUserRefreshTokens($this->appId, $userId);
+        try {
+            $this->tokensApi->revokeUserRefreshTokens($this->appId, $userId);
+        } catch (ApiException $e) {
+            throw PassageError::fromApiException($e);
+        }
     }
 }
