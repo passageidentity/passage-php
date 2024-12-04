@@ -22,6 +22,7 @@ use OpenAPI\Client\ApiException;
 
 class Passage
 {
+    public Auth $auth;
     private string $appId;
     private string $apiKey;
     private Configuration $clientConfiguration;
@@ -43,8 +44,7 @@ class Passage
         $this->clientConfiguration = new Configuration();
         $this->clientConfiguration->setAccessToken($apiKey);
 
-        $this->usersApi = new UsersApi(null, $this->clientConfiguration);
-        $this->userDevicesApi = new UserDevicesApi(null, $this->clientConfiguration);
+        $this->auth = new Auth($appId, $this->clientConfiguration);
     }
 
     /**

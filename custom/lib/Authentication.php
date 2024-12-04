@@ -2,99 +2,46 @@
 
 namespace Passage\Client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\HttpFactory;
-use GuzzleHttp\Psr7\Request;
-use Firebase\JWT\JWT;
-use Firebase\JWT\CachedKeySet;
-use Phpfastcache\CacheManager;
 use OpenAPI\Client\ApiException;
+use Exception;
 
 class Authentication
 {
-    private $passage;
-    private $jwks;
-
     /**
+     * @deprecated 1.0.0
+     * @see Passage->auth
+     *
      * Initialize a new Passage instance.
      *
      * @param Passage $passage
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(Passage $passage)
+    public function __construct(private Passage $passage)
     {
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+
         $this->passage = $passage;
-
-        $appId = $this->passage->getAppId();
-        $jwtIssuer = 'https://auth.passage.id/v1/apps/' . $appId . '/.well-known/jwks.json';
-
-        $this->jwks = $this->fetchJWKS($jwtIssuer);
     }
 
     /**
-     * Returns the JWKS for the current app
+     * @deprecated 1.0.0
+     * @see Passage->auth->validateJwt
      *
-     * @param string $url
+     * Validate that a JWT is valid and return the Passage user ID associated with the token.
      *
-     * @return CachedKeySet UserId of the Passage user
-     */
-    private function fetchJWKS(string $url): CachedKeySet
-    {
-        $httpClient = new Client();
-        $httpFactory = new HttpFactory();
-
-        $cacheItemPool = CacheManager::getInstance('files');
-
-        $keySet = new CachedKeySet(
-            $url,
-            $httpClient,
-            $httpFactory,
-            $cacheItemPool,
-            null,
-            true
-        );
-
-        return $keySet;
-    }
-
-    /**
-     * Determine if the provided token is valid when compared with its
-     * respective public key.
-     *
-     * @param string $jwtString Authentication token
-     *
-     * @return string sub claim if the jwt can be verified, or Error
+     * @param string $jwtString The authentication token to be validated
+     * @return string User ID of the Passage user
      */
     public function validateJWT(string $jwtString): string | null
     {
+        trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+
         try {
-            $decodedHeader = JWT::urlsafeB64Decode(explode('.', $jwtString)[0]);
-            $header = json_decode($decodedHeader);
-
-            $kid = $header->kid;
-
-            if (!$kid) {
-                throw new ApiException(
-                    'Could not verify token: Missing kid in token',
-                    401
-                );
-            }
-
-            $decodedToken = JWT::decode($jwtString, $this->jwks);
-            $userID = $decodedToken->sub;
-
-            if ($userID) {
-                return strval($userID);
-            } else {
-                throw new ApiException(
-                    'Could not verify token: Could not retrieve user id',
-                    401
-                );
-            }
-        } catch (\Exception $e) {
+            return $this->passage->auth->validateJwt($jwtString);
+        } catch (Exception $e) {
             throw new ApiException(
-                'Could not verify token: ' . $e->getMessage(),
+                "Could not verify token: Could not verify token: {$e->getMessage()}",
                 401
             );
         }
