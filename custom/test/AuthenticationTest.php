@@ -35,7 +35,6 @@ class AuthenticationTest extends TestCase
 
         $user = $authentication->validateJWT($this->appToken);
 
-
         $this->assertEquals($this->userId, $user);
     }
 
