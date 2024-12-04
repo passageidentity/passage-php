@@ -18,6 +18,7 @@ use OpenAPI\Client\Model\Model500Error;
 use OpenAPI\Client\Model\UserInfo;
 use OpenAPI\Client\Model\UpdateUserRequest;
 use OpenAPI\Client\Model\WebAuthnDevices;
+use OpenAPI\Client\ApiException;
 
 class Passage
 {
