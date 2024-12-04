@@ -28,8 +28,8 @@
         }
     ],
     "scripts": {
-        "lint": "./vendor/bin/phpcs  --standard=PSR12 --report=full custom",
-        "phpcs-fix": "./vendor/bin/phpcbf  --standard=PSR12 custom",
+        "lint": "./vendor/bin/phpcs --standard=PSR12 --report=full custom",
+        "phpcs-fix": "./vendor/bin/phpcbf --standard=PSR12 custom",
         "format": "./vendor/bin/php-cs-fixer fix --allow-risky=yes --rules=@PSR12"
     },
     "require": {
