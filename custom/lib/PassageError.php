@@ -8,8 +8,13 @@ use Throwable;
 
 class PassageError extends Exception
 {
-    private function __construct(private readonly int $statusCode, private readonly string $errorCode, string $message, int $code = 0, Throwable $previous = null)
-    {
+    private function __construct(
+        private readonly int $statusCode,
+        private readonly string $errorCode,
+        string $message,
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
     }
 
@@ -30,6 +35,12 @@ class PassageError extends Exception
         $errorCode = $error['code'];
         $errorMessage = $error['error'];
         $message = __CLASS__ . ": [{$statusCode} {$errorCode}]: {$errorMessage}\n";
-        return new PassageError($statusCode, $errorCode, $message, $statusCode, $e);
+        return new PassageError(
+            $statusCode,
+            $errorCode,
+            $message,
+            $statusCode,
+            $e,
+        );
     }
 }
