@@ -41,7 +41,7 @@ class Authentication
             return $this->passage->auth->validateJwt($jwtString);
         } catch (Exception $e) {
             throw new ApiException(
-                "Could not verify token: Could not verify token: {$e->getMessage()}",
+                "Could not verify token: {$e->getMessage()}",
                 401
             );
         }
