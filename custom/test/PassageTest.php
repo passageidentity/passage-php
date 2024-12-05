@@ -15,7 +15,6 @@ class PassageTest extends TestCase
 {
     private $appId;
     private $apiKey;
-    private $appToken;
     private $passageClient;
     private $userId;
 
@@ -28,7 +27,6 @@ class PassageTest extends TestCase
 
         $this->appId = getenv('APP_ID');
         $this->apiKey = getenv('API_KEY');
-        $this->appToken = getenv('EXAMPLE_AUTH_TOKEN');
         $this->userId = getenv('EXAMPLE_USER_ID');
 
         $this->passageClient = new Passage($this->appId, $this->apiKey);
