@@ -36,7 +36,7 @@ class Auth
             $httpClient,
             $httpFactory,
             $cacheItemPool,
-            null,
+            60 * 60 * 24, // expires in 24 hours
             true
         );
     }
