@@ -101,6 +101,7 @@ class Auth
                 break;
             case $args instanceof MagicLinkWithUserArgs:
                 $payload->setUserId($args->userId);
+                $payload->setChannel($args->channel);
                 break;
             default:
                 throw new InvalidArgumentException("args must contain an email, phone, or userId");
