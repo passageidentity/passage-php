@@ -48,6 +48,7 @@ class Auth
      *
      * @return string User ID of the Passage user
      * @throws InvalidArgumentException JWT format is invalid
+     * @throws UnexpectedValueException Could not retrieve sub claim from token
      */
     public function validateJwt(string $jwt): string
     {
