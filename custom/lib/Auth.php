@@ -6,7 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;
 use Firebase\JWT\JWT;
 use Firebase\JWT\CachedKeySet;
+use OpenAPI\Client\Api\AppsApi;
 use OpenAPI\Client\ApiException;
+use OpenAPI\Client\Model\AppInfo;
 use Phpfastcache\CacheManager;
 use InvalidArgumentException;
 use UnexpectedValueException;
@@ -18,6 +20,7 @@ use OpenAPI\Client\Model\MagicLink;
 class Auth
 {
     private CachedKeySet $jwks;
+    private AppInfo $app;
 
     /**
      * Auth class that provides methods for validating JWTs and creating Magic Links.
@@ -27,16 +30,18 @@ class Auth
         $this->appId = $appId;
         $this->config = $config;
 
+        $appsApi = new AppsApi();
+        $this->app = $appsApi->getApp($this->appId)->getApp();
+
         $httpClient = new Client();
         $httpFactory = new HttpFactory();
-
         $cacheItemPool = CacheManager::getInstance('files');
         $this->jwks = new CachedKeySet(
             "https://auth.passage.id/v1/apps/{$appId}/.well-known/jwks.json",
             $httpClient,
             $httpFactory,
             $cacheItemPool,
-            null,
+            60 * 60 * 24, // expires in 24 hours
             true
         );
     }
@@ -48,23 +53,19 @@ class Auth
      *
      * @return string User ID of the Passage user
      * @throws InvalidArgumentException JWT format is invalid
-     * @throws UnexpectedValueException Could not retrieve sub claim from token
+     * @throws UnexpectedValueException Could not validate aud claim or retrieve sub claim from token
      */
     public function validateJwt(string $jwt): string
     {
-        $jwtSegments = explode('.', $jwt);
-        if (count($jwtSegments) !== 3) {
-            throw new InvalidArgumentException('Invalid JWT format');
-        }
-
-        $decodedHeader = JWT::urlsafeB64Decode($jwtSegments[0]);
-        $header = json_decode($decodedHeader);
-
-        if (!$header->kid) {
-            throw new InvalidArgumentException('Missing kid in token');
-        }
-
         $decodedToken = JWT::decode($jwt, $this->jwks);
+
+        $aud = (array) $decodedToken->aud;
+        $expectedAud = $this->app->getHosted() ? $this->appId : $this->app->getAuthOrigin();
+
+        if (!in_array($expectedAud, $aud)) {
+            throw new UnexpectedValueException('JWT audience does not match');
+        }
+
         $userId = $decodedToken->sub;
 
         if (!$userId) {

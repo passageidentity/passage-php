@@ -3,9 +3,9 @@
 namespace Passage\Test;
 
 use Dotenv\Dotenv;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Passage\Client\Passage;
+use UnexpectedValueException;
 
 class AuthTest extends TestCase
 {
@@ -38,8 +38,8 @@ class AuthTest extends TestCase
 
     public function testValidateJwtInvalidTokenStructure()
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid JWT format');
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Wrong number of segments');
         $this->passage->auth->validateJwt('incorrect.token');
     }
 }
