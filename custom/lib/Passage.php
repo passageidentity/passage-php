@@ -220,7 +220,7 @@ class Passage
      * @deprecated 1.0.0
      * @see Passage->user->create
      *
-     * Create a user
+     * Create a user.
      *
      * @param CreateUserRequest $create_user_request Arguments for creating a user
      * @return UserInfo|Model401Error|Model404Error|Model500Error Passage User object
@@ -260,6 +260,9 @@ class Passage
     }
 
     /**
+     * @deprecated 1.0.0
+     * @see Passage->user->delete
+     *
      * Delete a user using their user ID.
      *
      * @param string $user_id The Passage user ID used to delete the corresponding user.

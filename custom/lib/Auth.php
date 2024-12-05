@@ -67,7 +67,7 @@ class Auth
         $userId = $decodedToken->sub;
 
         if (!$userId) {
-            throw new UnexpectedValueException('Could not retrieve user id');
+            throw new UnexpectedValueException('Could not retrieve sub claim from token');
         }
 
         return strval($userId);
@@ -121,7 +121,7 @@ class Auth
         }
 
         $magicLinksApi = new MagicLinksApi(null, $this->config);
-        
+
         try {
             return $magicLinksApi->createMagicLink($this->appId, $payload)->getMagicLink();
         } catch (ApiException $e) {
