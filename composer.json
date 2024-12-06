@@ -1,7 +1,7 @@
 {
     "name": "passageidentity/passage-php",
     "description": "Passkey Complete for PHP - Integrate into your PHP API or service to enable a completely passwordless standalone auth solution with Passage by 1Password.",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "keywords": [
         "authentication",
         "passkeys",
@@ -49,15 +49,18 @@
         "vlucas/phpdotenv": "^5.6"
     },
     "autoload": {
-        "psr-4": { 
-            "OpenAPI\\Client\\" : ["generated/lib/", "custom/models/"],
+        "psr-4": {
+            "OpenAPI\\Client\\": [
+                "generated/lib/",
+                "custom/models/"
+            ],
             "Passage\\Client\\": "custom/lib/"
         }
     },
     "autoload-dev": {
-        "psr-4": { 
-            "OpenAPI\\Client\\Test\\" : "generated/test/",
-            "Passage\\Client\\Test\\" : "custom/test/"
+        "psr-4": {
+            "OpenAPI\\Client\\Test\\": "generated/test/",
+            "Passage\\Client\\Test\\": "custom/test/"
         }
     }
 }
