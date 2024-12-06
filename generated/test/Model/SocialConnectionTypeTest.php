@@ -1,6 +1,6 @@
 <?php
 /**
- * TtlDisplayUnitTest
+ * SocialConnectionTypeTest
  *
  * PHP version 7.4
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * TtlDisplayUnitTest Class Doc Comment
+ * SocialConnectionTypeTest Class Doc Comment
  *
  * @category    Class
- * @description Deprecated Property. The preferred unit for displaying the TTL. This value is for display only. * &#x60;s&#x60; - seconds * &#x60;m&#x60; - minutes * &#x60;h&#x60; - hours * &#x60;d&#x60; - days
+ * @description SocialConnectionType
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class TtlDisplayUnitTest extends TestCase
+class SocialConnectionTypeTest extends TestCase
 {
 
     /**
@@ -72,9 +72,9 @@ class TtlDisplayUnitTest extends TestCase
     }
 
     /**
-     * Test "TtlDisplayUnit"
+     * Test "SocialConnectionType"
      */
-    public function testTtlDisplayUnit()
+    public function testSocialConnectionType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

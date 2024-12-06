@@ -1,6 +1,6 @@
 <?php
 /**
- * UserMetadataFieldType
+ * UserEventAction
  *
  * PHP version 7.4
  *
@@ -31,29 +31,23 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * UserMetadataFieldType Class Doc Comment
+ * UserEventAction Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class UserMetadataFieldType
+class UserEventAction
 {
     /**
      * Possible values of this enum
      */
-    public const STRING = 'string';
+    public const REGISTER = 'register';
 
-    public const BOOLEAN = 'boolean';
+    public const LOGIN = 'login';
 
-    public const INTEGER = 'integer';
-
-    public const DATE = 'date';
-
-    public const PHONE = 'phone';
-
-    public const EMAIL = 'email';
+    public const OTHER = 'other';
 
     /**
      * Gets allowable values of the enum
@@ -62,12 +56,9 @@ class UserMetadataFieldType
     public static function getAllowableEnumValues()
     {
         return [
-            self::STRING,
-            self::BOOLEAN,
-            self::INTEGER,
-            self::DATE,
-            self::PHONE,
-            self::EMAIL
+            self::REGISTER,
+            self::LOGIN,
+            self::OTHER
         ];
     }
 }
