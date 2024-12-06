@@ -3,8 +3,8 @@
 namespace Passage\Test;
 
 use Dotenv\Dotenv;
-use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\ApiException;
+use PHPUnit\Framework\TestCase;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
 use OpenAPI\Client\Model\CreateUserRequest;
@@ -15,7 +15,6 @@ class PassageTest extends TestCase
 {
     private $appId;
     private $apiKey;
-    private $appToken;
     private $passageClient;
     private $userId;
 
@@ -28,7 +27,6 @@ class PassageTest extends TestCase
 
         $this->appId = getenv('APP_ID');
         $this->apiKey = getenv('API_KEY');
-        $this->appToken = getenv('EXAMPLE_AUTH_TOKEN');
         $this->userId = getenv('EXAMPLE_USER_ID');
 
         $this->passageClient = new Passage($this->appId, $this->apiKey);
@@ -177,7 +175,7 @@ class PassageTest extends TestCase
 
     public function testGetUserByIdentifierError()
     {
-        $this->expectException(\Error::class);
+        $this->expectException(ApiException::class);
         $errorEmail = 'error@passage.id';
         $userByIdentifier = $this->passageClient->getUserByIdentifier($errorEmail);
     }
