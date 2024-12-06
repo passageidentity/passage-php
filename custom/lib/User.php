@@ -67,7 +67,7 @@ class User
                         null,
                         404,
                         null,
-                        "{\"code\":\"user_not_found\",\"error\":\"Could not find user with that identifier.\"}",
+                        "{\"code\":\"user_not_found\",\"error\":\"User not found.\"}",
                     ),
                 );
             }
