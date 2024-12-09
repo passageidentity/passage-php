@@ -136,19 +136,19 @@ class User
      * Update a user.
      *
      * @param string $userId The Passage user ID
-     * @param UpdateUserArgs $args The updated user information
+     * @param UpdateUserArgs $options The updated user information
      * @return PassageUser Passage User Object
      * @throws InvalidArgumentException Invalid parameter value
      * @throws PassageError
      */
-    public function update(string $userId, UpdateUserArgs $args): PassageUser
+    public function update(string $userId, UpdateUserArgs $options): PassageUser
     {
         if (!$userId) {
             throw new InvalidArgumentException('userId is required');
         }
 
         try {
-            return $this->usersApi->updateUser($this->appId, $userId, $args)->getUser();
+            return $this->usersApi->updateUser($this->appId, $userId, $options)->getUser();
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
