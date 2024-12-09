@@ -47,11 +47,15 @@ class Auth
      * @param string $jwt The authentication token to be validated
      *
      * @return string User ID of the Passage user
-     * @throws InvalidArgumentException JWT format is invalid
+     * @throws InvalidArgumentException Invalid parameter value or JWT format is invalid
      * @throws UnexpectedValueException Could not retrieve sub claim from token
      */
     public function validateJwt(string $jwt): string
     {
+        if (!$jwt) {
+            throw new InvalidArgumentException('JWT is required');
+        }
+
         $jwtSegments = explode('.', $jwt);
         if (count($jwtSegments) !== 3) {
             throw new InvalidArgumentException('Invalid JWT format');
