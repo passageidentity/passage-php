@@ -36,7 +36,7 @@ class Auth
             $httpClient,
             $httpFactory,
             $cacheItemPool,
-            null,
+            60 * 60 * 24, // expires in 24 hours
             true
         );
     }
@@ -56,19 +56,12 @@ class Auth
             throw new InvalidArgumentException('JWT is required');
         }
 
-        $jwtSegments = explode('.', $jwt);
-        if (count($jwtSegments) !== 3) {
-            throw new InvalidArgumentException('Invalid JWT format');
-        }
-
-        $decodedHeader = JWT::urlsafeB64Decode($jwtSegments[0]);
-        $header = json_decode($decodedHeader);
-
-        if (!$header->kid) {
-            throw new InvalidArgumentException('Missing kid in token');
-        }
-
         $decodedToken = JWT::decode($jwt, $this->jwks);
+
+        if (!in_array($this->appId, $decodedToken->aud)) {
+            throw new UnexpectedValueException('JWT audience does not match');
+        }
+
         $userId = $decodedToken->sub;
 
         if (!$userId) {

@@ -50,13 +50,13 @@ class PassageTest extends TestCase
 
     public function testConstructorWithAppId()
     {
-        $passage = new Passage('123456', '987654');
+        $passage = new Passage($this->appId, $this->apiKey);
 
         // Assert that the object was created successfully
         $this->assertInstanceOf(Passage::class, $passage);
 
         // Assert that app_id and api_key properties are correctly set
-        $this->assertEquals('123456', $passage->getAppId());
+        $this->assertEquals($this->appId, $passage->getAppId());
     }
 
     public function testGetApp()
