@@ -7,9 +7,7 @@ use OpenAPI\Client\Api\TokensApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Api\UsersApi;
 use OpenAPI\Client\Api\UserDevicesApi;
-use OpenAPI\Client\Model\UserInfo as PassageUser;
-use OpenAPI\Client\Model\UpdateUserRequest as UpdateUserArgs;
-use OpenAPI\Client\Model\CreateUserRequest as CreateUserArgs;
+use OpenAPI\Client\Model\UserInfo;
 use OpenAPI\Client\Model\WebAuthnDevices;
 use OpenAPI\Client\ApiException;
 
@@ -45,7 +43,8 @@ class User
         }
 
         try {
-            return $this->usersApi->getUser($this->appId, $userId)->getUser();
+            $user = $this->usersApi->getUser($this->appId, $userId)->getUser();
+            return $this->castUserInfoToPassageUser($user);
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
@@ -84,7 +83,8 @@ class User
             }
 
             $userId = $users[0]->getId();
-            return $this->usersApi->getUser($this->appId, $userId)->getUser();
+            $user = $this->usersApi->getUser($this->appId, $userId)->getUser();
+            return $this->castUserInfoToPassageUser($user);
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
@@ -105,7 +105,8 @@ class User
         }
 
         try {
-            return $this->usersApi->activateUser($this->appId, $userId)->getUser();
+            $user = $this->usersApi->activateUser($this->appId, $userId)->getUser();
+            return $this->castUserInfoToPassageUser($user);
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
@@ -126,7 +127,8 @@ class User
         }
 
         try {
-            return $this->usersApi->deactivateUser($this->appId, $userId)->getUser();
+            $user = $this->usersApi->deactivateUser($this->appId, $userId)->getUser();
+            return $this->castUserInfoToPassageUser($user);
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
@@ -148,7 +150,8 @@ class User
         }
 
         try {
-            return $this->usersApi->updateUser($this->appId, $userId, $options)->getUser();
+            $user = $this->usersApi->updateUser($this->appId, $userId, $options)->getUser();
+            return $this->castUserInfoToPassageUser($user);
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
@@ -169,7 +172,8 @@ class User
         }
 
         try {
-            return $this->usersApi->createUser($this->appId, $args)->getUser();
+            $user = $this->usersApi->createUser($this->appId, $args)->getUser();
+            return $this->castUserInfoToPassageUser($user);
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
@@ -262,5 +266,16 @@ class User
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
+    }
+
+    private function castUserInfoToPassageUser(UserInfo $userInfo): PassageUser
+    {
+        return unserialize(
+            preg_replace(
+                '/^O:\d+:"[^"]++"/',
+                'O:' . strlen(PassageUser::class) . ':"' . PassageUser::class . '"',
+                serialize($userInfo)
+            )
+        );
     }
 }
