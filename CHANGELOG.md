@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [0.5.0](https://github.com/passageidentity/passage-php/compare/v0.4.0...v0.5.0) (2024-12-10)
+
+
+### Features
+
+* add parameter guards ([#89](https://github.com/passageidentity/passage-php/issues/89)) ([9317085](https://github.com/passageidentity/passage-php/commit/9317085318c51c0c4369da52378ee1db39395fd3))
+* adds audience validation when validating a jwt ([#87](https://github.com/passageidentity/passage-php/issues/87)) ([1700bce](https://github.com/passageidentity/passage-php/commit/1700bce2cf5de8c16f992b098e180715cd3f67c9))
+* adds new classes and method signatures ([#86](https://github.com/passageidentity/passage-php/issues/86)) ([308894c](https://github.com/passageidentity/passage-php/commit/308894cd8966f4e40e533ad964e4cfaea3dbb5c3))
+* **codegen:** create magic link request fields are now optional ([#88](https://github.com/passageidentity/passage-php/issues/88)) ([90fb5e3](https://github.com/passageidentity/passage-php/commit/90fb5e364bd176147b5fe814cb30fb386363e0a9))
+
+
+### Bug Fixes
+
+* adds passage-version header to all api calls ([#69](https://github.com/passageidentity/passage-php/issues/69)) ([0e98725](https://github.com/passageidentity/passage-php/commit/0e987251f989907750d6ead7608d302fd5e38ee7))
+
+
+### Miscellaneous Chores
+
+* add dev container ([#77](https://github.com/passageidentity/passage-php/issues/77)) ([749e888](https://github.com/passageidentity/passage-php/commit/749e8886764886900d3534acb5fa07f643c69405))
+* bootstrap releases for path: . ([#79](https://github.com/passageidentity/passage-php/issues/79)) ([575d1cc](https://github.com/passageidentity/passage-php/commit/575d1cccadbf30eb63907d4874c759374ae5f0c6))
+* resolve linting errors and warnings per PSR-12 ([#83](https://github.com/passageidentity/passage-php/issues/83)) ([9b527e4](https://github.com/passageidentity/passage-php/commit/9b527e41b761f519f278f8313e8979fb6e54beef))
+* update all dependencies ([#84](https://github.com/passageidentity/passage-php/issues/84)) ([6a1759e](https://github.com/passageidentity/passage-php/commit/6a1759e5fde9ad8c8d1c32e5b908d05e5fd24a1f))
+
 ## [0.4.0] - 2024-03-21
 
 ### Added
@@ -58,4 +81,3 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Created the PHP SDK.
-
