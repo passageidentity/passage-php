@@ -232,7 +232,8 @@ class Passage
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
         try {
-            return $this->user->create($create_user_request);
+            $args = $this->cast($create_user_request, CreateUserArgs::class);
+            return $this->user->create($args);
         } catch (PassageError $e) {
             throw $e->getPrevious();
         }
@@ -299,9 +300,21 @@ class Passage
         trigger_error('Method ' . __METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
         try {
-            return $this->user->update($user_id, $update_user_request);
+            $args = $this->cast($update_user_request, UpdateUserArgs::class);
+            return $this->user->update($user_id, $args);
         } catch (PassageError $e) {
             throw $e->getPrevious();
         }
+    }
+
+    private function cast(object $object, string $class): mixed
+    {
+        return unserialize(
+            preg_replace(
+                '/^O:\d+:"[^"]++"/',
+                'O:' . strlen($class) . ':"' . $class . '"',
+                serialize($object)
+            )
+        );
     }
 }
