@@ -19,6 +19,7 @@ use OpenAPI\Client\Model\MagicLinkChannel;
 class Auth
 {
     private CachedKeySet $jwks;
+    private readonly MagicLinksApi $magicLinksApi;
 
     /**
      * Auth class that provides methods for validating JWTs and creating Magic Links.
@@ -40,6 +41,8 @@ class Auth
             60 * 60 * 24, // expires in 24 hours
             true
         );
+
+        $this->magicLinksApi = new MagicLinksApi(null, $this->config);
     }
 
     /**
@@ -84,36 +87,31 @@ class Auth
      */
     public function createMagicLink(
         MagicLinkWithEmailArgs|MagicLinkWithPhoneArgs|MagicLinkWithUserArgs $args,
-        MagicLinkOptions|null $options,
+        MagicLinkOptions|null $options = null,
     ): MagicLink {
-        $identifier = null;
-        $channel = null;
+        $payloadData = [
+            'type' => $args->type,
+            'send' => $args->send,
+        ];
 
         switch ($args) {
             case $args instanceof MagicLinkWithEmailArgs:
-                $identifier = $args->email;
-                $channel = MagicLinkChannel::EMAIL;
+                $payloadData['email'] = $args->email;
+                $payloadData['channel'] = MagicLinkChannel::EMAIL;
                 break;
             case $args instanceof MagicLinkWithPhoneArgs:
-                $identifier = $args->phone;
-                $channel = MagicLinkChannel::PHONE;
+                $payloadData['phone'] = $args->phone;
+                $payloadData['channel'] = MagicLinkChannel::PHONE;
                 break;
             case $args instanceof MagicLinkWithUserArgs:
-                $identifier = $args->userId;
-                $channel = $args->channel;
+                $payloadData['user_id'] = $args->userId;
+                $payloadData['channel'] = $args->channel;
                 break;
             default:
                 throw new InvalidArgumentException("args must contain an email, phone, or userId");
         }
 
-        $payload = new CreateMagicLinkRequest(
-            [
-                'identifier' => $identifier,
-                'channel' => $channel,
-                'type' => $args->type,
-                'send' => $args->send,
-            ]
-        );
+        $payload = new CreateMagicLinkRequest($payloadData);
 
         if ($options) {
             if ($options->language) {
@@ -130,10 +128,8 @@ class Auth
             }
         }
 
-        $magicLinksApi = new MagicLinksApi(null, $this->config);
-
         try {
-            return $magicLinksApi->createMagicLink($this->appId, $payload)->getMagicLink();
+            return $this->magicLinksApi->createMagicLink($this->appId, $payload)->getMagicLink();
         } catch (ApiException $e) {
             throw PassageError::fromApiException($e);
         }
