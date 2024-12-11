@@ -3,6 +3,10 @@
 namespace Passage\Test;
 
 use Dotenv\Dotenv;
+use OpenAPI\Client\Model\MagicLinkType;
+use Passage\Client\MagicLinkWithEmailArgs;
+use Passage\Client\MagicLinkWithPhoneArgs;
+use Passage\Client\MagicLinkWithUserArgs;
 use UnexpectedValueException;
 use PHPUnit\Framework\TestCase;
 use Passage\Client\Passage;
