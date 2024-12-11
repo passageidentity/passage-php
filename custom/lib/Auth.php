@@ -14,6 +14,7 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Api\MagicLinksApi;
 use OpenAPI\Client\Model\CreateMagicLinkRequest;
 use OpenAPI\Client\Model\MagicLink;
+use OpenAPI\Client\Model\MagicLinkChannel;
 
 class Auth
 {
@@ -85,24 +86,34 @@ class Auth
         MagicLinkWithEmailArgs|MagicLinkWithPhoneArgs|MagicLinkWithUserArgs $args,
         MagicLinkOptions|null $options,
     ): MagicLink {
-        $payload = new CreateMagicLinkRequest();
-        $payload->setType($args->type);
-        $payload->setSend($args->send);
+        $identifier = null;
+        $channel = null;
 
         switch ($args) {
             case $args instanceof MagicLinkWithEmailArgs:
-                $payload->setEmail($args->email);
+                $identifier = $args->email;
+                $channel = MagicLinkChannel::EMAIL;
                 break;
             case $args instanceof MagicLinkWithPhoneArgs:
-                $payload->setPhone($args->phone);
+                $identifier = $args->phone;
+                $channel = MagicLinkChannel::PHONE;
                 break;
             case $args instanceof MagicLinkWithUserArgs:
-                $payload->setUserId($args->userId);
-                $payload->setChannel($args->channel);
+                $identifier = $args->userId;
+                $channel = $args->channel;
                 break;
             default:
                 throw new InvalidArgumentException("args must contain an email, phone, or userId");
         }
+
+        $payload = new CreateMagicLinkRequest(
+            [
+                'identifier' => $identifier,
+                'channel' => $channel,
+                'type' => $args->type,
+                'send' => $args->send,
+            ]
+        );
 
         if ($options) {
             if ($options->language) {
