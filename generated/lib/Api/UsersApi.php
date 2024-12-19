@@ -102,10 +102,10 @@ class UsersApi
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ClientInterface $client = null,
-        Configuration $config = null,
-        HeaderSelector $selector = null,
-        $hostIndex = 0
+        ?ClientInterface $client = null,
+        ?Configuration $config = null,
+        ?HeaderSelector $selector = null,
+        int $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -2194,17 +2194,17 @@ class UsersApi
      * List Users
      *
      * @param  string $app_id App ID (required)
-     * @param  int $page page to fetch (min&#x3D;1) (optional)
-     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
-     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
-     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
-     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
-     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
-     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  int|null $page page to fetch (min&#x3D;1) (optional)
+     * @param  int|null $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int|null $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string|null $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string|null $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string|null $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int|null $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string|null $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  string|null $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2223,17 +2223,17 @@ class UsersApi
      * List Users
      *
      * @param  string $app_id App ID (required)
-     * @param  int $page page to fetch (min&#x3D;1) (optional)
-     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
-     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
-     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
-     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
-     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
-     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  int|null $page page to fetch (min&#x3D;1) (optional)
+     * @param  int|null $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int|null $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string|null $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string|null $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string|null $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int|null $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string|null $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  string|null $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2499,17 +2499,17 @@ class UsersApi
      * List Users
      *
      * @param  string $app_id App ID (required)
-     * @param  int $page page to fetch (min&#x3D;1) (optional)
-     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
-     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
-     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
-     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
-     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
-     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  int|null $page page to fetch (min&#x3D;1) (optional)
+     * @param  int|null $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int|null $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string|null $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string|null $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string|null $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int|null $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string|null $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  string|null $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2531,17 +2531,17 @@ class UsersApi
      * List Users
      *
      * @param  string $app_id App ID (required)
-     * @param  int $page page to fetch (min&#x3D;1) (optional)
-     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
-     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
-     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
-     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
-     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
-     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  int|null $page page to fetch (min&#x3D;1) (optional)
+     * @param  int|null $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int|null $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string|null $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string|null $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string|null $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int|null $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string|null $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  string|null $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2592,17 +2592,17 @@ class UsersApi
      * Create request for operation 'listPaginatedUsers'
      *
      * @param  string $app_id App ID (required)
-     * @param  int $page page to fetch (min&#x3D;1) (optional)
-     * @param  int $limit number of users to fetch per page (max&#x3D;500) (optional)
-     * @param  int $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
-     * @param  string $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
-     * @param  string $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  string $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
-     * @param  int $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
-     * @param  string $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
-     * @param  string $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
-     * @param  string $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  int|null $page page to fetch (min&#x3D;1) (optional)
+     * @param  int|null $limit number of users to fetch per page (max&#x3D;500) (optional)
+     * @param  int|null $created_before Unix timestamp to anchor pagination results (fetches events that were created before the timestamp) (optional)
+     * @param  string|null $order_by Comma separated list of &lt;field&gt;:&lt;ASC/DESC&gt; (example: order_by&#x3D;id:DESC,created_at:ASC) **cannot order_by &#x60;identifier&#x60; (optional)
+     * @param  string|null $identifier search users email OR phone (pagination prepended operators identifier&#x3D;&lt;val&gt;, identifier&#x3D;&lt;ne:val&gt;, identifier&#x3D;&lt;gt:val&gt;, identifier&#x3D;&lt;lt:val&gt;, identifier&#x3D;&lt;like:val&gt;, identifier&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  string|null $id search users id (pagination prepended operators id&#x3D;&lt;val&gt;, id&#x3D;&lt;ne:val&gt;, id&#x3D;&lt;gt:val&gt;, id&#x3D;&lt;lt:val&gt;, id&#x3D;&lt;like:val&gt;, id&#x3D;&lt;not_like:val&gt;) (optional)
+     * @param  int|null $login_count search users login_count (pagination prepended operators login_count&#x3D;&lt;val&gt;, login_count&#x3D;&lt;ne:val&gt;, login_count&#x3D;&lt;gt:val&gt;, login_count&#x3D;&lt;lt:val&gt;) (optional)
+     * @param  string|null $status search users by status (pagination prepended operators status&#x3D;&lt;val&gt;, status&#x3D;&lt;ne:val&gt;, status&#x3D;&lt;gt:val&gt;, status&#x3D;&lt;lt:val&gt;, status&#x3D;&lt;like:val&gt;, status&#x3D;&lt;not_like:val&gt;) -- valid values: (active, inactive, pending) (optional)
+     * @param  string|null $created_at search users created_at (pagination prepended operators created_at&#x3D;&lt;val&gt;, created_at&#x3D;&lt;ne:val&gt;, created_at&#x3D;&lt;gt:val&gt;, created_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $updated_at search users updated_at (pagination prepended operators updated_at&#x3D;&lt;val&gt;, updated_at&#x3D;&lt;ne:val&gt;, updated_at&#x3D;&lt;gt:val&gt;, updated_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
+     * @param  string|null $last_login_at search users last_login_at (pagination prepended operators last_login_at&#x3D;&lt;val&gt;, lat_login_at&#x3D;&lt;ne:val&gt;, last_login_at&#x3D;&lt;gt:val&gt;, last_login_at&#x3D;&lt;lt:val&gt; -- valid timestamp in the format: 2006-01-02T15:04:05.000000Z required (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPaginatedUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
