@@ -54,19 +54,20 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\AppsApi(
+$apiInstance = new OpenAPI\Client\Api\MagicLinksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $app_id = 'app_id_example'; // string | App ID
+$create_magic_link_request = new \OpenAPI\Client\Model\CreateMagicLinkRequest(); // \OpenAPI\Client\Model\CreateMagicLinkRequest | Request to create a magic link
 
 try {
-    $result = $apiInstance->getApp($app_id);
+    $result = $apiInstance->createMagicLink($app_id, $create_magic_link_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AppsApi->getApp: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MagicLinksApi->createMagicLink: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -77,7 +78,6 @@ All URIs are relative to *https://api.passage.id/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AppsApi* | [**getApp**](docs/Api/AppsApi.md#getapp) | **GET** /apps/{app_id} | Get App
 *MagicLinksApi* | [**createMagicLink**](docs/Api/MagicLinksApi.md#createmagiclink) | **POST** /apps/{app_id}/magic-links | Create Embeddable Magic Link
 *TokensApi* | [**revokeUserRefreshTokens**](docs/Api/TokensApi.md#revokeuserrefreshtokens) | **DELETE** /apps/{app_id}/users/{user_id}/tokens | Revokes refresh tokens
 *UserDevicesApi* | [**deleteUserDevices**](docs/Api/UserDevicesApi.md#deleteuserdevices) | **DELETE** /apps/{app_id}/users/{user_id}/devices/{device_id} | Delete a device for a user
@@ -92,24 +92,16 @@ Class | Method | HTTP request | Description
 
 ## Models
 
-- [AppInfo](docs/Model/AppInfo.md)
-- [AppResponse](docs/Model/AppResponse.md)
 - [AppleUserSocialConnection](docs/Model/AppleUserSocialConnection.md)
-- [AuthMethods](docs/Model/AuthMethods.md)
 - [CreateMagicLinkRequest](docs/Model/CreateMagicLinkRequest.md)
 - [CreateUserRequest](docs/Model/CreateUserRequest.md)
-- [ElementCustomization](docs/Model/ElementCustomization.md)
-- [FontFamily](docs/Model/FontFamily.md)
 - [GithubUserSocialConnection](docs/Model/GithubUserSocialConnection.md)
 - [GoogleUserSocialConnection](docs/Model/GoogleUserSocialConnection.md)
-- [LayoutConfig](docs/Model/LayoutConfig.md)
-- [Layouts](docs/Model/Layouts.md)
 - [Link](docs/Model/Link.md)
 - [ListDevicesResponse](docs/Model/ListDevicesResponse.md)
 - [ListPaginatedUsersItem](docs/Model/ListPaginatedUsersItem.md)
 - [ListPaginatedUsersResponse](docs/Model/ListPaginatedUsersResponse.md)
 - [MagicLink](docs/Model/MagicLink.md)
-- [MagicLinkAuthMethod](docs/Model/MagicLinkAuthMethod.md)
 - [MagicLinkChannel](docs/Model/MagicLinkChannel.md)
 - [MagicLinkResponse](docs/Model/MagicLinkResponse.md)
 - [MagicLinkType](docs/Model/MagicLinkType.md)
@@ -119,19 +111,12 @@ Class | Method | HTTP request | Description
 - [Model404Error](docs/Model/Model404Error.md)
 - [Model500Error](docs/Model/Model500Error.md)
 - [Nonce](docs/Model/Nonce.md)
-- [OtpAuthMethod](docs/Model/OtpAuthMethod.md)
 - [PaginatedLinks](docs/Model/PaginatedLinks.md)
-- [PasskeysAuthMethod](docs/Model/PasskeysAuthMethod.md)
 - [SocialConnectionType](docs/Model/SocialConnectionType.md)
-- [Technologies](docs/Model/Technologies.md)
-- [ThemeType](docs/Model/ThemeType.md)
-- [TtlDisplayUnit](docs/Model/TtlDisplayUnit.md)
 - [UpdateUserRequest](docs/Model/UpdateUserRequest.md)
 - [UserEventAction](docs/Model/UserEventAction.md)
 - [UserEventStatus](docs/Model/UserEventStatus.md)
 - [UserInfo](docs/Model/UserInfo.md)
-- [UserMetadataField](docs/Model/UserMetadataField.md)
-- [UserMetadataFieldType](docs/Model/UserMetadataFieldType.md)
 - [UserRecentEvent](docs/Model/UserRecentEvent.md)
 - [UserResponse](docs/Model/UserResponse.md)
 - [UserSocialConnections](docs/Model/UserSocialConnections.md)
