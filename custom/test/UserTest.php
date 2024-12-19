@@ -3,7 +3,6 @@
 namespace Passage\Test;
 
 use Dotenv\Dotenv;
-use OpenAPI\Client\Model\UpdateUserRequest;
 use Passage\Client\CreateUserArgs;
 use Passage\Client\UpdateUserArgs;
 use PHPUnit\Framework\TestCase;
