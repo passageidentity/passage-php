@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [1.0.0](https://github.com/passageidentity/passage-php/compare/v0.5.0...v1.0.0) (2024-12-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove deprecated AppInfo code from codegen ([#93](https://github.com/passageidentity/passage-php/issues/93))
+* remove deprecated code ([#94](https://github.com/passageidentity/passage-php/issues/94))
+
+### Features
+
+* remove deprecated AppInfo code from codegen ([#93](https://github.com/passageidentity/passage-php/issues/93)) ([cdf10d0](https://github.com/passageidentity/passage-php/commit/cdf10d05b00932faf7964fa94e1c21206976a5eb))
+* remove deprecated code ([#94](https://github.com/passageidentity/passage-php/issues/94)) ([6345490](https://github.com/passageidentity/passage-php/commit/63454900cfb3cc053545677bcc19502ff346372a))
+
 ## [0.5.0](https://github.com/passageidentity/passage-php/compare/v0.4.0...v0.5.0) (2024-12-12)
 
 
