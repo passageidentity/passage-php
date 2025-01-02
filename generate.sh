@@ -14,7 +14,7 @@ docker run --rm -v "${PWD}:/local" -u $(id -u) openapitools/openapi-generator-cl
   -i "/local/$file" \
   -g php \
   -o /local/generated \
-  --additional-properties=modelPropertyNaming=original
+  --global-property apis,models,supportingFiles,apiTests=false,modelTests=false,apiDocs=false
 
 rm generated/composer.json
 rm generated/.gitignore
