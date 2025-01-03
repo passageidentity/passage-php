@@ -18,8 +18,8 @@ docker run --rm -v "${PWD}:/local" -u $(id -u) openapitools/openapi-generator-cl
 
 rm generated/composer.json
 rm generated/.gitignore
-rm -r ./docs/Model
-mv -f generated/docs/Model ./docs/Model
+rm -r ./docs
+mv -f generated/docs/Model ./docs
 rm -rf generated/docs/
 
 add_passage_version_header() {
