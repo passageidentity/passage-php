@@ -12,12 +12,13 @@ rm -rf ./generated
 
 docker run --rm -v "${PWD}:/local" -u $(id -u) openapitools/openapi-generator-cli:latest generate \
   -i "/local/$file" \
-  -g php \
-  -o /local/generated \
+  -g php-nextgen \
+  -o /local/temp \
   --global-property apiTests=false,modelTests=false,apiDocs=false,modelDocs=false
 
-rm generated/composer.json
-rm generated/.gitignore
+mkdir -p ./generated/lib
+mv ./temp/src/* ./generated/lib
+rm -rf ./temp
 
 add_passage_version_header() {
   local header_comment="// Add Passage version header"

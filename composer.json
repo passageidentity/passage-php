@@ -51,15 +51,13 @@
     "autoload": {
         "psr-4": {
             "OpenAPI\\Client\\": [
-                "generated/lib/",
-                "custom/models/"
+                "generated/lib/"
             ],
             "Passage\\Client\\": "custom/lib/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OpenAPI\\Client\\Test\\": "generated/test/",
             "Passage\\Client\\Test\\": "custom/test/"
         }
     }
