@@ -134,13 +134,13 @@ class TokensApi
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model403Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
+     * @return void
      */
     public function revokeUserRefreshTokens(
         string $app_id,
         string $user_id,
         string $contentType = self::contentTypes['revokeUserRefreshTokens'][0]
-    ): \OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model403Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
+    ): void
     {
         $this->revokeUserRefreshTokensWithHttpInfo($app_id, $user_id, $contentType);
     }
