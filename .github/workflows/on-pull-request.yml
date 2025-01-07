@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.1'
           tools: phpcs, cs2pr
       - name: Lint
         run: phpcs -q --standard=PSR12 --report=checkstyle custom | cs2pr
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.1'
           tools: php-cs-fixer, cs2pr
       - name: Format
         run: php-cs-fixer fix --dry-run --allow-risky=yes --format=checkstyle --rules=@PSR12 | cs2pr
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.1'
       - name: Install dependencies
         run: composer install
       - name: Test
