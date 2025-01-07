@@ -22,7 +22,7 @@ jobs:
           php-version: '8.1'
           tools: phpcs, cs2pr
       - name: Lint
-        run: phpcs -q --standard=PSR12 --report=checkstyle src | cs2pr
+        run: phpcs -q --standard=PSR12 --report=checkstyle --ignore=src/generated/* src | cs2pr
   format:
     name: Format
     runs-on: ubuntu-latest
