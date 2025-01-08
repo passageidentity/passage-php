@@ -33,7 +33,7 @@
         "format": "./vendor/bin/php-cs-fixer fix --allow-risky=yes --rules=@PSR12"
     },
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.1",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
