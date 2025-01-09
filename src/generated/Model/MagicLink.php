@@ -556,7 +556,7 @@ class MagicLink implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets ttl
      *
-     * @param int $ttl ttl
+     * @param int $ttl time to live in minutes
      *
      * @return $this
      */
