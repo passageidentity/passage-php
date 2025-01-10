@@ -74,7 +74,7 @@ class User
             if (count($users) === 0) {
                 throw PassageError::fromApiException(
                     new ApiException(
-                        null,
+                        "",
                         404,
                         null,
                         "{\"code\":\"user_not_found\",\"error\":\"User not found.\"}",

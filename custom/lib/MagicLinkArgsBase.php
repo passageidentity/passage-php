@@ -2,11 +2,13 @@
 
 namespace Passage\Client;
 
+use OpenAPI\Client\Model\MagicLinkType;
+
 readonly class MagicLinkArgsBase
 {
     public function __construct(
-        public readonly string $type,
-        public readonly bool $send,
+        public MagicLinkType $type,
+        public bool $send,
     ) {
     }
 }
