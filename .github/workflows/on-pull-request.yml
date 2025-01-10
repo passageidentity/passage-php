@@ -22,7 +22,7 @@ jobs:
           php-version: '8.1'
           tools: phpcs, cs2pr
       - name: Lint
-        run: phpcs -q --standard=PSR12 --report=checkstyle custom | cs2pr
+        run: phpcs -q --standard=PSR12 --report=checkstyle src | cs2pr
   format:
     name: Format
     runs-on: ubuntu-latest
@@ -45,4 +45,4 @@ jobs:
       - name: Install dependencies
         run: composer install
       - name: Test
-        run: ./vendor/bin/phpunit custom/test/
+        run: ./vendor/bin/phpunit tests/

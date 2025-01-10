@@ -20,8 +20,8 @@ class UserTest extends TestCase
     {
         parent::setUp();
 
-        include __DIR__ . '/../../vendor/autoload.php';
-        Dotenv::createUnsafeImmutable(__DIR__ . '/../../')->safeLoad();
+        include __DIR__ . '/../vendor/autoload.php';
+        Dotenv::createUnsafeImmutable(__DIR__ . '/..')->safeLoad();
 
         $this->appId = getenv('APP_ID');
         $this->apiKey = getenv('API_KEY');
