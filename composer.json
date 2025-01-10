@@ -28,8 +28,8 @@
         }
     ],
     "scripts": {
-        "lint": "./vendor/bin/phpcs --standard=PSR12 --report=full src",
-        "phpcs-fix": "./vendor/bin/phpcbf --standard=PSR12 src",
+        "lint": "./vendor/bin/phpcs --standard=PSR12 --report=full --ignore=src/generated/* src",
+        "phpcs-fix": "./vendor/bin/phpcbf --standard=PSR12 --ignore=src/generated/* src",
         "format": "./vendor/bin/php-cs-fixer fix --allow-risky=yes --rules=@PSR12"
     },
     "require": {
@@ -51,7 +51,7 @@
     "autoload": {
         "psr-4": {
             "OpenAPI\\Client\\": [
-                "generated/lib/"
+                "src/generated/"
             ],
             "Passage\\Client\\": "src/"
         }
