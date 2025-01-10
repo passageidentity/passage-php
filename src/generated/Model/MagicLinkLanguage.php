@@ -1,6 +1,6 @@
 <?php
 /**
- * MagicLinkType
+ * MagicLinkLanguage
  *
  * PHP version 8.1
  *
@@ -29,18 +29,28 @@
 namespace OpenAPI\Client\Model;
 
 /**
- * MagicLinkType Class Doc Comment
+ * MagicLinkLanguage Class Doc Comment
  *
- * @description The type of magic link to create: \&quot;login\&quot; or \&quot;verify_identifier\&quot;. Defaults to \&quot;login\&quot;.
+ * @description language of the email or sms to send
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-enum MagicLinkType: string
+enum MagicLinkLanguage: string
 {
-    case LOGIN = 'login';
+    case DE = 'de';
 
-    case VERIFY_IDENTIFIER = 'verify_identifier';
+    case EN = 'en';
+
+    case ES = 'es';
+
+    case IT = 'it';
+
+    case PL = 'pl';
+
+    case PT = 'pt';
+
+    case ZH = 'zh';
 }
 
 

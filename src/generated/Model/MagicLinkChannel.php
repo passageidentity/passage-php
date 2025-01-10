@@ -31,6 +31,7 @@ namespace OpenAPI\Client\Model;
 /**
  * MagicLinkChannel Class Doc Comment
  *
+ * @description The channel for magic link delivery: \&quot;email\&quot; or \&quot;phone\&quot;. Required if \&quot;send\&quot; is true.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

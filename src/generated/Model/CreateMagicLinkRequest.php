@@ -61,7 +61,7 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, JsonSeriali
     protected static array $openAPITypes = [
         'channel' => '\OpenAPI\Client\Model\MagicLinkChannel',
         'email' => 'string',
-        'language' => 'string',
+        'language' => '\OpenAPI\Client\Model\MagicLinkLanguage',
         'magic_link_path' => 'string',
         'phone' => 'string',
         'redirect_url' => 'string',
@@ -336,6 +336,10 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, JsonSeriali
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['ttl']) && ($this->container['ttl'] < 1)) {
+            $invalidProperties[] = "invalid value for 'ttl', must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -408,9 +412,9 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets language
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\MagicLinkLanguage|null
      */
-    public function getLanguage(): ?string
+    public function getLanguage(): ?\OpenAPI\Client\Model\MagicLinkLanguage
     {
         return $this->container['language'];
     }
@@ -418,11 +422,11 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets language
      *
-     * @param string|null $language language of the email to send (optional)
+     * @param \OpenAPI\Client\Model\MagicLinkLanguage|null $language language
      *
      * @return $this
      */
-    public function setLanguage(?string $language): static
+    public function setLanguage(?\OpenAPI\Client\Model\MagicLinkLanguage $language): static
     {
         if (is_null($language)) {
             throw new InvalidArgumentException('non-nullable language cannot be null');
@@ -553,7 +557,7 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets ttl
      *
-     * @param int|null $ttl ttl
+     * @param int|null $ttl time to live in minutes
      *
      * @return $this
      */
@@ -562,6 +566,11 @@ class CreateMagicLinkRequest implements ModelInterface, ArrayAccess, JsonSeriali
         if (is_null($ttl)) {
             throw new InvalidArgumentException('non-nullable ttl cannot be null');
         }
+
+        if (($ttl < 1)) {
+            throw new InvalidArgumentException('invalid value for $ttl when calling CreateMagicLinkRequest., must be bigger than or equal to 1.');
+        }
+
         $this->container['ttl'] = $ttl;
 
         return $this;
