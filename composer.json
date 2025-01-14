@@ -1,7 +1,7 @@
 {
     "name": "passageidentity/passage-php",
     "description": "Passkey Complete for PHP - Integrate into your PHP API or service to enable a completely passwordless standalone auth solution with Passage by 1Password.",
-    "version": "0.5.0",
+    "version": "1.0.0",
     "keywords": [
         "authentication",
         "passkeys",
