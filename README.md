@@ -44,17 +44,15 @@ composer require passageidentity/passage-php
 ### Import
 
 ```php
-use Passage\Client\Controllers\Passage;
+use Passage\Client\Passage;
 ```
 
 ### Initialize
 
 ```php
-$app_id = 'YOUR_PASSAGE_APP_ID';
-$api_key = 'YOUR_PASSAGE_API_KEY';
 $passage = new Passage(
-  $app_id,
-  $api_key
+  $_ENV['PASSAGE_APP_ID'],
+  $_ENV['PASSAGE_API_KEY'],
 );
 ```
 
