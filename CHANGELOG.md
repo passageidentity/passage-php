@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [1.0.0](https://github.com/passageidentity/passage-php/compare/v0.5.0...v1.0.0) (2025-01-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* change language type to be more strict in magic link options ([#104](https://github.com/passageidentity/passage-php/issues/104))
+* use enums instead of strings for magic link parameters
+* change codegen to use php 8.1
+* updates minimum PHP supported version from 7.4 to to 8.1
+* remove deprecated AppInfo code from codegen ([#93](https://github.com/passageidentity/passage-php/issues/93))
+* remove deprecated code ([#94](https://github.com/passageidentity/passage-php/issues/94))
+
+### Features
+
+* adds parameter guards to the Passage constructor ([#101](https://github.com/passageidentity/passage-php/issues/101)) ([a2d8209](https://github.com/passageidentity/passage-php/commit/a2d8209f148f5594bb880f88fcbb48e7f7cc5e15))
+* change codegen to use php 8.1 ([8165668](https://github.com/passageidentity/passage-php/commit/81656680345a689f7f5f73f6245b0102b4b97a40))
+* change language type to be more strict in magic link options ([#104](https://github.com/passageidentity/passage-php/issues/104)) ([8683ff1](https://github.com/passageidentity/passage-php/commit/8683ff196720c250bd4539e1526e1b2674c49915))
+* remove deprecated AppInfo code from codegen ([#93](https://github.com/passageidentity/passage-php/issues/93)) ([cdf10d0](https://github.com/passageidentity/passage-php/commit/cdf10d05b00932faf7964fa94e1c21206976a5eb))
+* remove deprecated code ([#94](https://github.com/passageidentity/passage-php/issues/94)) ([6345490](https://github.com/passageidentity/passage-php/commit/63454900cfb3cc053545677bcc19502ff346372a))
+* remove unnecessary tests from codegen output ([#97](https://github.com/passageidentity/passage-php/issues/97)) ([1ff2fc0](https://github.com/passageidentity/passage-php/commit/1ff2fc0b2220df2638eb3ca210105724cf6519f4))
+* updates minimum PHP supported version from 7.4 to to 8.1 ([af384d7](https://github.com/passageidentity/passage-php/commit/af384d7ffa768543e1d06db45ba6eb77f7093e7e))
+* use enums instead of strings for magic link parameters ([8165668](https://github.com/passageidentity/passage-php/commit/81656680345a689f7f5f73f6245b0102b4b97a40))
+
+
+### Miscellaneous Chores
+
+* removes generated docs ([1ff2fc0](https://github.com/passageidentity/passage-php/commit/1ff2fc0b2220df2638eb3ca210105724cf6519f4))
+* update readme code blocks ([#105](https://github.com/passageidentity/passage-php/issues/105)) ([8a70891](https://github.com/passageidentity/passage-php/commit/8a7089197cd72125d5e0566c2dce60ea46ff2c6b))
+
 ## [0.5.0](https://github.com/passageidentity/passage-php/compare/v0.4.0...v0.5.0) (2024-12-12)
 
 
