@@ -1,6 +1,6 @@
 <?php
 /**
- * UserInfo
+ * PassageUser
  *
  * PHP version 8.1
  *
@@ -35,14 +35,14 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * UserInfo Class Doc Comment
+ * PassageUser Class Doc Comment
  *
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class UserInfo implements ModelInterface, ArrayAccess, JsonSerializable
+class PassageUser implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 

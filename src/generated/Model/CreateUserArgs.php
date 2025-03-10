@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateUserRequest
+ * CreateUserArgs
  *
  * PHP version 8.1
  *
@@ -35,14 +35,14 @@ use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * UpdateUserRequest Class Doc Comment
+ * CreateUserArgs Class Doc Comment
  *
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class CreateUserArgs implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerializable
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'UpdateUserRequest';
+    protected static string $openAPIModelName = 'CreateUserRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -315,7 +315,7 @@ class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets email
      *
-     * @param string|null $email email
+     * @param string|null $email Email of the new user. Either this or `phone` is required; both may be provided.
      *
      * @return $this
      */
@@ -342,7 +342,7 @@ class UpdateUserRequest implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets phone
      *
-     * @param string|null $phone phone
+     * @param string|null $phone Phone number of the new user. Either this or `email` is required; both may be provided.
      *
      * @return $this
      */

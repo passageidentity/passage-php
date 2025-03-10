@@ -604,7 +604,7 @@ class UsersApi
      * Create User
      *
      * @param  string $app_id App ID (required)
-     * @param  \OpenAPI\Client\Model\CreateUserRequest $create_user_request email, phone, user_metadata (required)
+     * @param  \OpenAPI\Client\Model\CreateUserArgs $create_user_args email, phone, user_metadata (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -613,11 +613,11 @@ class UsersApi
      */
     public function createUser(
         string $app_id,
-        \OpenAPI\Client\Model\CreateUserRequest $create_user_request,
+        \OpenAPI\Client\Model\CreateUserArgs $create_user_args,
         string $contentType = self::contentTypes['createUser'][0]
     ): \OpenAPI\Client\Model\UserResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
     {
-        list($response) = $this->createUserWithHttpInfo($app_id, $create_user_request, $contentType);
+        list($response) = $this->createUserWithHttpInfo($app_id, $create_user_args, $contentType);
         return $response;
     }
 
@@ -627,7 +627,7 @@ class UsersApi
      * Create User
      *
      * @param  string $app_id App ID (required)
-     * @param  \OpenAPI\Client\Model\CreateUserRequest $create_user_request email, phone, user_metadata (required)
+     * @param  \OpenAPI\Client\Model\CreateUserArgs $create_user_args email, phone, user_metadata (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -636,11 +636,11 @@ class UsersApi
      */
     public function createUserWithHttpInfo(
         string $app_id,
-        \OpenAPI\Client\Model\CreateUserRequest $create_user_request,
+        \OpenAPI\Client\Model\CreateUserArgs $create_user_args,
         string $contentType = self::contentTypes['createUser'][0]
     ): array
     {
-        $request = $this->createUserRequest($app_id, $create_user_request, $contentType);
+        $request = $this->createUserRequest($app_id, $create_user_args, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -897,7 +897,7 @@ class UsersApi
      * Create User
      *
      * @param  string $app_id App ID (required)
-     * @param  \OpenAPI\Client\Model\CreateUserRequest $create_user_request email, phone, user_metadata (required)
+     * @param  \OpenAPI\Client\Model\CreateUserArgs $create_user_args email, phone, user_metadata (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -905,11 +905,11 @@ class UsersApi
      */
     public function createUserAsync(
         string $app_id,
-        \OpenAPI\Client\Model\CreateUserRequest $create_user_request,
+        \OpenAPI\Client\Model\CreateUserArgs $create_user_args,
         string $contentType = self::contentTypes['createUser'][0]
     ): PromiseInterface
     {
-        return $this->createUserAsyncWithHttpInfo($app_id, $create_user_request, $contentType)
+        return $this->createUserAsyncWithHttpInfo($app_id, $create_user_args, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -923,7 +923,7 @@ class UsersApi
      * Create User
      *
      * @param  string $app_id App ID (required)
-     * @param  \OpenAPI\Client\Model\CreateUserRequest $create_user_request email, phone, user_metadata (required)
+     * @param  \OpenAPI\Client\Model\CreateUserArgs $create_user_args email, phone, user_metadata (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -931,12 +931,12 @@ class UsersApi
      */
     public function createUserAsyncWithHttpInfo(
         string $app_id,
-        \OpenAPI\Client\Model\CreateUserRequest $create_user_request,
+        \OpenAPI\Client\Model\CreateUserArgs $create_user_args,
         string $contentType = self::contentTypes['createUser'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\UserResponse';
-        $request = $this->createUserRequest($app_id, $create_user_request, $contentType);
+        $request = $this->createUserRequest($app_id, $create_user_args, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -978,7 +978,7 @@ class UsersApi
      * Create request for operation 'createUser'
      *
      * @param  string $app_id App ID (required)
-     * @param  \OpenAPI\Client\Model\CreateUserRequest $create_user_request email, phone, user_metadata (required)
+     * @param  \OpenAPI\Client\Model\CreateUserArgs $create_user_args email, phone, user_metadata (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -986,7 +986,7 @@ class UsersApi
      */
     public function createUserRequest(
         string $app_id,
-        \OpenAPI\Client\Model\CreateUserRequest $create_user_request,
+        \OpenAPI\Client\Model\CreateUserArgs $create_user_args,
         string $contentType = self::contentTypes['createUser'][0]
     ): Request
     {
@@ -998,10 +998,10 @@ class UsersApi
             );
         }
 
-        // verify the required parameter 'create_user_request' is set
-        if ($create_user_request === null || (is_array($create_user_request) && count($create_user_request) === 0)) {
+        // verify the required parameter 'create_user_args' is set
+        if ($create_user_args === null || (is_array($create_user_args) && count($create_user_args) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $create_user_request when calling createUser'
+                'Missing the required parameter $create_user_args when calling createUser'
             );
         }
 
@@ -1032,12 +1032,12 @@ class UsersApi
         );
 
         // for model (json/xml)
-        if (isset($create_user_request)) {
+        if (isset($create_user_args)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_user_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_user_args));
             } else {
-                $httpBody = $create_user_request;
+                $httpBody = $create_user_args;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2982,7 +2982,7 @@ class UsersApi
      *
      * @param  string $app_id App ID (required)
      * @param  string $user_id User ID (required)
-     * @param  \OpenAPI\Client\Model\UpdateUserRequest $update_user_request user settings (required)
+     * @param  \OpenAPI\Client\Model\UpdateUserArgs $update_user_args user settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -2992,11 +2992,11 @@ class UsersApi
     public function updateUser(
         string $app_id,
         string $user_id,
-        \OpenAPI\Client\Model\UpdateUserRequest $update_user_request,
+        \OpenAPI\Client\Model\UpdateUserArgs $update_user_args,
         string $contentType = self::contentTypes['updateUser'][0]
     ): \OpenAPI\Client\Model\UserResponse|\OpenAPI\Client\Model\Model400Error|\OpenAPI\Client\Model\Model401Error|\OpenAPI\Client\Model\Model404Error|\OpenAPI\Client\Model\Model500Error
     {
-        list($response) = $this->updateUserWithHttpInfo($app_id, $user_id, $update_user_request, $contentType);
+        list($response) = $this->updateUserWithHttpInfo($app_id, $user_id, $update_user_args, $contentType);
         return $response;
     }
 
@@ -3007,7 +3007,7 @@ class UsersApi
      *
      * @param  string $app_id App ID (required)
      * @param  string $user_id User ID (required)
-     * @param  \OpenAPI\Client\Model\UpdateUserRequest $update_user_request user settings (required)
+     * @param  \OpenAPI\Client\Model\UpdateUserArgs $update_user_args user settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -3017,11 +3017,11 @@ class UsersApi
     public function updateUserWithHttpInfo(
         string $app_id,
         string $user_id,
-        \OpenAPI\Client\Model\UpdateUserRequest $update_user_request,
+        \OpenAPI\Client\Model\UpdateUserArgs $update_user_args,
         string $contentType = self::contentTypes['updateUser'][0]
     ): array
     {
-        $request = $this->updateUserRequest($app_id, $user_id, $update_user_request, $contentType);
+        $request = $this->updateUserRequest($app_id, $user_id, $update_user_args, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3279,7 +3279,7 @@ class UsersApi
      *
      * @param  string $app_id App ID (required)
      * @param  string $user_id User ID (required)
-     * @param  \OpenAPI\Client\Model\UpdateUserRequest $update_user_request user settings (required)
+     * @param  \OpenAPI\Client\Model\UpdateUserArgs $update_user_args user settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -3288,11 +3288,11 @@ class UsersApi
     public function updateUserAsync(
         string $app_id,
         string $user_id,
-        \OpenAPI\Client\Model\UpdateUserRequest $update_user_request,
+        \OpenAPI\Client\Model\UpdateUserArgs $update_user_args,
         string $contentType = self::contentTypes['updateUser'][0]
     ): PromiseInterface
     {
-        return $this->updateUserAsyncWithHttpInfo($app_id, $user_id, $update_user_request, $contentType)
+        return $this->updateUserAsyncWithHttpInfo($app_id, $user_id, $update_user_args, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3307,7 +3307,7 @@ class UsersApi
      *
      * @param  string $app_id App ID (required)
      * @param  string $user_id User ID (required)
-     * @param  \OpenAPI\Client\Model\UpdateUserRequest $update_user_request user settings (required)
+     * @param  \OpenAPI\Client\Model\UpdateUserArgs $update_user_args user settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -3316,12 +3316,12 @@ class UsersApi
     public function updateUserAsyncWithHttpInfo(
         string $app_id,
         string $user_id,
-        \OpenAPI\Client\Model\UpdateUserRequest $update_user_request,
+        \OpenAPI\Client\Model\UpdateUserArgs $update_user_args,
         string $contentType = self::contentTypes['updateUser'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\UserResponse';
-        $request = $this->updateUserRequest($app_id, $user_id, $update_user_request, $contentType);
+        $request = $this->updateUserRequest($app_id, $user_id, $update_user_args, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3364,7 +3364,7 @@ class UsersApi
      *
      * @param  string $app_id App ID (required)
      * @param  string $user_id User ID (required)
-     * @param  \OpenAPI\Client\Model\UpdateUserRequest $update_user_request user settings (required)
+     * @param  \OpenAPI\Client\Model\UpdateUserArgs $update_user_args user settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -3373,7 +3373,7 @@ class UsersApi
     public function updateUserRequest(
         string $app_id,
         string $user_id,
-        \OpenAPI\Client\Model\UpdateUserRequest $update_user_request,
+        \OpenAPI\Client\Model\UpdateUserArgs $update_user_args,
         string $contentType = self::contentTypes['updateUser'][0]
     ): Request
     {
@@ -3392,10 +3392,10 @@ class UsersApi
             );
         }
 
-        // verify the required parameter 'update_user_request' is set
-        if ($update_user_request === null || (is_array($update_user_request) && count($update_user_request) === 0)) {
+        // verify the required parameter 'update_user_args' is set
+        if ($update_user_args === null || (is_array($update_user_args) && count($update_user_args) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $update_user_request when calling updateUser'
+                'Missing the required parameter $update_user_args when calling updateUser'
             );
         }
 
@@ -3434,12 +3434,12 @@ class UsersApi
         );
 
         // for model (json/xml)
-        if (isset($update_user_request)) {
+        if (isset($update_user_args)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_user_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_user_args));
             } else {
-                $httpBody = $update_user_request;
+                $httpBody = $update_user_args;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

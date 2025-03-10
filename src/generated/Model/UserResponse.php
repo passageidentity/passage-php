@@ -59,7 +59,7 @@ class UserResponse implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'user' => '\OpenAPI\Client\Model\UserInfo'
+        'user' => '\OpenAPI\Client\Model\PassageUser'
     ];
 
     /**
@@ -294,9 +294,9 @@ class UserResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets user
      *
-     * @return \OpenAPI\Client\Model\UserInfo
+     * @return \OpenAPI\Client\Model\PassageUser
      */
-    public function getUser(): \OpenAPI\Client\Model\UserInfo
+    public function getUser(): \OpenAPI\Client\Model\PassageUser
     {
         return $this->container['user'];
     }
@@ -304,11 +304,11 @@ class UserResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets user
      *
-     * @param \OpenAPI\Client\Model\UserInfo $user user
+     * @param \OpenAPI\Client\Model\PassageUser $user user
      *
      * @return $this
      */
-    public function setUser(\OpenAPI\Client\Model\UserInfo $user): static
+    public function setUser(\OpenAPI\Client\Model\PassageUser $user): static
     {
         if (is_null($user)) {
             throw new InvalidArgumentException('non-nullable user cannot be null');
