@@ -56,5 +56,37 @@ return_void() {
   sed -i 's/'"$bad_token_return_type"'/ void/' src/generated/Api/TokensApi.php
 }
 
+# with codegen v7.12.0, the models can be generated with different names
+# but we should maintain backwards compatibility with the previous handwritten models that changed the names
+# so this changes the namespace of the codegen models to the namespace of the handwritten code
+# this can be removed in the v2 of this package since it's a breaking change of the import path
+backwards_compatible_namespace() {
+  local codegen_namespace='OpenAPI\\Client\\Model'
+  local namespace='Passage\\Client'
+
+  local models=(
+    "CreateUserArgs"
+    "UpdateUserArgs"
+    "PassageUser"
+  )
+
+  for file in "${models[@]}"; do
+    local filepath="src/generated/Model/$file.php"
+
+    # change the namespace of the model
+    sed -i 's/namespace '"$codegen_namespace"'/namespace '"$namespace"'/' $filepath
+
+    # since the namespace is changing, we need to add ModelInterface to the import list
+    local last_use=$(grep -n "use " $filepath | tail -n 1 | cut -d: -f1)
+    sed -i "$last_use"'a use OpenAPI\\Client\\Model\\ModelInterface;' $filepath
+  done
+
+  # change the codegen references
+  sed -i 's/\\'"$codegen_namespace"'\\CreateUserArgs/\\'"$namespace"'\\CreateUserArgs/' src/generated/Api/UsersApi.php
+  sed -i 's/\\'"$codegen_namespace"'\\UpdateUserArgs/\\'"$namespace"'\\UpdateUserArgs/' src/generated/Api/UsersApi.php
+  sed -i 's/\\'"$codegen_namespace"'\\PassageUser/\\'"$namespace"'\\PassageUser/' src/generated/Model/UserResponse.php
+}
+
 add_passage_version_header
 return_void
+backwards_compatible_namespace

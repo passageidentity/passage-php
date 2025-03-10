@@ -7,9 +7,6 @@ use OpenAPI\Client\Api\TokensApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\Api\UsersApi;
 use OpenAPI\Client\Api\UserDevicesApi;
-use OpenAPI\Client\Model\CreateUserArgs;
-use OpenAPI\Client\Model\PassageUser;
-use OpenAPI\Client\Model\UpdateUserArgs;
 use OpenAPI\Client\Model\WebAuthnDevices;
 use OpenAPI\Client\ApiException;
 

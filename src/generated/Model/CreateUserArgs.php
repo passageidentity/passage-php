@@ -26,13 +26,14 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Passage\Client;
 
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use ReturnTypeWillChange;
 use OpenAPI\Client\ObjectSerializer;
+use OpenAPI\Client\Model\ModelInterface;
 
 /**
  * CreateUserArgs Class Doc Comment
