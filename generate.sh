@@ -14,7 +14,8 @@ docker run --rm -v "${PWD}:/local" -u $(id -u) openapitools/openapi-generator-cl
   -i "/local/$file" \
   -g php-nextgen \
   -o /local/temp \
-  --global-property apiTests=false,modelTests=false,apiDocs=false,modelDocs=false
+  --global-property apiTests=false,modelTests=false,apiDocs=false,modelDocs=false \
+  --model-name-mappings CreateUserRequest=CreateUserArgs,UpdateUserRequest=UpdateUserArgs,UserInfo=PassageUser
 
 mv ./temp/src/* ./src/generated
 rm -rf ./temp
