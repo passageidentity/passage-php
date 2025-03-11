@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [1.1.0](https://github.com/passageidentity/passage-php/compare/v1.0.0...v1.1.0) (2025-03-11)
+
+
+### Features
+
+* update generated code with nullable parameters ([85610bf](https://github.com/passageidentity/passage-php/commit/85610bf5d4557e7c42e697602592d9077d8f9151))
+
 ## [1.0.0](https://github.com/passageidentity/passage-php/compare/v0.5.0...v1.0.0) (2025-01-14)
 
 
