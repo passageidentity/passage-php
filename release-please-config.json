@@ -13,6 +13,9 @@
           "path": "composer.json",
           "jsonpath": "$.version"
         }
+      ],
+      "changelog-sections": [
+        { "type": "docs", "section": "Documentation", "hidden": false }
       ]
     }
   },
