@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [1.1.1](https://github.com/passageidentity/passage-php/compare/v1.1.0...v1.1.1) (2026-01-09)
+
+
+### Documentation
+
+* add sunset notice to README ([#111](https://github.com/passageidentity/passage-php/issues/111)) ([6600047](https://github.com/passageidentity/passage-php/commit/6600047626954e49400774f7d84e377b48ae35ae))
+
 ## [1.1.0](https://github.com/passageidentity/passage-php/compare/v1.0.0...v1.1.0) (2025-03-11)
 
 
